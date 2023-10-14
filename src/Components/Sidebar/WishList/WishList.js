@@ -20,7 +20,7 @@ const WishList = ({wishlist, setWishlist}) => {
 			</div>
 			<div className="self-stretch flex-col justify-start items-start gap-10 flex">
 				<div className="self-stretch h-[25.20px] pr-[284px] flex-col justify-start items-start flex">
-					<div className="text-xl font-bold uppercase text-primary">Wishlist</div>
+					<div className="text-xl font-bold uppercase text-secondary">Wishlist</div>
 				</div>
 				<div className="self-stretch flex-col justify-start items-start gap-5 flex">
 					<div className="self-stretch justify-between items-center inline-flex">
@@ -55,7 +55,7 @@ const WishList = ({wishlist, setWishlist}) => {
 					</div>
 				</div>
 			</div>
-			<Link className="mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]  py-[6.80px]">
+			<Link className="mt-10 w-[100%] btn btn-secondary text-white self-stretch h-[35.60px]  py-[6.80px]">
 				View wishlist
 			</Link>
 		</div>

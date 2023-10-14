@@ -20,7 +20,7 @@ const CartList = ({cartList, setCartList}) => {
 			</div>
 			<div className="self-stretch flex-col justify-start items-start gap-10 flex">
 				<div className="self-stretch h-[25.20px]  flex-col justify-start items-start flex">
-					<h2 className="text-xl font-bold uppercase text-primary">Shopping Cart</h2>
+					<h2 className="text-xl font-bold uppercase text-secondary">Shopping Cart</h2>
 				</div>
 				<div className="self-stretch flex-col justify-start items-start gap-5 flex">
 					<div className="self-stretch justify-between items-center inline-flex">
@@ -87,10 +87,10 @@ const CartList = ({cartList, setCartList}) => {
 					</div>
 				</div>
 			</div>
-			<Link className="mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]  py-[6.80px]">
+			<Link className="mt-10 w-[100%] btn btn-secondary text-white self-stretch h-[35.60px]  py-[6.80px]">
 				View cart
 			</Link>
-			<Link className="mt-4 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]  py-[6.80px] mb-8 ">
+			<Link className="mt-4 w-[100%] btn btn-secondary text-white self-stretch h-[35.60px]  py-[6.80px] mb-8 ">
 				Checkout
 			</Link>
 		</div>
