@@ -10,17 +10,17 @@ const WishList = ({wishlist, setWishlist}) => {
 				wishlist ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[100%]'
 			} offcanvas-rightside fixed z-10 top-0 right-0 w-[320px]   md:w-[400px] h-[100%] px-5 pt-5 mb-10  bg-white transition duration-1000 overflow-auto overflow-x-hidden`}
 		>
-			<div
-				onClick={() => setWishlist(!wishlist)}
-				className="self-stretch h-10 pl-[275px] md:pl-[324.26px] pr-[5.74px] pt-[5.80px] pb-[4.20px] flex-col justify-start items-end flex"
-			>
-				<div className="hover:text-red-600 transition cursor-pointer text-center text-black text-3xl font-normal  leading-[30px]">
+			<div className="self-stretch h-10 pl-[275px] md:pl-[324.26px] pr-[5.74px] pt-[5.80px] pb-[4.20px] flex-col justify-start items-end flex">
+				<div
+					onClick={() => setWishlist(!wishlist)}
+					className="hover:text-red-600 transition cursor-pointer text-center text-black text-3xl font-normal  leading-[30px]"
+				>
 					<RxCross1 />
 				</div>
 			</div>
 			<div className="self-stretch flex-col justify-start items-start gap-10 flex">
 				<div className="self-stretch h-[25.20px] pr-[284px] flex-col justify-start items-start flex">
-					<div className="text-xl font-bold uppercase text-secondary">Wishlist</div>
+					<div className="text-xl font-bold uppercase text-primary">Wishlist</div>
 				</div>
 				<div className="self-stretch flex-col justify-start items-start gap-5 flex">
 					<div className="self-stretch justify-between items-center inline-flex">
@@ -55,7 +55,7 @@ const WishList = ({wishlist, setWishlist}) => {
 					</div>
 				</div>
 			</div>
-			<Link className="mt-10 w-[100%] btn btn-secondary text-white self-stretch h-[35.60px]  py-[6.80px]">
+			<Link className="mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]  py-[6.80px]">
 				View wishlist
 			</Link>
 		</div>

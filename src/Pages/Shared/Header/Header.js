@@ -24,20 +24,21 @@ const Header = () => {
 	// *Display Wishlist and cart list show/hidden End
 	window.addEventListener('scroll', () => {
 		var header = document.querySelector('.navigation');
-		header.classList.toggle('shadow', window.scrollY > 0);
+		header.classList.toggle('shadow', window.scrollY > 20);
+		console.log(window.scrollY);
 	});
 	// *navlink
 	const navlink = (
 		<>
-			<li className="hover:text-secondary mx-[20px] font-bold transition-colors">
+			<li className="hover:text-primary mx-[20px] font-bold transition-colors">
 				<NavLink className="" to="/" end>
 					Home
 				</NavLink>
 			</li>
-			<li className="hover:text-secondary mx-[20px] font-bold transition-colors">
+			<li className="hover:text-primary mx-[20px] font-bold transition-colors">
 				<NavLink to="/shop">Shop</NavLink>
 			</li>
-			<li className="hover:text-secondary mx-[20px] font-bold transition-colors">
+			<li className="hover:text-primary mx-[20px] font-bold transition-colors">
 				<NavLink to="/blog">Blog</NavLink>
 			</li>
 		</>
@@ -45,7 +46,7 @@ const Header = () => {
 	return (
 		<div className="relative">
 			<div className=" sticky z-[2] top-0 dark:text-black">
-				<div className="bg-primary navigation fixed  top-0 w-[100%]">
+				<div className="bg-secondary navigation fixed  top-0 w-[100%]">
 					<div className="relative container mx-auto navbar h-[80px]">
 						<div className="navbar-start">
 							<div className="dropdown">
@@ -67,34 +68,34 @@ const Header = () => {
 								</label>
 								<ul
 									tabIndex={0}
-									className="menu-sm dropdown-content mt-3 z-[1] p-2  bg-primary rounded-box w-52 uppercase"
+									className="menu-sm dropdown-content mt-3 z-[1] p-2  bg-black rounded-box w-52 text-white uppercase"
 								>
 									{navlink}
 								</ul>
 							</div>
-							<Link to={'/'} className="text-secondary text-xl lg:text-2xl font-extrabold">
+							<Link to={'/'} className="text-primary text-xl lg:text-2xl font-extrabold">
 								E-ShopSpots
 							</Link>
 						</div>
 						<div className="navbar-center hidden lg:flex">
-							<ul className=" menu-horizontal px-1 uppercase ">{navlink}</ul>
+							<ul className="menu-horizontal px-1 uppercase">{navlink}</ul>
 						</div>
 						<div className="navbar-end transition-colors">
 							<div className="wishlist mx-6">
 								<div
 									onClick={() => setWishlist(!wishlist)}
-									className="indicator cursor-pointer transition-colors hover:text-secondary"
+									className="indicator cursor-pointer transition-colors hover:text-primary"
 								>
-									<span className="indicator-item badge bg-secondary text-white  font-bold">9</span>
+									<span className="indicator-item badge bg-primary text-white  font-bold">9</span>
 									<span className="icon-heart text-2xl"></span>
 								</div>
 							</div>
 							<div className="cart mr-8">
 								<div
 									onClick={() => setCartList(!cartList)}
-									className="indicator cursor-pointer transition-colors hover:text-secondary"
+									className="indicator cursor-pointer transition-colors hover:text-primary"
 								>
-									<span className="indicator-item badge bg-secondary text-white  font-bold">9</span>
+									<span className="indicator-item badge bg-primary text-white  font-bold">9</span>
 									<span className="icon-bag text-2xl"></span>
 								</div>
 							</div>

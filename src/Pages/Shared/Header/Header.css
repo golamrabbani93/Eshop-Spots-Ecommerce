@@ -1,5 +1,5 @@
 .active {
-	color: rgb(177, 147, 97);
+	color: #ff365d;
 }
 
 .indicator > .icon {
@@ -8,9 +8,14 @@
 	cursor: pointer;
 }
 .shadow {
+	transition: background-color 0.3s;
+	background-color: #000000;
+	color: white !important;
 	box-shadow: 0px 5px 10px -1px rgb(177, 147, 97);
 	-webkit-box-shadow: -1px 5px 6px -1px rgb(177, 147, 97);
 	-moz-box-shadow: -1px 5px 6px -1px rgb(177, 147, 97);
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
 }
 #page {
 	transition: all 0.3s;
