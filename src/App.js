@@ -4,7 +4,10 @@ import router from './Routes/MainRoutes';
 function App() {
 	return (
 		<div className="App">
-			<RouterProvider router={router}></RouterProvider>
+			<div className="relative">
+				<RouterProvider router={router}></RouterProvider>
+			</div>
+			<div id="page"></div>
 		</div>
 	);
 }
