@@ -7,6 +7,7 @@ const Header = () => {
 	// *Display Wishlist and cart list show/hidden Start
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
+	// !wishlist && !cartList
 	useEffect(() => {
 		if (!wishlist) {
 			document.getElementById('page').classList.remove('body-opacity');
@@ -22,11 +23,12 @@ const Header = () => {
 		}
 	}, [cartList]);
 	// *Display Wishlist and cart list show/hidden End
+	// *Sticky Header Start
 	window.addEventListener('scroll', () => {
 		var header = document.querySelector('.navigation');
 		header.classList.toggle('shadow', window.scrollY > 20);
-		console.log(window.scrollY);
 	});
+	// *Sticky Header End
 	// *navlink
 	const navlink = (
 		<>
