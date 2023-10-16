@@ -17,3 +17,67 @@ body {
 .slick-slide.slick-active.slick-current {
 	z-index: 1;
 }
+img {
+	width: 100%;
+}
+
+/*Banner Animation*/
+.banner-animation {
+	position: relative;
+}
+.banner-animation::before {
+	background: rgba(255, 54, 93, 0.3);
+	bottom: 0;
+	content: '';
+	left: 50%;
+	position: absolute;
+	right: 50%;
+	top: 0;
+	opacity: 1;
+	width: 0;
+}
+.banner-animation::after {
+	background: rgba(255, 54, 93, 0.6);
+	bottom: 50%;
+	content: '';
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	opacity: 1;
+	width: 0;
+}
+.banner-animation:hover::before {
+	left: 0;
+	right: 0;
+	opacity: 0;
+	width: auto;
+	transition: all 900ms linear;
+}
+.banner-animation:hover::after {
+	top: 0;
+	bottom: 0;
+	opacity: 0;
+	width: auto;
+	transition: all 900ms linear;
+}
+.action-link {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	background: black;
+	padding: 0 20px;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s ease;
+	transform: translateY(60px);
+}
+.new-card:hover .action-link {
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0px);
+}

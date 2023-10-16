@@ -44,16 +44,16 @@ const Banner = () => {
 			<Slider {...settings}>
 				{banner__info.map((banner, index) => {
 					return (
-						<div className={`banner-${index}`}>
+						<div key={index} className={`banner-${index}`}>
 							<div className="banner__image relative ">
 								<img className="h-[100vh] w-full object-cover" src={banner.img} alt="" />
 							</div>
 							<div className="container mx-auto">
 								<div className="banner__info w-[250px] sm:w-[320px] md:w-[580px] absolute top-1/2 translate-y-[-50%] pl-10 lg:pl-20">
-									<div class="relative ">
-										<h2 class="sm:text-xl uppercase">{banner.subTitle}</h2>
+									<div className="relative ">
+										<h2 className="sm:text-xl uppercase">{banner.subTitle}</h2>
 
-										<h2 class="text-3xl text-primary-focus sm:text-[63px] font-semibold sm:leading-[70px]">
+										<h2 className="text-3xl text-primary-focus sm:text-[63px] font-semibold sm:leading-[70px]">
 											{banner.title}
 										</h2>
 										<Link to={`/shop`} className="mt-5 btn btn-primary btn-outline sm:w-52">
