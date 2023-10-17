@@ -5,9 +5,9 @@ import {useQuery} from '@tanstack/react-query';
 
 const NewArrivals = () => {
 	const {data: NewArrivalsData = [], isLoading} = useQuery({
-		queryKey: ['new-arrival-product'],
+		queryKey: ['products'],
 		queryFn: async () => {
-			const res = await fetch('http://localhost:5000/new-arrival-product');
+			const res = await fetch('http://localhost:5000/products');
 			const data = await res.json();
 			return data;
 		},

@@ -7,7 +7,6 @@ import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 
 const Header = () => {
 	const {wishListItems} = useContext(CartWishListContext);
-	console.log('🚀🚀: Header -> wishListItems', wishListItems);
 	// *Display Wishlist and cart list show/hidden Start
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
