@@ -1,8 +1,30 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {RxCross1} from 'react-icons/rx';
-import {FaTrash} from 'react-icons/fa6';
 import {Link} from 'react-router-dom';
+import {useQuery} from '@tanstack/react-query';
+import {CartWishListContext} from '../../../contexts/CartWishListProvider';
+import SingleWishList from './SingleWishList/SingleWishList';
 const WishList = ({wishlist, setWishlist}) => {
+	// !!get wishlist itmes from local storage
+	const {wishListItems} = useContext(CartWishListContext);
+	const [newWishLists, setNewWishLists] = useState([]);
+
+	const {data: products = [], isLoading} = useQuery({
+		queryKey: ['products'],
+		queryFn: async () => {
+			const res = await fetch('http://localhost:5000/products');
+			const data = await res.json();
+			return data;
+		},
+	});
+
+	useEffect(() => {
+		if (!isLoading) {
+			const newWishList = products.data?.filter((product) => wishListItems?.includes(product?._id));
+			setNewWishLists(newWishList);
+		}
+	}, [products, wishListItems, isLoading]);
+
 	return (
 		<div
 			id="offcanvas"
@@ -20,44 +42,31 @@ const WishList = ({wishlist, setWishlist}) => {
 			</div>
 			<div className="self-stretch flex-col justify-start items-start gap-10 flex">
 				<div className="self-stretch h-[25.20px] pr-[284px] flex-col justify-start items-start flex">
-					<div className="text-xl font-bold uppercase text-primary">Wishlist</div>
+					<h2 className="text-xl font-bold uppercase text-primary">Wishlist</h2>
 				</div>
-				<div className="self-stretch flex-col justify-start items-start gap-5 flex">
-					<div className="self-stretch justify-between items-center inline-flex">
-						<div className="justify-start items-center flex">
-							<div className="w-[110px] pr-5 flex-col justify-start items-start inline-flex">
-								<div className="self-stretch h-[103.25px] p-[0.80px] border border-gray-200 flex-col justify-center items-start flex">
-									<img
-										alt=""
-										className="w-[88.40px] h-[101.65px] relative"
-										src="https://via.placeholder.com/88x102"
-									/>
-								</div>
-							</div>
-							<div className="flex-col justify-start items-start inline-flex">
-								<div className="self-stretch h-[24.50px] flex-col justify-start items-start flex">
-									<div className="text-neutral-500 text-sm font-bold font-['Open Sans'] leading-normal">
-										Shock Absorber
-									</div>
-								</div>
-								<div className="self-stretch h-[24.50px] pr-[34.10px] flex-col justify-start items-start flex">
-									<div className="text-neutral-500 text-sm font-normal font-['Open Sans'] leading-normal">
-										1 x $350.00
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="w-[11px] pt-[5.60px] pb-[4.90px] flex-col justify-start items-end inline-flex">
-							<div className="text-right text-red-500 hover:text-red-600 cursor-pointer">
-								<FaTrash />
-							</div>
-						</div>
-					</div>
-				</div>
+				{newWishLists?.length > 0 ? (
+					newWishLists?.map((wishList) => (
+						<SingleWishList key={wishList._id} wishList={wishList}></SingleWishList>
+					))
+				) : (
+					<h2 className="font-bold uppercase text-primary">No Items Found</h2>
+				)}
 			</div>
-			<Link className="mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]  py-[6.80px]">
-				View wishlist
-			</Link>
+			{newWishLists?.length > 0 ? (
+				// ! if  wishList items found then show this button
+				<Link
+					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
+				>
+					View wishlist
+				</Link>
+			) : (
+				// ! if No wishList items found then show this button
+				<Link
+					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
+				>
+					Visit Shop
+				</Link>
+			)}
 		</div>
 	);
 };
