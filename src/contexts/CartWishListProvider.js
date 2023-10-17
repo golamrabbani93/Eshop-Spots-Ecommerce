@@ -12,7 +12,7 @@ const CartWishListProvider = ({children}) => {
 		setWishListItems(JSON.parse(storedCart));
 	}, [refresh]);
 	// !Add Wishlist id to local storage
-	const addWishList = (id) => {
+	const addDeleteWishList = (id) => {
 		let wishList = [];
 		//!get the shopping cart from local storage
 		const storedCart = localStorage.getItem('Wishlist');
@@ -32,7 +32,7 @@ const CartWishListProvider = ({children}) => {
 		localStorage.setItem('Wishlist', JSON.stringify(wishList));
 		setRefresh(!refresh);
 	};
-	const cartWishListInfo = {wishListItems, addWishList};
+	const cartWishListInfo = {wishListItems, addDeleteWishList};
 	return (
 		<CartWishListContext.Provider value={cartWishListInfo}>{children}</CartWishListContext.Provider>
 	);

@@ -5,12 +5,12 @@ import {CartWishListContext} from '../../contexts/CartWishListProvider';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs';
 const SingleProduct = ({data}) => {
 	// !import from CartWishListProvider
-	const {addWishList, wishListItems} = useContext(CartWishListContext);
+	const {addDeleteWishList, wishListItems} = useContext(CartWishListContext);
 	// !change icon for add wishListItem
 	const [isWishList, setIsWishList] = useState(false);
 	// !add WishList item to local storage
 	const handleWishList = (id) => {
-		addWishList(id);
+		addDeleteWishList(id);
 	};
 	// !set active wishlist product Icon
 	useEffect(() => {

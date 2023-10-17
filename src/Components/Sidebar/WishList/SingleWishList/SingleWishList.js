@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {FaTrash} from 'react-icons/fa6';
+import {CartWishListContext} from '../../../../contexts/CartWishListProvider';
 
 const SingleWishList = ({wishList}) => {
+	const {addDeleteWishList} = useContext(CartWishListContext);
 	const {_id, img, name, discount_price, main_price} = wishList;
 	// !Delete wishlist item from local storage
 	const handleDeleteWishList = (id) => {
+		addDeleteWishList(id);
 		console.log(id);
 	};
 
