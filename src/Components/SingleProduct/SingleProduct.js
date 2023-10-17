@@ -1,7 +1,22 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Rating from '../Rating/Rating';
+import {CartWishListContext} from '../../contexts/CartWishListProvider';
+import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs';
 const SingleProduct = ({data}) => {
+	// !import from CartWishListProvider
+	const {addWishList, wishListItems} = useContext(CartWishListContext);
+	// !change icon for add wishListItem
+	const [isWishList, setIsWishList] = useState(false);
+	// !add WishList item to local storage
+	const handleWishList = (id) => {
+		addWishList(id);
+	};
+	// !set active wishlist product Icon
+	useEffect(() => {
+		const isWishList = wishListItems?.includes(data?._id);
+		setIsWishList(isWishList);
+	}, [data?._id, wishListItems]);
 	return (
 		<div className="!flex justify-center">
 			<div className="new-card card-compact !w-72 md:!w-72 mt-8  mx-3">
@@ -20,10 +35,18 @@ const SingleProduct = ({data}) => {
 						<div>
 							<Link
 								onClick={() => handleWishList(data?._id)}
-								className="tooltip tooltip-left mx-2 text-white hover:text-primary transition duration-500 text-xl"
+								className={`${
+									isWishList ? 'text-primary hover:text-white' : ' text-white hover:text-primary'
+								}tooltip tooltip-left mx-2 transition duration-500 text-xl`}
 								data-tip="Add To Wishlist"
 							>
-								<i className="icon-heart"></i>
+								{isWishList ? (
+									//
+									<BsSuitHeartFill></BsSuitHeartFill>
+								) : (
+									<BsSuitHeart></BsSuitHeart>
+								)}
+								{/* <i className="icon-heart"></i> */}
 							</Link>
 						</div>
 					</div>

@@ -1,9 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import './Header.css';
 import WishList from '../../../Components/Sidebar/WishList/WishList';
 import CartList from '../../../Components/Sidebar/CartList/CartList';
+import {CartWishListContext} from '../../../contexts/CartWishListProvider';
+
 const Header = () => {
+	const {wishListItems} = useContext(CartWishListContext);
+	console.log('🚀🚀: Header -> wishListItems', wishListItems);
 	// *Display Wishlist and cart list show/hidden Start
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
@@ -88,7 +92,9 @@ const Header = () => {
 									onClick={() => setWishlist(!wishlist)}
 									className="indicator cursor-pointer transition-colors hover:text-primary"
 								>
-									<span className="indicator-item badge bg-primary text-white  font-bold">9</span>
+									<span className="indicator-item badge bg-primary text-white  font-bold">
+										{wishListItems?.length || 0}
+									</span>
 									<span className="icon-heart text-2xl"></span>
 								</div>
 							</div>
