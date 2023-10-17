@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {AuthContext} from '../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+	const {userSignUp, updateUser, loader} = useContext(AuthContext);
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
@@ -12,28 +16,24 @@ const SignUp = () => {
 	//! sign up with email and password
 	const handleSignUp = (data) => {
 		const fullData = {fullName: `${data.firstName} ${data.lastName}`, ...data};
-		console.log('🚀🚀: handleSignUp -> fullData', fullData);
-		// userSignUp(data.email, data.password)
-		// .then((result) => {
-		// 	toast.success('Sign Up Complete');
-		// 	//!Post User TO database
-		// 	UsePostUser(data.name, data.email);
-		// 	//! user Name Update start
-		// 	const userinfo = {
-		// 		displayName: data.name,
-		// 	};
-		// 	updateUser(userinfo)
-		// 		.then(() => {
-		// 			// !Set User Email For Token
-		// 			setUserEmail(data.email);
-		// 		})
-		// 		.catch((err) => console.log(err));
-		// 	// //! user Name Update end
-		// 	reset();
-		// })
-		// .catch((err) => {
-		// 	toast.error('Sign Up Faild');
-		// });
+		userSignUp(fullData.email, fullData.password)
+			.then((result) => {
+				//! user Name Update start
+				const userinfo = {
+					displayName: fullData.fullName,
+				};
+				updateUser(userinfo)
+					.then(() => {
+						toast.success('Sign Up Success');
+						navigate('/');
+					})
+					.catch((err) => console.log(err));
+				//! user Name Update end
+				reset();
+			})
+			.catch((err) => {
+				toast.error('Sign Up Faild');
+			});
 	};
 
 	// // ! sign in with google acount
@@ -69,7 +69,6 @@ const SignUp = () => {
 								type="text"
 								placeholder="First Name"
 								className="input input-bordered"
-								autoComplete="First-Name"
 							/>
 							{errors.firstName && (
 								<span className="text-red-600 text-xs ml-2">{errors.firstName.message}</span>
@@ -117,7 +116,6 @@ const SignUp = () => {
 								type="text"
 								placeholder="Last Name"
 								className="input input-bordered"
-								autoComplete="Last-Name"
 							/>
 							{errors.lastName && (
 								<span className="text-red-600 text-xs ml-2">{errors.lastName.message}</span>
@@ -165,7 +163,11 @@ const SignUp = () => {
 				<div className=" w-3/6  mx-auto">
 					<div className="form-control mt-6">
 						<button type="submit" className="btn btn-outline btn-primary">
-							Sign Up
+							{loader ? (
+								<span className="loading loading-spinner text-neutral-focus"></span>
+							) : (
+								'Sign Up'
+							)}
 						</button>
 					</div>
 					<div className="">

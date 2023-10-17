@@ -18,7 +18,11 @@ const SingleProduct = ({data}) => {
 						</div>
 
 						<div>
-							<Link className="mx-2 text-white hover:text-primary transition duration-500 text-xl">
+							<Link
+								onClick={() => handleWishList(data?._id)}
+								className="tooltip tooltip-left mx-2 text-white hover:text-primary transition duration-500 text-xl"
+								data-tip="Add To Wishlist"
+							>
 								<i className="icon-heart"></i>
 							</Link>
 						</div>
