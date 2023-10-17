@@ -5,13 +5,16 @@ export const CartWishListContext = createContext();
 const CartWishListProvider = ({children}) => {
 	const [refresh, setRefresh] = useState(false);
 	const [wishListItems, setWishListItems] = useState([]);
+	const [cartItems, setCartItems] = useState([]);
 
 	// !get wishlist itmes from local storage
 	useEffect(() => {
-		const storedCart = localStorage.getItem('Wishlist');
-		setWishListItems(JSON.parse(storedCart));
+		const wishList = localStorage.getItem('Wishlist');
+		const cartList = localStorage.getItem('Cart');
+		setCartItems(JSON.parse(cartList));
+		setWishListItems(JSON.parse(wishList));
 	}, [refresh]);
-	// !Add Wishlist id to local storage
+	// !Add and Delete Wishlist id to local storage
 	const addDeleteWishList = (id) => {
 		let wishList = [];
 		//!get the shopping cart from local storage
@@ -32,7 +35,28 @@ const CartWishListProvider = ({children}) => {
 		localStorage.setItem('Wishlist', JSON.stringify(wishList));
 		setRefresh(!refresh);
 	};
-	const cartWishListInfo = {wishListItems, addDeleteWishList};
+
+	// ! cart data to local storage
+	const addCart = (id) => {
+		let cart = [];
+
+		//get the shopping cart from local storage
+		const storedCart = localStorage.getItem('Cart');
+		if (storedCart) {
+			cart = JSON.parse(storedCart);
+		}
+
+		const existingProduct = cart.find((item) => item.id === id);
+		if (existingProduct) {
+			existingProduct.quantity = existingProduct.quantity + 1;
+		} else {
+			cart = [...cart, {id: id, quantity: 1}];
+		}
+
+		localStorage.setItem('Cart', JSON.stringify(cart));
+		setRefresh(!refresh);
+	};
+	const cartWishListInfo = {wishListItems, addDeleteWishList, addCart, cartItems};
 	return (
 		<CartWishListContext.Provider value={cartWishListInfo}>{children}</CartWishListContext.Provider>
 	);

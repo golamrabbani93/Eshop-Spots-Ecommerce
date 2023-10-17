@@ -6,7 +6,7 @@ import CartList from '../../../Components/Sidebar/CartList/CartList';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 
 const Header = () => {
-	const {wishListItems} = useContext(CartWishListContext);
+	const {wishListItems, cartItems} = useContext(CartWishListContext);
 	// *Display Wishlist and cart list show/hidden Start
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
@@ -102,7 +102,9 @@ const Header = () => {
 									onClick={() => setCartList(!cartList)}
 									className="indicator cursor-pointer transition-colors hover:text-primary"
 								>
-									<span className="indicator-item badge bg-primary text-white  font-bold">9</span>
+									<span className="indicator-item badge bg-primary text-white  font-bold">
+										{cartItems?.length || 0}
+									</span>
 									<span className="icon-bag text-2xl"></span>
 								</div>
 							</div>

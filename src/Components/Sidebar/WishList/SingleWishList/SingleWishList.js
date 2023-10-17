@@ -8,7 +8,6 @@ const SingleWishList = ({wishList}) => {
 	// !Delete wishlist item from local storage
 	const handleDeleteWishList = (id) => {
 		addDeleteWishList(id);
-		console.log(id);
 	};
 
 	return (

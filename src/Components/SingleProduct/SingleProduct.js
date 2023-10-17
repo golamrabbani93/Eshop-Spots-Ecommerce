@@ -5,7 +5,7 @@ import {CartWishListContext} from '../../contexts/CartWishListProvider';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs';
 const SingleProduct = ({data}) => {
 	// !import from CartWishListProvider
-	const {addDeleteWishList, wishListItems} = useContext(CartWishListContext);
+	const {addDeleteWishList, wishListItems, addCart} = useContext(CartWishListContext);
 	// !change icon for add wishListItem
 	const [isWishList, setIsWishList] = useState(false);
 	// !add WishList item to local storage
@@ -17,6 +17,12 @@ const SingleProduct = ({data}) => {
 		const isWishList = wishListItems?.includes(data?._id);
 		setIsWishList(isWishList);
 	}, [data?._id, wishListItems]);
+
+	// !Add Cart Data id to local storage
+	const handleAddCart = (id) => {
+		addCart(id);
+	};
+
 	return (
 		<div className="!flex justify-center">
 			<div className="new-card card-compact !w-72 md:!w-72 mt-8  mx-3">
@@ -27,7 +33,10 @@ const SingleProduct = ({data}) => {
 
 					<div className="action-link">
 						<div>
-							<Link className="text-white hover:text-primary font-bold uppercase transition duration-500">
+							<Link
+								onClick={() => handleAddCart(data?._id)}
+								className="text-white hover:text-primary font-bold uppercase transition duration-500"
+							>
 								Add to Cart
 							</Link>
 						</div>
