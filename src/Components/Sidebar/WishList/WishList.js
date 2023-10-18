@@ -57,6 +57,8 @@ const WishList = ({wishlist, setWishlist}) => {
 			{newWishLists?.length > 0 ? (
 				// ! if  wishList items found then show this button
 				<Link
+					onClick={() => setWishlist(!wishlist)}
+					to={'/shop/wishlist'}
 					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
 				>
 					View wishlist
