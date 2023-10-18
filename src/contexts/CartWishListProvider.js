@@ -37,7 +37,7 @@ const CartWishListProvider = ({children}) => {
 	};
 
 	// ! cart data to local storage
-	const addCart = (id) => {
+	const addCart = (data) => {
 		let cart = [];
 
 		//get the shopping cart from local storage
@@ -46,11 +46,11 @@ const CartWishListProvider = ({children}) => {
 			cart = JSON.parse(storedCart);
 		}
 
-		const existingProduct = cart.find((item) => item.id === id);
+		const existingProduct = cart.find((item) => item._id === data._id);
 		if (existingProduct) {
 			existingProduct.quantity = existingProduct.quantity + 1;
 		} else {
-			cart = [...cart, {id: id, quantity: 1}];
+			cart = [...cart, data];
 		}
 
 		localStorage.setItem('Cart', JSON.stringify(cart));
@@ -65,7 +65,7 @@ const CartWishListProvider = ({children}) => {
 		if (storedCart) {
 			cart = JSON.parse(storedCart);
 		}
-		const newCart = cart.filter((item) => item.id !== id);
+		const newCart = cart.filter((item) => item._id !== id);
 		localStorage.setItem('Cart', JSON.stringify(newCart));
 		setRefresh(!refresh);
 	};

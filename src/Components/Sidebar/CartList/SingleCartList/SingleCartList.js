@@ -3,7 +3,7 @@ import {FaTrash} from 'react-icons/fa6';
 import {CartWishListContext} from '../../../../contexts/CartWishListProvider';
 const SingleCartList = ({cartList}) => {
 	const {deleteCartlist} = useContext(CartWishListContext);
-	const {_id, img, name, discount_price, main_price} = cartList;
+	const {_id, img, name, discount_price, main_price, quantity} = cartList;
 	const handleDeleteCartList = (id) => {
 		deleteCartlist(id);
 	};
@@ -22,7 +22,7 @@ const SingleCartList = ({cartList}) => {
 						</div>
 						<div className="self-stretch h-[24.50px] pr-[34.10px] flex-col justify-start items-start flex">
 							<h3 className="text-neutral-500 text-sm font-normal  leading-normal">
-								1 x ${discount_price || main_price}
+								{quantity} x ${discount_price || main_price}
 							</h3>
 						</div>
 					</div>

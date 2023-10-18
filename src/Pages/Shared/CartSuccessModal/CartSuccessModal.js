@@ -3,19 +3,13 @@ import {Link} from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
 import {BsFillCartCheckFill} from 'react-icons/bs';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
-import UseCartList from '../../../hooks/UseCartList';
+import UseCartTotal from '../../../hooks/UseCartTotal';
 const CartSuccessModal = ({modalData}) => {
 	const {img, name} = modalData;
 	// !get cartlist item from local storage
 	const {cartListItems} = useContext(CartWishListContext);
-	// !get filtered cart list products from database
-	const newCartLists = UseCartList(cartListItems);
-
 	// !get Total products Price
-	const totalProductsPrice = newCartLists?.reduce((total, product) => {
-		total += product.discount_price || product.main_price * 1;
-		return total;
-	}, 0);
+	const totalProductsPrice = UseCartTotal(cartListItems);
 	return (
 		<div>
 			<input type="checkbox" id="success-modal" className="modal-toggle" />
@@ -55,7 +49,9 @@ const CartSuccessModal = ({modalData}) => {
 						<div className="cart-details ml-3">
 							<h1 className="uppercase font-bold">
 								There are total{' '}
-								<span className="text-2xl text-primary font-extrabold">{newCartLists?.length}</span>{' '}
+								<span className="text-2xl text-primary font-extrabold">
+									{cartListItems?.length}
+								</span>{' '}
 								items in your Cart
 							</h1>
 							<h1 className="uppercase my-5 font-bold">

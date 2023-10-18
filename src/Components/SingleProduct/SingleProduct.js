@@ -20,9 +20,8 @@ const SingleProduct = ({data, cartModal}) => {
 
 	// !Add Cart Data id to local storage
 	const handleAddCart = (data) => {
-		const {_id} = data;
 		// !addCart Function from CartWishListProvider
-		addCart(_id);
+		addCart(data);
 		// // !cart Modal success
 		cartModal(data);
 	};

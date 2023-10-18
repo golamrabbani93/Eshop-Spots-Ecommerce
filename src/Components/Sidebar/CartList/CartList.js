@@ -3,17 +3,12 @@ import {RxCross1} from 'react-icons/rx';
 import {Link} from 'react-router-dom';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import SingleCartList from './SingleCartList/SingleCartList';
-import UseCartList from '../../../hooks/UseCartList';
+import UseCartTotal from '../../../hooks/UseCartTotal';
 const CartList = ({cartList, setCartList}) => {
 	// !get cartList itmes from local storage
 	const {cartListItems} = useContext(CartWishListContext);
-	// !get filtered cart list products from database
-	const newCartLists = UseCartList(cartListItems);
 	// !get Total products Price
-	const totalProductsPrice = newCartLists?.reduce((total, product) => {
-		total += product.discount_price || product.main_price * 1;
-		return total;
-	}, 0);
+	const totalProductsPrice = UseCartTotal(cartListItems);
 	return (
 		<div
 			id="offcanvas"
@@ -35,8 +30,8 @@ const CartList = ({cartList, setCartList}) => {
 				</div>
 
 				{/* !single Cart List */}
-				{newCartLists?.length > 0 ? (
-					newCartLists?.map((cartList) => (
+				{cartListItems?.length > 0 ? (
+					cartListItems?.map((cartList) => (
 						<SingleCartList key={cartList._id} cartList={cartList}></SingleCartList>
 					))
 				) : (
@@ -44,14 +39,14 @@ const CartList = ({cartList, setCartList}) => {
 				)}
 			</div>
 
-			{newCartLists?.length > 0 && (
+			{cartListItems?.length > 0 && (
 				<div className="flex justify-between mx-2 mt-6">
 					<h2 className="uppercase text-2xl text-primary font-bold">Subtotal:</h2>
 					<h2 className="uppercase text-2xl text-primary font-bold">${totalProductsPrice}</h2>
 				</div>
 			)}
 
-			{newCartLists?.length > 0 ? (
+			{cartListItems?.length > 0 ? (
 				// ! if  cart List items found then show this button
 				<>
 					<Link className={`mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}>
