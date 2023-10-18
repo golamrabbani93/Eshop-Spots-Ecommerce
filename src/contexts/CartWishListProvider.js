@@ -5,13 +5,13 @@ export const CartWishListContext = createContext();
 const CartWishListProvider = ({children}) => {
 	const [refresh, setRefresh] = useState(false);
 	const [wishListItems, setWishListItems] = useState([]);
-	const [cartItems, setCartItems] = useState([]);
+	const [cartListItems, setCartListItems] = useState([]);
 
 	// !get wishlist itmes from local storage
 	useEffect(() => {
 		const wishList = localStorage.getItem('Wishlist');
 		const cartList = localStorage.getItem('Cart');
-		setCartItems(JSON.parse(cartList));
+		setCartListItems(JSON.parse(cartList));
 		setWishListItems(JSON.parse(wishList));
 	}, [refresh]);
 	// !Add and Delete Wishlist id to local storage
@@ -56,7 +56,7 @@ const CartWishListProvider = ({children}) => {
 		localStorage.setItem('Cart', JSON.stringify(cart));
 		setRefresh(!refresh);
 	};
-	const cartWishListInfo = {wishListItems, addDeleteWishList, addCart, cartItems};
+	const cartWishListInfo = {wishListItems, addDeleteWishList, addCart, cartListItems};
 	return (
 		<CartWishListContext.Provider value={cartWishListInfo}>{children}</CartWishListContext.Provider>
 	);

@@ -7,8 +7,10 @@ import SingleWishList from './SingleWishList/SingleWishList';
 const WishList = ({wishlist, setWishlist}) => {
 	// !!get wishlist itmes from local storage
 	const {wishListItems} = useContext(CartWishListContext);
+	// !!get Filterd product from database
 	const [newWishLists, setNewWishLists] = useState([]);
 
+	// !!get all products from database
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products'],
 		queryFn: async () => {
