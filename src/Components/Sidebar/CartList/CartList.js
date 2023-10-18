@@ -58,12 +58,29 @@ const CartList = ({cartList, setCartList}) => {
 					<h2 className="font-bold uppercase text-primary">No Items Found</h2>
 				)}
 			</div>
-			<Link className={`mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}>
-				View cart
-			</Link>
-			<Link className={`mt-3 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}>
-				Checkout
-			</Link>
+
+			{newCartLists?.length > 0 ? (
+				// ! if  cart List items found then show this button
+				<>
+					<Link className={`mt-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}>
+						View cart
+					</Link>
+					<Link
+						className={`mt-3 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
+					>
+						Checkout
+					</Link>
+				</>
+			) : (
+				// ! if No cart List items found then show this button
+				<Link
+					onClick={() => setCartList(!cartList)}
+					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
+					to={'/shop'}
+				>
+					Visit Shop
+				</Link>
+			)}
 		</div>
 	);
 };

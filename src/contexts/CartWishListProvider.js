@@ -56,7 +56,26 @@ const CartWishListProvider = ({children}) => {
 		localStorage.setItem('Cart', JSON.stringify(cart));
 		setRefresh(!refresh);
 	};
-	const cartWishListInfo = {wishListItems, addDeleteWishList, addCart, cartListItems};
+
+	// !detete cart list with id
+	const deleteCartlist = (id) => {
+		let cart = [];
+		//get the shopping cart from local storage
+		const storedCart = localStorage.getItem('Cart');
+		if (storedCart) {
+			cart = JSON.parse(storedCart);
+		}
+		const newCart = cart.filter((item) => item.id !== id);
+		localStorage.setItem('Cart', JSON.stringify(newCart));
+		setRefresh(!refresh);
+	};
+	const cartWishListInfo = {
+		wishListItems,
+		addDeleteWishList,
+		addCart,
+		cartListItems,
+		deleteCartlist,
+	};
 	return (
 		<CartWishListContext.Provider value={cartWishListInfo}>{children}</CartWishListContext.Provider>
 	);

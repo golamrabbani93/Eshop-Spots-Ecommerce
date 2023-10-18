@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {FaTrash} from 'react-icons/fa6';
+import {CartWishListContext} from '../../../../contexts/CartWishListProvider';
 const SingleCartList = ({cartList}) => {
+	const {deleteCartlist} = useContext(CartWishListContext);
 	const {_id, img, name, discount_price, main_price} = cartList;
 	const handleDeleteCartList = (id) => {
-		console.log('🚀🚀: handleDeleteCartList -> id', id);
+		deleteCartlist(id);
 	};
 	return (
 		<div className="self-stretch flex-col justify-start items-start gap-5 flex">
