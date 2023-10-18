@@ -1,34 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {RxCross1} from 'react-icons/rx';
 import {Link} from 'react-router-dom';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
-import {useQuery} from '@tanstack/react-query';
 import SingleCartList from './SingleCartList/SingleCartList';
+import UseCartList from '../../../hooks/UseCartList';
 const CartList = ({cartList, setCartList}) => {
 	// !get cartList itmes from local storage
 	const {cartListItems} = useContext(CartWishListContext);
-	// !get filtered products from database
-	const [newCartLists, setNewCartLists] = useState([]);
-
-	// !get all products from database
-	const {data: products = [], isLoading} = useQuery({
-		queryKey: ['products'],
-		queryFn: async () => {
-			const res = await fetch('http://localhost:5000/products');
-			const data = await res.json();
-			return data;
-		},
-	});
-
-	useEffect(() => {
-		if (!isLoading) {
-			const filteredCartList = products.data?.filter((product) => {
-				//! Check if product.id exists in cartListItems array
-				return cartListItems?.find((cart) => cart.id === product._id);
-			});
-			setNewCartLists(filteredCartList);
-		}
-	}, [cartListItems, isLoading, products]);
+	// !get filtered cart list products from database
+	const newCartLists = UseCartList(cartListItems);
 	return (
 		<div
 			id="offcanvas"

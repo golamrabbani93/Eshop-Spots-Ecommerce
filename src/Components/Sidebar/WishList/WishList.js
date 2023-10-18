@@ -7,7 +7,6 @@ import SingleWishList from './SingleWishList/SingleWishList';
 const WishList = ({wishlist, setWishlist}) => {
 	// !!get wishlist itmes from local storage
 	const {wishListItems} = useContext(CartWishListContext);
-	console.log('🚀🚀: WishList -> wishListItems', wishListItems);
 	// !!get Filterd product from database
 	const [newWishLists, setNewWishLists] = useState([]);
 
