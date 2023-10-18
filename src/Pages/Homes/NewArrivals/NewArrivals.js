@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Slider from 'react-slick';
 import SingleProduct from '../../../Components/SingleProduct/SingleProduct';
 import {useQuery} from '@tanstack/react-query';
+import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 
 const NewArrivals = () => {
+	// !Set single Cart data
+	const [modalData, setModalData] = useState({});
 	const {data: NewArrivalsData = [], isLoading} = useQuery({
 		queryKey: ['products'],
 		queryFn: async () => {
@@ -61,6 +64,9 @@ const NewArrivals = () => {
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
+	const cartModal = (data) => {
+		setModalData(data);
+	};
 	return (
 		<section className="container mx-auto mb-14">
 			<div className="mx-5 md:mx-16">
@@ -71,11 +77,12 @@ const NewArrivals = () => {
 				{NewArrivalsData.data.length > 0 && (
 					<Slider {...settings}>
 						{NewArrivalsData.data?.map((item, index) => {
-							return <SingleProduct key={index} data={item} index={index}></SingleProduct>;
+							return <SingleProduct key={index} data={item} cartModal={cartModal}></SingleProduct>;
 						})}
 					</Slider>
 				)}
 			</div>
+			<CartSuccessModal modalData={modalData}></CartSuccessModal>
 		</section>
 	);
 };
