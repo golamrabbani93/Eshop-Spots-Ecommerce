@@ -1,8 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
+import {BsFillCartCheckFill} from 'react-icons/bs';
+import {CartWishListContext} from '../../../contexts/CartWishListProvider';
+import UseCartList from '../../../hooks/UseCartList';
 const CartSuccessModal = ({modalData}) => {
 	const {img, name} = modalData;
+	// !get cartlist item from local storage
+	const {cartListItems} = useContext(CartWishListContext);
+	// !get filtered cart list products from database
+	const newCartLists = UseCartList(cartListItems);
+
+	// !get Total products Price
+	const totalProductsPrice = newCartLists?.reduce((total, product) => {
+		total += product.discount_price || product.main_price * 1;
+		return total;
+	}, 0);
 	return (
 		<div>
 			<input type="checkbox" id="success-modal" className="modal-toggle" />
@@ -16,9 +29,9 @@ const CartSuccessModal = ({modalData}) => {
 							<img className="w-60 md:w-[135px] border border-spacing-1 mr-2" src={img} alt="" />
 							<div className="ml-4">
 								<h2 className="font-bold text-primary">{name}</h2>
-								<div className=" flex my-4">
-									<input type="checkbox" checked={true} className="checkbox checkbox-primary" />
-									<span className=" ml-2">Added Successfull</span>
+								<div className=" flex my-4 items-center">
+									<BsFillCartCheckFill className="text-primary w-5 h-5"></BsFillCartCheckFill>
+									<span className=" ml-2">Added To Your Cart Successfully</span>
 								</div>
 								<div>
 									<Link
@@ -30,7 +43,7 @@ const CartSuccessModal = ({modalData}) => {
 									</Link>
 									<Link
 										to={`/shop`}
-										className="md:ml-2 mt-2 btn hover:bg-transparent hover:text-primary hover:border-rose-500 text-xs sm:text-sm btn-outline"
+										className="ml-2 mt-2 btn hover:bg-transparent hover:text-primary hover:border-rose-500 text-xs sm:text-sm btn-outline"
 									>
 										Checkout
 										<BsArrowRight />
@@ -40,8 +53,15 @@ const CartSuccessModal = ({modalData}) => {
 						</div>
 						<div className="divider divider-vertical md:divider-horizontal"></div>
 						<div className="cart-details ml-3">
-							<h1 className="uppercase font-bold">There are total items in Cart</h1>
-							<h1 className="uppercase my-5">Toatal Price:0000</h1>
+							<h1 className="uppercase font-bold">
+								There are total{' '}
+								<span className="text-2xl text-primary font-extrabold">{newCartLists?.length}</span>{' '}
+								items in your Cart
+							</h1>
+							<h1 className="uppercase my-5 font-bold">
+								Total Price:{' '}
+								<span className="text-2xl text-primary font-extrabold">${totalProductsPrice}</span>
+							</h1>
 							<Link
 								to={`/shop`}
 								className="ml-2 font-bold hover:text-primary transition duration-300 ease-in-out link"

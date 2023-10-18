@@ -9,6 +9,11 @@ const CartList = ({cartList, setCartList}) => {
 	const {cartListItems} = useContext(CartWishListContext);
 	// !get filtered cart list products from database
 	const newCartLists = UseCartList(cartListItems);
+	// !get Total products Price
+	const totalProductsPrice = newCartLists?.reduce((total, product) => {
+		total += product.discount_price || product.main_price * 1;
+		return total;
+	}, 0);
 	return (
 		<div
 			id="offcanvas"
@@ -16,11 +21,11 @@ const CartList = ({cartList, setCartList}) => {
 				cartList ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[100%]'
 			} offcanvas-rightside fixed z-10 top-0 right-0 w-[320px]   md:w-[400px] h-[100%] px-5 pt-5 mb-10  bg-white transition duration-1000 overflow-auto overflow-x-hidden`}
 		>
-			<div
-				onClick={() => setCartList(!cartList)}
-				className="self-stretch h-10 pl-[275px] md:pl-[324.26px] pr-[5.74px] pt-[5.80px] pb-[4.20px] flex-col justify-start items-end flex"
-			>
-				<div className="hover:text-red-600 transition cursor-pointer text-center text-black text-3xl font-normal  leading-[30px]">
+			<div className="self-stretch h-10 pl-[275px] md:pl-[324.26px] pr-[5.74px] pt-[5.80px] pb-[4.20px] flex-col justify-start items-end flex">
+				<div
+					onClick={() => setCartList(!cartList)}
+					className="hover:text-red-600 transition cursor-pointer text-center text-black text-3xl font-normal  leading-[30px]"
+				>
 					<RxCross1 />
 				</div>
 			</div>
@@ -38,6 +43,13 @@ const CartList = ({cartList, setCartList}) => {
 					<h2 className="font-bold uppercase text-primary">No Items Found</h2>
 				)}
 			</div>
+
+			{newCartLists?.length > 0 && (
+				<div className="flex justify-between mx-2 mt-6">
+					<h2 className="uppercase text-2xl text-primary font-bold">Subtotal:</h2>
+					<h2 className="uppercase text-2xl text-primary font-bold">${totalProductsPrice}</h2>
+				</div>
+			)}
 
 			{newCartLists?.length > 0 ? (
 				// ! if  cart List items found then show this button
