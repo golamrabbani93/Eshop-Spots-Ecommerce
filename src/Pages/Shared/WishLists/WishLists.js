@@ -1,11 +1,15 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import UseWishListProduct from '../../../hooks/UseWishListProduct';
 import SingleWishLists from './SingleWishLists/SingleWishLists';
+import CartSuccessModal from '../CartSuccessModal/CartSuccessModal';
 const WishLists = () => {
 	const {wishListItems} = useContext(CartWishListContext);
 	const {newWishLists, isLoading} = UseWishListProduct(wishListItems);
+	// !set Modal Data
+	const [modalData, setModalData] = useState({});
+	console.log('🚀🚀: WishLists -> modalData', modalData);
 
 	// !breaditems list
 	const breaditems = [
@@ -39,7 +43,7 @@ const WishLists = () => {
 							<table className="table">
 								{/* head */}
 								<thead className="text-center bg-[#6c757d50] text-black">
-									<tr className="text-xl">
+									<tr className="text-base">
 										<th>Delete</th>
 										<th>Image</th>
 										<th>Product</th>
@@ -51,7 +55,11 @@ const WishLists = () => {
 								<tbody>
 									{newWishLists?.map((wishList) => {
 										return (
-											<SingleWishLists key={wishList._id} wishList={wishList}></SingleWishLists>
+											<SingleWishLists
+												key={wishList._id}
+												wishList={wishList}
+												setModalData={setModalData}
+											></SingleWishLists>
 										);
 									})}
 								</tbody>
@@ -61,6 +69,7 @@ const WishLists = () => {
 						)}
 					</div>
 				</div>
+				<CartSuccessModal modalData={modalData}></CartSuccessModal>
 			</div>
 		</div>
 	);

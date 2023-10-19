@@ -5,7 +5,6 @@ import {BsFillCartCheckFill} from 'react-icons/bs';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import UseCartTotal from '../../../hooks/UseCartTotal';
 const CartSuccessModal = ({modalData}) => {
-	const {img, name} = modalData;
 	// !get cartlist item from local storage
 	const {cartListItems} = useContext(CartWishListContext);
 	// !get Total products Price
@@ -20,9 +19,13 @@ const CartSuccessModal = ({modalData}) => {
 					</label>
 					<div className=" md:flex flex-wrap">
 						<div className="product-details md:flex flex-wrap md:w-1/2">
-							<img className="w-60 md:w-[135px] border border-spacing-1 mr-2" src={img} alt="" />
+							<img
+								className="w-60 md:w-[135px] border border-spacing-1 mr-2"
+								src={modalData?.img}
+								alt=""
+							/>
 							<div className="ml-4">
-								<h2 className="font-bold text-primary">{name}</h2>
+								<h2 className="font-bold text-primary">{modalData?.name}</h2>
 								<div className=" flex my-4 items-center">
 									<BsFillCartCheckFill className="text-primary w-5 h-5"></BsFillCartCheckFill>
 									<span className=" ml-2">Added To Your Cart Successfully</span>
