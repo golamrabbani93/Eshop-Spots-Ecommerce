@@ -1,31 +1,14 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {RxCross1} from 'react-icons/rx';
 import {Link} from 'react-router-dom';
-import {useQuery} from '@tanstack/react-query';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import SingleWishList from './SingleWishList/SingleWishList';
+import UseWishListProduct from '../../../hooks/UseWishListProduct';
 const WishList = ({wishlist, setWishlist}) => {
 	// !!get wishlist itmes from local storage
 	const {wishListItems} = useContext(CartWishListContext);
-	// !!get Filterd product from database
-	const [newWishLists, setNewWishLists] = useState([]);
-
-	// !!get all products from database
-	const {data: products = [], isLoading} = useQuery({
-		queryKey: ['products'],
-		queryFn: async () => {
-			const res = await fetch('http://localhost:5000/products');
-			const data = await res.json();
-			return data;
-		},
-	});
-
-	useEffect(() => {
-		if (!isLoading) {
-			const newWishList = products.data?.filter((product) => wishListItems?.includes(product?._id));
-			setNewWishLists(newWishList);
-		}
-	}, [products, wishListItems, isLoading]);
+	// !!get Filterd product from database with local storage IDS
+	const {newWishLists} = UseWishListProduct(wishListItems);
 
 	return (
 		<div
