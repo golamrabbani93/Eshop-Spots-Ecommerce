@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {FaTrash} from 'react-icons/fa';
 import {CartWishListContext} from '../../../../contexts/CartWishListProvider';
-import {get} from 'react-hook-form';
 import toast from 'react-hot-toast';
 const SingleWishLists = ({wishList, setModalData}) => {
 	const {_id, img, name, discount_price, main_price, stock} = wishList;

@@ -5,7 +5,7 @@ import Shop from '../Pages/Shop/Shop/Shop';
 import Blog from '../Pages/Blog/Blog/Blog';
 import SignUp from '../Pages/Register/SignUp/SignUp';
 import Login from '../Pages/Register/Login/Login';
-import WishLists from '../Pages/Shared/WishLists/WishLists';
+import WishLists from '../Pages/Shop/WishLists/WishLists';
 
 const router = createBrowserRouter([
 	{

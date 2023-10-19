@@ -3,7 +3,8 @@ import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import UseWishListProduct from '../../../hooks/UseWishListProduct';
 import SingleWishLists from './SingleWishLists/SingleWishLists';
-import CartSuccessModal from '../CartSuccessModal/CartSuccessModal';
+import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
+import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 const WishLists = () => {
 	const {wishListItems} = useContext(CartWishListContext);
 	const {newWishLists, isLoading} = UseWishListProduct(wishListItems);
@@ -65,7 +66,7 @@ const WishLists = () => {
 								</tbody>
 							</table>
 						) : (
-							'no items found'
+							<EmptyCartWishList name={'wishlist'}></EmptyCartWishList>
 						)}
 					</div>
 				</div>
