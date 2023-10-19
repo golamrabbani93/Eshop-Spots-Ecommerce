@@ -5,12 +5,12 @@ import UseWishListProduct from '../../../hooks/UseWishListProduct';
 import SingleWishLists from './SingleWishLists/SingleWishLists';
 import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
+import Loader from '../../Shared/Loader/Loader';
 const WishLists = () => {
 	const {wishListItems} = useContext(CartWishListContext);
 	const {newWishLists, isLoading} = UseWishListProduct(wishListItems);
 	// !set Modal Data
 	const [modalData, setModalData] = useState({});
-	console.log('🚀🚀: WishLists -> modalData', modalData);
 
 	// !breaditems list
 	const breaditems = [
@@ -28,11 +28,12 @@ const WishLists = () => {
 		},
 	];
 	if (isLoading) {
-		return (
-			<h2 className="mt-[300px] font-bold uppercase text-primary flex justify-center items-center">
-				Loading...
-			</h2>
-		);
+		// return (
+		// 	<h2 className="mt-[300px] font-bold uppercase text-primary flex justify-center items-center">
+		// 		Loading...
+		// 	</h2>
+		// );
+		return <Loader></Loader>;
 	}
 	return (
 		<div>

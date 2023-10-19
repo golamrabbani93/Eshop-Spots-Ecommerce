@@ -1,5 +1,6 @@
 {
 	"tailwindCSS.lint.invalidTailwindDirective": "error",
 	"tailwindCSS.lint.invalidConfigPath": "error",
-	"tailwindCSS.lint.invalidVariant": "error"
+	"tailwindCSS.lint.invalidVariant": "error",
+	"eslint.quiet": true
 }
