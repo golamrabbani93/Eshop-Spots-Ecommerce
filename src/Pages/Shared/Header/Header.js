@@ -4,6 +4,7 @@ import './Header.css';
 import WishList from '../../../Components/Sidebar/WishList/WishList';
 import CartList from '../../../Components/Sidebar/CartList/CartList';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
+import {MdLogin} from 'react-icons/md';
 
 const Header = () => {
 	const {wishListItems, cartListItems} = useContext(CartWishListContext);
@@ -107,6 +108,14 @@ const Header = () => {
 									</span>
 									<span className="icon-bag text-2xl"></span>
 								</div>
+							</div>
+							<div>
+								<Link
+									className=" border border-primary px-4 py-2 rounded flex items-center hover:text-primary mx-[20px] font-bold transition-colors uppercase"
+									to="/"
+								>
+									Login <MdLogin className="ml-1 w-6 h-6" />
+								</Link>
 							</div>
 						</div>
 					</div>
