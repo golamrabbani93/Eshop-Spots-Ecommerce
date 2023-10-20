@@ -3,6 +3,7 @@ import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import Loader from '../../Shared/Loader/Loader';
+import SingleCart from './SingleCart/SingleCart';
 
 const Cart = () => {
 	const {cartListItems, loading} = useContext(CartWishListContext);
@@ -39,20 +40,14 @@ const Cart = () => {
 										<th>Image</th>
 										<th>Product</th>
 										<th>Price</th>
-										<th>Stock</th>
-										<th>Add To Cart</th>
+										<th>Quantity</th>
+										<th>Total</th>
 									</tr>
 								</thead>
 								<tbody>
-									{/* {newWishLists?.map((wishList) => {
-										return (
-											<SingleWishLists
-												key={wishList._id}
-												wishList={wishList}
-												setModalData={setModalData}
-											></SingleWishLists>
-										);
-									})} */}
+									{cartListItems?.map((cartlist) => {
+										return <SingleCart key={cartlist._id} cartlist={cartlist}></SingleCart>;
+									})}
 								</tbody>
 							</table>
 						) : (

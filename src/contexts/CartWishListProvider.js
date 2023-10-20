@@ -60,6 +60,23 @@ const CartWishListProvider = ({children}) => {
 		localStorage.setItem('Cart', JSON.stringify(cart));
 		setRefresh(!refresh);
 	};
+	// !add only product Quantity with Product id
+	const handleProductQuantity = (_id, quantity) => {
+		let cart = [];
+
+		//!get the cart from local storage
+		const storedCart = localStorage.getItem('Cart');
+		if (storedCart) {
+			cart = JSON.parse(storedCart);
+		}
+		const existingProduct = cart.find((item) => item._id === _id);
+		if (existingProduct) {
+			existingProduct.quantity = parseInt(quantity);
+		}
+
+		localStorage.setItem('Cart', JSON.stringify(cart));
+		setRefresh(!refresh);
+	};
 
 	// !detete cart list with id
 	const deleteCartlist = (id) => {
@@ -79,6 +96,7 @@ const CartWishListProvider = ({children}) => {
 		wishListItems,
 		addDeleteWishList,
 		addCart,
+		handleProductQuantity,
 		cartListItems,
 		deleteCartlist,
 	};
