@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import SingleProduct from '../../../Components/SingleProduct/SingleProduct';
 import {useQuery} from '@tanstack/react-query';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
+import Loader from '../../Shared/Loader/Loader';
 
 const NewArrivals = () => {
 	// !Set single Cart data
@@ -62,7 +63,7 @@ const NewArrivals = () => {
 		],
 	};
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader></Loader>;
 	}
 	const cartModal = (data) => {
 		setModalData(data);
@@ -74,7 +75,7 @@ const NewArrivals = () => {
 					<h2 className="text-2xl font-bold uppercase">The New Arrivals</h2>
 				</div>
 
-				{NewArrivalsData.data.length > 0 && (
+				{NewArrivalsData.data?.length > 0 && (
 					<Slider {...settings}>
 						{NewArrivalsData.data?.map((item, index) => {
 							return <SingleProduct key={index} data={item} cartModal={cartModal}></SingleProduct>;

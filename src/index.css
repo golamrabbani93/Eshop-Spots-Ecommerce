@@ -81,3 +81,6 @@ img {
 	opacity: 1;
 	transform: translateY(0px);
 }
+.lf-player-container {
+	margin-left: -80px;
+}
