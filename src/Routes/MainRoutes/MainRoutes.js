@@ -1,12 +1,12 @@
 import {createBrowserRouter} from 'react-router-dom';
-import MainLayouts from '../layouts/MainLayouts';
-import Home from '../Pages/Homes/Home/Home';
-import Shop from '../Pages/Shop/Shop/Shop';
-import Blog from '../Pages/Blog/Blog/Blog';
-import SignUp from '../Pages/Register/SignUp/SignUp';
-import Login from '../Pages/Register/Login/Login';
-import WishLists from '../Pages/Shop/WishLists/WishLists';
-import Cart from '../Pages/Shop/Cart/Cart';
+import MainLayouts from '../../layouts/MainLayouts';
+import Home from '../../Pages/Homes/Home/Home';
+import Shop from '../../Pages/Shop/Shop/Shop';
+import Blog from '../../Pages/Blog/Blog/Blog';
+import SignUp from '../../Pages/Register/SignUp/SignUp';
+import Login from '../../Pages/Register/Login/Login';
+import WishLists from '../../Pages/Shop/WishLists/WishLists';
+import Cart from '../../Pages/Shop/Cart/Cart';
 
 const router = createBrowserRouter([
 	{
