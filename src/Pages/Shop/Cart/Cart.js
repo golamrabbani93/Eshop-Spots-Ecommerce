@@ -4,6 +4,7 @@ import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWi
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import Loader from '../../Shared/Loader/Loader';
 import SingleCart from './SingleCart/SingleCart';
+import CartTotal from './CartTotal/CartTotal';
 
 const Cart = () => {
 	const {cartListItems, loading} = useContext(CartWishListContext);
@@ -22,16 +23,18 @@ const Cart = () => {
 			path: '/shop/cart',
 		},
 	];
+
 	if (loading) {
 		return <Loader></Loader>;
 	}
 	return (
-		<div>
+		<div className="container mx-auto">
 			<BreadCrumb items={breaditems}></BreadCrumb>
-			<div className="wishlist-main my-10">
-				<div className="container mx-auto">
+			<div className="cart-main my-10">
+				{/* !Cart List Start */}
+				<div className="cartlist">
 					<div className="overflow-x-auto mx-20">
-						{cartListItems.length > 0 ? (
+						{cartListItems?.length > 0 ? (
 							<table className="table">
 								{/* head */}
 								<thead className="text-center bg-[#6c757d50] text-black">
@@ -55,6 +58,8 @@ const Cart = () => {
 						)}
 					</div>
 				</div>
+				{/* *Cart List End */}
+				<CartTotal cart={cartListItems}></CartTotal>
 			</div>
 		</div>
 	);

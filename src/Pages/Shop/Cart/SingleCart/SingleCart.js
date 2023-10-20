@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import {FaTrash} from 'react-icons/fa';
 import {CartWishListContext} from '../../../../contexts/CartWishListProvider';
+import toast from 'react-hot-toast';
 const SingleCart = ({cartlist}) => {
-	console.log('🚀🚀: SingleCart -> cartlist', cartlist);
 	const {_id, img, name, discount_price, main_price, quantity} = cartlist;
-	// !get add cart from CartWishListContext
-	const {handleProductQuantity} = useContext(CartWishListContext);
+	// !get add cart and deleteCartlist from CartWishListContext
+	const {handleProductQuantity, deleteCartlist} = useContext(CartWishListContext);
 
 	// !Add product quantity
 	const handleQuantity = (e, _id) => {
@@ -13,11 +13,20 @@ const SingleCart = ({cartlist}) => {
 		handleProductQuantity(_id, newQuantity);
 	};
 
+	// !delete product from cart
+	const handleDeleteProduct = (_id) => {
+		deleteCartlist(_id);
+		toast.success('Product Deleted From Cart');
+	};
+
 	return (
 		<tr className="border border-spacing-3 text-center text-base">
 			<td className="border border-r-3">
 				<div className="text-center">
-					<FaTrash className="w-5 h-5 text-center m-auto text-red-500 hover:text-red-600 cursor-pointer" />
+					<FaTrash
+						onClick={() => handleDeleteProduct(_id)}
+						className="w-5 h-5 text-center m-auto text-red-500 hover:text-red-600 cursor-pointer"
+					/>
 				</div>
 			</td>
 			<td className="border border-r-3 ">
