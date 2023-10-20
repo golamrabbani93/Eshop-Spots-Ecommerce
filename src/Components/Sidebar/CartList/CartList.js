@@ -49,6 +49,7 @@ const CartList = ({cartList, setCartList}) => {
 			{cartListItems?.length > 0 ? (
 				// ! if  cart List items found then show this button
 				<Link
+					to={'/shop/cart'}
 					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
 				>
 					View cart

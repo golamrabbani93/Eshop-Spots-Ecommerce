@@ -28,11 +28,6 @@ const WishLists = () => {
 		},
 	];
 	if (isLoading) {
-		// return (
-		// 	<h2 className="mt-[300px] font-bold uppercase text-primary flex justify-center items-center">
-		// 		Loading...
-		// 	</h2>
-		// );
 		return <Loader></Loader>;
 	}
 	return (

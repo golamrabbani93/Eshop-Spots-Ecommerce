@@ -32,7 +32,7 @@ const CartSuccessModal = ({modalData}) => {
 								</div>
 								<div>
 									<Link
-										to={`/shop`}
+										to={`/shop/cart`}
 										className="btn hover:bg-transparent hover:text-primary hover:border-rose-500 text-xs sm:text-sm btn-outline"
 									>
 										View Cart
