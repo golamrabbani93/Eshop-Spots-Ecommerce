@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
+import toast from 'react-hot-toast';
 import {Link} from 'react-router-dom';
+import {AuthContext} from '../../../contexts/AuthProvider';
 
 const Login = () => {
+	const {userSignIn, loader, setLoader} = useContext(AuthContext);
 	const {
 		register,
 		handleSubmit,
@@ -10,20 +13,23 @@ const Login = () => {
 		formState: {errors},
 	} = useForm();
 	const handleLogin = (data) => {
-		console.log('🚀🚀: handleLogin -> data', data);
-		// userSignIn(data.email, data.password)
-		// 	.then((result) => {
-		// 		reset();
-		// 		toast.success('Login Complete');
-		// 		setUserEmail(result.user.email);
-		// 	})
-		// 	.catch((err) => {
-		// 		toast.error('Login Faild');
-		// 	});
+		userSignIn(data.email, data.password)
+			.then((result) => {
+				reset();
+				toast.success('Login Complete');
+				setLoader(false);
+			})
+			.catch((err) => {
+				if (err.code === 'auth/invalid-login-credentials') {
+					toast.error('Password Wrong');
+				} else {
+					toast.error('Login Faild');
+				}
+				setLoader(false);
+			});
 	};
 	// ! sign in with google acount
 	const handleGoogleSignIn = () => {
-		console.log('🚀🚀: handleGoogleSignIn -> handleGoogleSignIn');
 		// googleSignIn()
 		// 	.then((result) => {
 		// 		toast.success('Sign In Complete');
@@ -41,7 +47,7 @@ const Login = () => {
 	return (
 		<div className="mt-[90px] container mx-auto mb-8">
 			<h3 className="text-5xl text-center mt-6 font-extrabold">Login</h3>
-			<div className="xl:w-3/6 mx-10 md:mx-auto mt-7 ">
+			<div className="xl:w-2/6 mx-10 md:mx-auto mt-7 ">
 				<form onSubmit={handleSubmit(handleLogin)}>
 					<div className="form-control">
 						<label className="label">
@@ -78,12 +84,14 @@ const Login = () => {
 						</label>
 					</div>
 					<div className="form-control mt-6">
-						<button className="btn btn-outline btn-primary ">Login</button>
+						<button className="btn btn-outline btn-primary">
+							{loader ? <span className="loading loading-spinner text-neutral"></span> : 'Login'}
+						</button>
 					</div>
 				</form>
 				<div className="">
 					<h3 className="text-base text-center mt-1">
-						New to Medicational?{' '}
+						New to E-ShopSpots?{' '}
 						<Link to="/signup" className="text-primary link link-hover">
 							Create new account
 						</Link>

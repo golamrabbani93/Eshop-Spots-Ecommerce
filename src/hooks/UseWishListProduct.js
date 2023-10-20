@@ -16,8 +16,10 @@ const UseWishListProduct = (wishListItems) => {
 	});
 
 	useEffect(() => {
-		if (!isLoading) {
-			const newWishList = products.data?.filter((product) => wishListItems?.includes(product?._id));
+		if (!isLoading && products?.data) {
+			const newWishList = products?.data?.filter((product) =>
+				wishListItems?.includes(product?._id),
+			);
 			setNewWishLists(newWishList);
 		}
 	}, [products, wishListItems, isLoading]);
