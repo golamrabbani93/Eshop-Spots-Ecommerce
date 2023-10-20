@@ -1,7 +1,16 @@
 import React from 'react';
+import UseCartTotal from '../../../../hooks/UseCartTotal';
 
 const CartTotal = ({cart}) => {
-	console.log('🚀🚀: CartTotal -> cart', cart);
+	// !get Total Products Price
+	const subTotal = UseCartTotal(cart);
+
+	let total = 0;
+	const shipping = 5;
+	// !calculate total Products price +shipping
+	if (subTotal) {
+		total += subTotal + shipping;
+	}
 	return (
 		<div className="cart-total grid grid-cols-1 lg:grid-cols-2 gap-6 my-10 mx-40">
 			<div className="cupon border border-spacing-1 h-min">
@@ -12,7 +21,7 @@ const CartTotal = ({cart}) => {
 						<input
 							type="text"
 							placeholder="Cuppon Code"
-							className="p-3  outline-[#E5E7EB] rounded text-black placeholder:text-black"
+							className="p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
 						/>
 						<button className="btn btn-primary btn-outline ml-5">Apply Cuppon</button>
 					</div>
@@ -24,7 +33,7 @@ const CartTotal = ({cart}) => {
 					<div>
 						<div className="flex justify-between mb-2">
 							<h2 className="uppercase">Subtotal</h2>
-							<h2>$99</h2>
+							<h2>${subTotal}</h2>
 						</div>
 						<div className="flex justify-between mb-2">
 							<h2 className="uppercase">Shipping</h2>
@@ -38,8 +47,8 @@ const CartTotal = ({cart}) => {
 					<div className="divider"></div>
 					<div>
 						<div className="flex justify-between mb-2">
-							<h2 className="uppercase">Subtotal</h2>
-							<h2>$99</h2>
+							<h2 className="uppercase">Total</h2>
+							<h2>${total}</h2>
 						</div>
 						<div className="text-right">
 							<button className="btn btn-primary btn-outline mt-5 text-right">
