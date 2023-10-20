@@ -33,7 +33,7 @@ const Cart = () => {
 			<div className="cart-main my-10">
 				{/* !Cart List Start */}
 				<div className="cartlist">
-					<div className="overflow-x-auto mx-20">
+					<div className="overflow-x-auto mx-7 md:mx-20">
 						{cartListItems?.length > 0 ? (
 							<table className="table">
 								{/* head */}

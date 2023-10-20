@@ -12,7 +12,7 @@ const CartTotal = ({cart}) => {
 		total += subTotal + shipping;
 	}
 	return (
-		<div className="cart-total grid grid-cols-1 lg:grid-cols-2 gap-6 my-10 mx-40">
+		<div className="cart-total grid grid-cols-1 lg:grid-cols-2 gap-6 my-10 mx-10 md:mx-40">
 			<div className="cupon border border-spacing-1 h-min">
 				<h2 className="bg-black text-white p-4 text-xl font-bold">COUPON</h2>
 				<div className="ml-5 mt-5">
