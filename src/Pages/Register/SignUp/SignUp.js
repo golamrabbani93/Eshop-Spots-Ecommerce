@@ -3,9 +3,10 @@ import {useForm} from 'react-hook-form';
 import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import UsePostUser from '../../../hooks/UsePostUser';
 
 const SignUp = () => {
-	const {userSignUp, updateUser, loader, setLoader} = useContext(AuthContext);
+	const {userSignUp, updateUser, googleSignIn, loader, setLoader} = useContext(AuthContext);
 	const navigate = useNavigate();
 	const {
 		register,
@@ -24,21 +25,9 @@ const SignUp = () => {
 				updateUser(userinfo);
 				//! user Name Update in google end
 				//!Post User TO database
-				fetch('http://localhost:5000/user', {
-					method: 'POST',
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify({
-						name: data.name,
-						email: data.email,
-					}),
-				})
-					.then(() => {
-						toast.success('Sign Up Success');
-						navigate('/');
-					})
-					.catch((err) => {
-						toast.error('Sign Up Faild');
-					});
+				UsePostUser(data.name, data.email);
+				toast.success('Sign Up Success');
+				navigate('/');
 				reset();
 			})
 			.catch((err) => {
@@ -53,19 +42,16 @@ const SignUp = () => {
 
 	// // ! sign in with google acount
 	const handleGoogleSignUp = () => {
-		// 	googleSignIn()
-		// 		.then((result) => {
-		// 			//!Post User TO database
-		// 			UsePostUser(result.user.displayName, result.user.email);
-		// 			// !Set User Email For Token
-		// 			setTimeout(() => {
-		// 				setUserEmail(result.user.email);
-		// 			}, 500);
-		// 			toast.success('Sign Up Complete');
-		// 		})
-		// 		.catch((err) => {
-		// 			toast.error('Sign Up Faild');
-		// 		});
+		googleSignIn()
+			.then((result) => {
+				//!Post User TO database
+				toast.success('Sign Up Complete');
+				UsePostUser(result.user.displayName, result.user.email);
+				navigate('/');
+			})
+			.catch((err) => {
+				toast.error('Sign Up Faild');
+			});
 	};
 
 	return (
