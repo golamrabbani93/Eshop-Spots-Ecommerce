@@ -1,5 +1,6 @@
 import React from 'react';
 import UseCartTotal from '../../../../hooks/UseCartTotal';
+import {Link} from 'react-router-dom';
 
 const CartTotal = ({cart}) => {
 	// !get Total Products Price
@@ -51,9 +52,9 @@ const CartTotal = ({cart}) => {
 							<h2>${total}</h2>
 						</div>
 						<div className="text-right">
-							<button className="btn btn-primary btn-outline mt-5 text-right">
+							<Link to="/shop/checkout" className="btn btn-primary btn-outline mt-5 text-right">
 								Proceed to Checkout
-							</button>
+							</Link>
 						</div>
 					</div>
 				</div>
