@@ -91,6 +91,11 @@ const CartWishListProvider = ({children}) => {
 		localStorage.setItem('Cart', JSON.stringify(newCart));
 		setRefresh(!refresh);
 	};
+	// !delete all cart list
+	const deleteAllCartlist = () => {
+		localStorage.removeItem('Cart');
+		setRefresh(!refresh);
+	};
 	const cartWishListInfo = {
 		loading,
 		wishListItems,
@@ -99,6 +104,7 @@ const CartWishListProvider = ({children}) => {
 		handleProductQuantity,
 		cartListItems,
 		deleteCartlist,
+		deleteAllCartlist,
 	};
 	return (
 		<CartWishListContext.Provider value={cartWishListInfo}>{children}</CartWishListContext.Provider>

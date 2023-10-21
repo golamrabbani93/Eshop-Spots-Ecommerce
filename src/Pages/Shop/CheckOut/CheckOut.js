@@ -10,8 +10,8 @@ import {AuthContext} from '../../../contexts/AuthProvider';
 
 const CheckOut = () => {
 	const {user} = useContext(AuthContext);
-	// !get cart data from CartWishListProvider
-	const {cartListItems} = useContext(CartWishListContext);
+	// !get cart data and delete AllCartlist from CartWishListProvider
+	const {cartListItems, deleteAllCartlist} = useContext(CartWishListContext);
 	// ! navigate to payment page
 	const navigate = useNavigate();
 
@@ -35,6 +35,7 @@ const CheckOut = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: {errors},
 	} = useForm();
 
@@ -71,6 +72,8 @@ const CheckOut = () => {
 			});
 			const dataRes = await res.json();
 			const id = dataRes.bookingId;
+			deleteAllCartlist();
+			reset();
 			// !navigate to payment page after post billingDetails to database
 			navigate(`/shop/checkout/payment/${id}`);
 		} catch (error) {
