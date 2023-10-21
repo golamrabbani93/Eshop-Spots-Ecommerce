@@ -1,13 +1,16 @@
 import React, {useContext, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../contexts/AuthProvider';
 import UsePostUser from '../../../hooks/UsePostUser';
 
 const Login = () => {
 	const {userSignIn, googleSignIn, loader, setLoader} = useContext(AuthContext);
 	const navigate = useNavigate();
+	const location = useLocation();
+	// !if location.state is not found then set from to '/' path
+	const from = location.state?.from || {pathname: '/'};
 	const {
 		register,
 		handleSubmit,
@@ -18,7 +21,7 @@ const Login = () => {
 		userSignIn(data.email, data.password)
 			.then((result) => {
 				toast.success('Login Complete');
-				navigate('/');
+				navigate(from, {replace: true});
 				setLoader(false);
 				reset();
 			})
@@ -37,7 +40,7 @@ const Login = () => {
 			.then((result) => {
 				toast.success('Sign In Complete');
 				UsePostUser(result.user.displayName, result.user.email);
-				navigate('/');
+				navigate(from, {replace: true});
 			})
 			.catch((err) => {
 				toast.error('Sign In Faild');

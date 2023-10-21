@@ -8,6 +8,7 @@ import Login from '../../Pages/Register/Login/Login';
 import WishLists from '../../Pages/Shop/WishLists/WishLists';
 import Cart from '../../Pages/Shop/Cart/Cart';
 import CheckOut from '../../Pages/Shop/CheckOut/CheckOut';
+import PrivateRoutes from '../Private/PrivateRoutes';
 
 const router = createBrowserRouter([
 	{
@@ -32,7 +33,12 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/shop/checkout',
-				element: <CheckOut></CheckOut>,
+				element: (
+					<PrivateRoutes>
+						{' '}
+						<CheckOut></CheckOut>
+					</PrivateRoutes>
+				),
 			},
 			{
 				path: '/blog',
