@@ -9,6 +9,7 @@ import WishLists from '../../Pages/Shop/WishLists/WishLists';
 import Cart from '../../Pages/Shop/Cart/Cart';
 import CheckOut from '../../Pages/Shop/CheckOut/CheckOut';
 import PrivateRoutes from '../Private/PrivateRoutes';
+import Payment from '../../Pages/Shop/CheckOut/Payment/Payment';
 
 const router = createBrowserRouter([
 	{
@@ -35,8 +36,15 @@ const router = createBrowserRouter([
 				path: '/shop/checkout',
 				element: (
 					<PrivateRoutes>
-						{' '}
 						<CheckOut></CheckOut>
+					</PrivateRoutes>
+				),
+			},
+			{
+				path: '/shop/checkout/payment/:id',
+				element: (
+					<PrivateRoutes>
+						<Payment></Payment>
 					</PrivateRoutes>
 				),
 			},
