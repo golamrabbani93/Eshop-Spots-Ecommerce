@@ -2,7 +2,6 @@ import React from 'react';
 import {AiOutlineClose} from 'react-icons/ai';
 
 const OrderDetails = ({cartLists}) => {
-	console.log('🚀🚀: OrderDetails -> cartLists', cartLists);
 	return (
 		<div>
 			<div className="overflow-x-auto">

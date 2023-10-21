@@ -1,13 +1,37 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {useForm} from 'react-hook-form';
 import OrderDetails from './OrderDetails/OrderDetails';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import UseCartTotal from '../../../hooks/UseCartTotal';
+import {useNavigate} from 'react-router-dom';
+import toast from 'react-hot-toast';
+import {AuthContext} from '../../../contexts/AuthProvider';
 
 const CheckOut = () => {
+	const {user} = useContext(AuthContext);
 	// !get cart data from CartWishListProvider
 	const {cartListItems} = useContext(CartWishListContext);
+	// ! navigate to payment page
+	const navigate = useNavigate();
+
+	// !make new products array for payment and save to database
+	const [newProducts, setNewProducts] = useState([]);
+	useEffect(() => {
+		const newCartListItems = cartListItems.map((item) => {
+			return {
+				name: item.name,
+				price: item.discount_price || item.main_price,
+				quantity: item.quantity,
+				total:
+					item.discount_price > 0
+						? item.discount_price * item.quantity
+						: item.main_price * item.quantity,
+			};
+		});
+		setNewProducts(newCartListItems);
+	}, [cartListItems]);
+
 	const {
 		register,
 		handleSubmit,
@@ -24,7 +48,35 @@ const CheckOut = () => {
 		total += subTotal + shipping;
 	}
 
-	const handleBillingDetails = (data) => {};
+	const handleBillingDetails = async (data) => {
+		const billingDetails = {
+			name: data.name,
+			email: data.email,
+			phone: data.phone,
+			country: data.country,
+			townCity: data.townCity,
+			street: data.street,
+			orderNote: data.orderNote,
+			products: newProducts,
+			total: total,
+		};
+		try {
+			// !post billingDetails to database
+			const res = await fetch('http://localhost:5000/booking', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(billingDetails),
+			});
+			const dataRes = await res.json();
+			const id = dataRes.bookingId;
+			// !navigate to payment page after post billingDetails to database
+			navigate(`/shop/checkout/payment/${id}`);
+		} catch (error) {
+			toast.error('Place Order Faild');
+		}
+	};
 
 	const countryName = [
 		{
@@ -80,8 +132,9 @@ const CheckOut = () => {
 									<input
 										{...register('name', {required: 'Name is required'})}
 										type="text"
-										placeholder="Name"
-										className="p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
+										defaultValue={user?.displayName}
+										readOnly
+										className="bg-[#d6e3f9] p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
 										autoComplete="name"
 									/>
 									{errors.name && <span className="text-red-600">{errors.name.message}</span>}
@@ -93,8 +146,9 @@ const CheckOut = () => {
 									<input
 										{...register('email', {required: 'Email is required'})}
 										type="text"
-										placeholder="Email"
-										className="p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
+										defaultValue={user?.email}
+										readOnly
+										className="bg-[#d6e3f9] p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
 										autoComplete="email"
 									/>
 									{errors.email && <span className="text-red-600">{errors.email.message}</span>}
