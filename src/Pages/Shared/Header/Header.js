@@ -5,9 +5,14 @@ import WishList from '../../../Components/Sidebar/WishList/WishList';
 import CartList from '../../../Components/Sidebar/CartList/CartList';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import {MdLogin} from 'react-icons/md';
-
+import {AuthContext} from '../../../contexts/AuthProvider';
+import {FaUserCircle} from 'react-icons/fa';
+import toast from 'react-hot-toast';
 const Header = () => {
+	// !cart Context
 	const {wishListItems, cartListItems} = useContext(CartWishListContext);
+	// !Auth Context
+	const {user, logOut} = useContext(AuthContext);
 	// *Display Wishlist and cart list show/hidden Start
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
@@ -33,6 +38,12 @@ const Header = () => {
 		header.classList.toggle('shadow', window.scrollY > 20);
 	});
 	// *Sticky Header End
+
+	// !Handle Log Out
+	const handleLogOut = () => {
+		logOut();
+		toast.success('Logout Successfull');
+	};
 	// *navlink
 	const navlink = (
 		<>
@@ -110,12 +121,43 @@ const Header = () => {
 								</div>
 							</div>
 							<div>
-								<Link
-									className=" border border-primary px-4 py-2 rounded flex items-center hover:text-primary mx-[20px] font-bold transition-colors uppercase"
-									to="/"
-								>
-									Login <MdLogin className="ml-1 w-6 h-6" />
-								</Link>
+								{user?.uid ? (
+									<div className="dropdown dropdown-end">
+										<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+											<div className="w-10 rounded-full">
+												{user?.photoURL ? (
+													<img src={user?.photoURL} alt="" />
+												) : (
+													<FaUserCircle className="w-10 h-10" />
+												)}
+											</div>
+										</label>
+										<ul
+											className={`mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 font-bold`}
+										>
+											<li>
+												<Link className="justify-between hover:text-primary focus:!text-white">
+													Profile
+												</Link>
+											</li>
+											<li>
+												<Link
+													onClick={() => handleLogOut()}
+													className="justify-between hover:text-primary focus:!text-white"
+												>
+													Logout
+												</Link>
+											</li>
+										</ul>
+									</div>
+								) : (
+									<Link
+										className=" border border-primary px-4 py-2 rounded flex items-center hover:text-primary mx-[20px] font-bold transition-colors uppercase"
+										to="/login"
+									>
+										Login <MdLogin className="ml-1 w-6 h-6" />
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>
