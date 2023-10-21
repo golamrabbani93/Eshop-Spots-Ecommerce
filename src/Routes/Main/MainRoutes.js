@@ -7,6 +7,7 @@ import SignUp from '../../Pages/Register/SignUp/SignUp';
 import Login from '../../Pages/Register/Login/Login';
 import WishLists from '../../Pages/Shop/WishLists/WishLists';
 import Cart from '../../Pages/Shop/Cart/Cart';
+import CheckOut from '../../Pages/Shop/CheckOut/CheckOut';
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +23,18 @@ const router = createBrowserRouter([
 				element: <Shop></Shop>,
 			},
 			{
+				path: '/shop/wishlist',
+				element: <WishLists></WishLists>,
+			},
+			{
+				path: '/shop/cart',
+				element: <Cart></Cart>,
+			},
+			{
+				path: '/shop/checkout',
+				element: <CheckOut></CheckOut>,
+			},
+			{
 				path: '/blog',
 				element: <Blog></Blog>,
 			},
@@ -32,14 +45,6 @@ const router = createBrowserRouter([
 			{
 				path: '/login',
 				element: <Login></Login>,
-			},
-			{
-				path: '/shop/wishlist',
-				element: <WishLists></WishLists>,
-			},
-			{
-				path: '/shop/cart',
-				element: <Cart></Cart>,
 			},
 		],
 	},
