@@ -1,6 +1,11 @@
 import React from 'react';
 import BreadCrumb from '../../../../Components/BreadCrumb/BreadCrumb';
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js';
+import CheckOutForm from './CheckOutForm/CheckOutForm';
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+console.log();
 const Payment = () => {
 	const breaditems = [
 		{
@@ -23,6 +28,11 @@ const Payment = () => {
 	return (
 		<div>
 			<BreadCrumb items={breaditems}></BreadCrumb>
+			<div>
+				<Elements stripe={stripePromise}>
+					<CheckOutForm></CheckOutForm>
+				</Elements>
+			</div>
 		</div>
 	);
 };
