@@ -123,7 +123,7 @@ const Header = () => {
 							<div>
 								{user?.uid ? (
 									<div className="dropdown dropdown-end">
-										<label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+										<label tabIndex={0} className="btn btn-ghost btn-circle avatar mt-0">
 											<div className="w-10 rounded-full">
 												{user?.photoURL ? (
 													<img src={user?.photoURL} alt="" />
