@@ -3,10 +3,23 @@ import BreadCrumb from '../../../../Components/BreadCrumb/BreadCrumb';
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
 import CheckOutForm from './CheckOutForm/CheckOutForm';
+import {useParams} from 'react-router-dom';
+import {useQuery} from '@tanstack/react-query';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 console.log();
 const Payment = () => {
+	const {id} = useParams();
+	const {data: booking = []} = useQuery({
+		queryKey: ['booking', id],
+		queryFn: async () => {
+			const res = await fetch(`http://localhost:5000/booking/${id}`);
+			const data = res.json();
+			return data;
+		},
+	});
+	// !destructuring
+	const {data} = booking;
 	const breaditems = [
 		{
 			name: 'Home',
@@ -30,7 +43,7 @@ const Payment = () => {
 			<BreadCrumb items={breaditems}></BreadCrumb>
 			<div>
 				<Elements stripe={stripePromise}>
-					<CheckOutForm></CheckOutForm>
+					<CheckOutForm booking={data}></CheckOutForm>
 				</Elements>
 			</div>
 		</div>
