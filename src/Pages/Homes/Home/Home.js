@@ -1,18 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Banner from '../Banner/Banner';
 import Services from '../Services/Services';
 import AdsProduct from '../AdsProduct/AdsProduct';
 import NewArrivals from '../NewArrivals/NewArrivals';
 import BasicCollection from '../BasicCollection/BasicCollection';
+import BestSellers from '../BestSellers/BestSellers';
+import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 
 const Home = () => {
+	// !Set Cart data
+	const [modalData, setModalData] = useState({});
+
+	// !set Cart modal data
+	const cartModal = (data) => {
+		setModalData(data);
+	};
 	return (
 		<div className="mt-[70px]">
 			<Banner></Banner>
 			<Services></Services>
 			<AdsProduct></AdsProduct>
-			<NewArrivals></NewArrivals>
+			<NewArrivals cartModal={cartModal}></NewArrivals>
 			<BasicCollection></BasicCollection>
+			<BestSellers cartModal={cartModal}></BestSellers>
+			<CartSuccessModal modalData={modalData} cartModal={cartModal}></CartSuccessModal>
 		</div>
 	);
 };

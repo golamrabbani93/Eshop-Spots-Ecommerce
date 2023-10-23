@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
 const BasicCollection = () => {
 	return (
-		<div className="container mx-auto">
+		<div className="container mx-auto mt-12">
 			<div className="banner-animation relative my-3 md:w-[800px] mx-auto">
 				<div className="image">
 					<img src="https://i.ibb.co/jyDrzWs/banner-style-3-img-1.jpg" alt="Basic" />

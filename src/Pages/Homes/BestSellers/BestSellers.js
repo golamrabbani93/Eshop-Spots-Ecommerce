@@ -1,12 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
 import SingleProduct from '../../../Components/SingleProduct/SingleProduct';
-import {useQuery} from '@tanstack/react-query';
 import Loader from '../../Shared/Loader/Loader';
+import {useQuery} from '@tanstack/react-query';
 
-const NewArrivals = ({cartModal}) => {
-	const {data: NewArrivalsData = [], isLoading} = useQuery({
-		queryKey: ['products', 'NewArrivals'],
+const BestSellers = ({cartModal}) => {
+	const {data: bestSeller = [], isLoading} = useQuery({
+		queryKey: ['products', 'bestSeller'],
 		queryFn: async () => {
 			const res = await fetch('http://localhost:5000/products');
 			const data = await res.json();
@@ -62,17 +62,16 @@ const NewArrivals = ({cartModal}) => {
 	if (isLoading) {
 		return <Loader></Loader>;
 	}
-
 	return (
-		<section className="container mx-auto mb-14">
+		<section className="container mx-auto my-24">
 			<div className="mx-5 md:mx-16">
 				<div className="">
-					<h2 className="text-2xl font-bold uppercase">The New Arrivals</h2>
+					<h2 className="text-2xl font-bold uppercase">The Best Seller</h2>
 				</div>
 
-				{NewArrivalsData.data?.length > 0 && (
+				{bestSeller.data?.length > 0 && (
 					<Slider {...settings}>
-						{NewArrivalsData.data?.map((item, index) => {
+						{bestSeller.data?.map((item, index) => {
 							return <SingleProduct key={index} data={item} cartModal={cartModal}></SingleProduct>;
 						})}
 					</Slider>
@@ -82,4 +81,4 @@ const NewArrivals = ({cartModal}) => {
 	);
 };
 
-export default NewArrivals;
+export default BestSellers;
