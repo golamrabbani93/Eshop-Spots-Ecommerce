@@ -122,12 +122,17 @@ const CheckOutForm = ({booking}) => {
 								},
 							}}
 						/>
-						<button className="btn btn-primary" type="submit" disabled={!stripe || !clientSecret}>
+						<button
+							className="btn btn-primary mb-4"
+							type="submit"
+							disabled={!stripe || !clientSecret}
+						>
 							Pay Now {}
 						</button>
-						<h2>Demo Car Number:4242 4242 4242 4242</h2>
+						<h2>Demo Card Number:4242 4242 4242 4242</h2>
 						<h2>MM: Any Future Date</h2>
-						<h2>CVC: Any 5 Digits</h2>
+						<h2>CVC: Any 3 Digits</h2>
+						<h2>ZIP: Any 5 Digits</h2>
 						<dialog id="my_modal_3" className="modal">
 							<div className="modal-box">
 								<h3 className="font-bold text-xl text-green-500">
@@ -140,7 +145,7 @@ const CheckOutForm = ({booking}) => {
 								</p>
 								<div className="text-center text-lg">
 									<Link
-										to={`/home`}
+										to={`/`}
 										className="link ml-2 font-bold hover:text-primary transition duration-300 ease-in-out"
 									>
 										Home

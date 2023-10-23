@@ -39,7 +39,7 @@ const CartSuccessModal = ({modalData}) => {
 										<BsArrowRight />
 									</Link>
 									<Link
-										to={`/shop`}
+										to={`/shop/checkout`}
 										className="ml-2 mt-2 btn hover:bg-transparent hover:text-primary hover:border-rose-500 text-xs sm:text-sm btn-outline"
 									>
 										Checkout
