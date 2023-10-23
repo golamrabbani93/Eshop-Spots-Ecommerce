@@ -10,6 +10,7 @@ import Cart from '../../Pages/Shop/Cart/Cart';
 import CheckOut from '../../Pages/Shop/CheckOut/CheckOut';
 import PrivateRoutes from '../Private/PrivateRoutes';
 import Payment from '../../Pages/Shop/CheckOut/Payment/Payment';
+import ProductDetails from '../../Pages/Shared/ProductDetails/ProductDetails';
 
 const router = createBrowserRouter([
 	{
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
 			{
 				path: '/shop/cart',
 				element: <Cart></Cart>,
+			},
+			{
+				path: '/shop/product/:id',
+				element: <ProductDetails></ProductDetails>,
 			},
 			{
 				path: '/shop/checkout',
