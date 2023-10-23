@@ -49,9 +49,9 @@ const SingleProduct = ({data, cartModal}) => {
 								<Link
 									onClick={() => handleWishList(data?._id)}
 									className={`${
-										isWishList ? 'text-primary hover:text-white' : ' text-white hover:text-primary'
-									}tooltip tooltip-left mx-2 transition duration-500 text-xl`}
-									data-tip="Add To Wishlist"
+										isWishList ? 'text-primary' : ' text-white hover:text-primary'
+									} tooltip tooltip-left mx-2 transition duration-500 text-xl`}
+									data-tip={`${isWishList ? 'Remove from' : 'Add to'} wishlist`}
 								>
 									{isWishList ? (
 										//
