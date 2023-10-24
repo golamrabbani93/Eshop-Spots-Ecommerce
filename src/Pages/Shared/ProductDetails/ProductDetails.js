@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {useParams} from 'react-router-dom';
 import {useQuery} from '@tanstack/react-query';
@@ -6,9 +6,14 @@ import Loader from '../Loader/Loader';
 import Rating from '../../../Components/Rating/Rating';
 import {AiFillCheckCircle} from 'react-icons/ai';
 import {BsPlus} from 'react-icons/bs';
+import {BsSuitHeart} from 'react-icons/bs';
+import {BsSuitHeartFill} from 'react-icons/bs';
+import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 const ProductDetails = () => {
+	const {addDeleteWishList, wishListItems} = useContext(CartWishListContext);
+	const [isWishList, setIsWishList] = useState(false);
 	const {id} = useParams();
-
+	// !get product data from server
 	const {data: product = [], isLoading} = useQuery({
 		queryKey: ['product', id],
 		queryFn: async () => {
@@ -17,7 +22,15 @@ const ProductDetails = () => {
 			return data.data;
 		},
 	});
-	console.log('🚀🚀: ProductDetails -> product', product);
+	// !Add wishlist item to local storage
+	const handleWishList = (id) => {
+		addDeleteWishList(id);
+	};
+	// !check wishlist item is in local storage
+	useEffect(() => {
+		const isWishList = wishListItems?.includes(product?._id);
+		setIsWishList(isWishList);
+	}, [product?._id, wishListItems]);
 	const items = [
 		{
 			name: 'Home',
@@ -66,6 +79,7 @@ const ProductDetails = () => {
 							<input
 								className="border border-gray-400 px-2 py-1 w-20 h-11"
 								type="number"
+								defaultValue={1}
 								min={1}
 								max={100}
 							/>
@@ -73,6 +87,24 @@ const ProductDetails = () => {
 								<BsPlus className="w-6 h-6 text-white font-bold" />
 								Add to Cart
 							</button>
+						</div>
+						<div className="mt-4">
+							{isWishList ? (
+								<h4
+									onClick={() => handleWishList(product?._id)}
+									className="flex items-center hover:text-primary-focus transition duration-300 cursor-pointer"
+								>
+									<BsSuitHeartFill className="w-5 h-5 mr-2 text-primary"></BsSuitHeartFill> Remove
+									to Wishlist
+								</h4>
+							) : (
+								<h4
+									onClick={() => handleWishList(product?._id)}
+									className="flex items-center hover:text-primary-focus transition duration-300 cursor-pointer"
+								>
+									<BsSuitHeart className="w-5 h-5 mr-2"></BsSuitHeart> Add to Wishlist
+								</h4>
+							)}
 						</div>
 					</div>
 				</div>
