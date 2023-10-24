@@ -4,11 +4,7 @@ import {BsArrowRight} from 'react-icons/bs';
 import {BsFillCartCheckFill} from 'react-icons/bs';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import UseCartTotal from '../../../hooks/UseCartTotal';
-const CartSuccessModal = ({modalData, cartModal}) => {
-	// !clear modal data
-
-	const data = {};
-
+const CartSuccessModal = ({modalData}) => {
 	// !get cartlist item from local storage
 	const {cartListItems} = useContext(CartWishListContext);
 	// !get Total products Price
@@ -18,11 +14,7 @@ const CartSuccessModal = ({modalData, cartModal}) => {
 			<input type="checkbox" id="success-modal" className="modal-toggle" />
 			<div className="modal">
 				<div className="modal-box w-11/12 max-w-5xl">
-					<label
-						onClick={() => cartModal(data)}
-						htmlFor="success-modal"
-						className="btn btn-sm btn-circle absolute right-2 top-2"
-					>
+					<label htmlFor="success-modal" className="btn btn-sm btn-circle absolute right-2 top-2">
 						✕
 					</label>
 					<div className=" md:flex flex-wrap">
@@ -40,7 +32,6 @@ const CartSuccessModal = ({modalData, cartModal}) => {
 								</div>
 								<div>
 									<Link
-										onClick={() => cartModal(data)}
 										to={`/shop/cart`}
 										className="btn hover:bg-transparent hover:text-primary hover:border-rose-500 text-xs sm:text-sm btn-outline"
 									>
@@ -48,7 +39,6 @@ const CartSuccessModal = ({modalData, cartModal}) => {
 										<BsArrowRight />
 									</Link>
 									<Link
-										onClick={() => cartModal(data)}
 										to={`/shop/checkout`}
 										className="ml-2 mt-2 btn hover:bg-transparent hover:text-primary hover:border-rose-500 text-xs sm:text-sm btn-outline"
 									>

@@ -9,9 +9,11 @@ import {BsPlus} from 'react-icons/bs';
 import {BsSuitHeart} from 'react-icons/bs';
 import {BsSuitHeartFill} from 'react-icons/bs';
 import {CartWishListContext} from '../../../contexts/CartWishListProvider';
+import CartSuccessModal from '../CartSuccessModal/CartSuccessModal';
 const ProductDetails = () => {
-	const {addDeleteWishList, wishListItems} = useContext(CartWishListContext);
+	const {addDeleteWishList, wishListItems, addCart} = useContext(CartWishListContext);
 	const [isWishList, setIsWishList] = useState(false);
+	const [productQuantity, setProductQuantity] = useState(1);
 	const {id} = useParams();
 	// !get product data from server
 	const {data: product = [], isLoading} = useQuery({
@@ -31,6 +33,16 @@ const ProductDetails = () => {
 		const isWishList = wishListItems?.includes(product?._id);
 		setIsWishList(isWishList);
 	}, [product?._id, wishListItems]);
+
+	// !add quantity
+	const handleAddQuantity = (quantity) => {
+		setProductQuantity(parseInt(quantity));
+	};
+	// ! add product to cart list
+	const handleAddCart = (data) => {
+		const newCartData = {...data, quantity: productQuantity};
+		addCart(newCartData);
+	};
 	const items = [
 		{
 			name: 'Home',
@@ -77,16 +89,21 @@ const ProductDetails = () => {
 						<h5 className="mr-3 mt-4 text-xl">Quantity:</h5>
 						<div className="flex items-center mt-3">
 							<input
+								onChange={(e) => handleAddQuantity(e.target.value)}
 								className="border border-gray-400 px-2 py-1 w-20 h-11"
 								type="number"
 								defaultValue={1}
 								min={1}
 								max={100}
 							/>
-							<button className="btn btn-primary ml-4">
+							<label
+								htmlFor="success-modal"
+								onClick={() => handleAddCart(product)}
+								className="btn btn-primary ml-4"
+							>
 								<BsPlus className="w-6 h-6 text-white font-bold" />
 								Add to Cart
-							</button>
+							</label>
 						</div>
 						<div className="mt-4">
 							{isWishList ? (
@@ -109,6 +126,7 @@ const ProductDetails = () => {
 					</div>
 				</div>
 			</div>
+			<CartSuccessModal modalData={product}></CartSuccessModal>
 		</div>
 	);
 };
