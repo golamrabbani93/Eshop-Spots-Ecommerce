@@ -31,7 +31,7 @@ const SingleProduct = ({data, cartModal}) => {
 			<div className="!flex justify-center">
 				<div className="new-card card-compact !w-72 md:!w-72 mt-8  mx-3">
 					<div className="relative overflow-hidden">
-						<Link>
+						<Link to={`/shop/product/${data?._id}`}>
 							<img className="h-[300px]" src={data?.img} alt={data?.name} />
 						</Link>
 
@@ -65,7 +65,12 @@ const SingleProduct = ({data, cartModal}) => {
 						</div>
 					</div>
 					<div className="mt-3">
-						<h2 className="card-title">{data?.name}</h2>
+						<Link
+							to={`/shop/product/${data?._id}`}
+							className="hover:text-primary transiti duration-300"
+						>
+							<h2 className="card-title">{data?.name}</h2>
+						</Link>
 					</div>
 					<div className="price-rating flex justify-between">
 						<Rating rating={data?.rating}></Rating>
