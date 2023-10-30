@@ -63,6 +63,11 @@ const SingleProduct = ({data, cartModal}) => {
 								</Link>
 							</div>
 						</div>
+						{data?.best_seller && (
+							<h2 className="text-xs font-bold py-[2px] px-1 absolute top-[10px] left-[10px] text-primary-focus uppercase bg-[#ff386033]">
+								Best Seller
+							</h2>
+						)}
 					</div>
 					<div className="mt-3">
 						<Link
