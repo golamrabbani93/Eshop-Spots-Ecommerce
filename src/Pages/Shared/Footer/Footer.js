@@ -4,7 +4,7 @@ import {BiLogoFacebook, BiLogoTwitter, BiLogoInstagram, BiLogoLinkedin} from 're
 const Footer = () => {
 	return (
 		<div className="bg-[#24262b] overflow-hidden">
-			<div className="container mx-auto px-[120px]">
+			<div className="container mx-auto px-[40px] md:px-[120px]">
 				{/* !footer top */}
 				<div className="footer-top pt-[100px]  pb-[50px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-7">
 					<div>
@@ -75,7 +75,7 @@ const Footer = () => {
 			</div>
 			<div className="divider after:bg-slate-400 before:bg-slate-400 before:h-[1px] after:h-[1px]"></div>
 			{/* Footer Middle */}
-			<div className="container mx-auto px-[120px]">
+			<div className="container mx-auto px-[40px] md:px-[120px]">
 				<div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center">
 					{/* Social */}
 					<div className="py-[60px] xl:pl-36">
@@ -117,6 +117,22 @@ const Footer = () => {
 							/>
 							<button className="btn btn-primary rounded-none h-[50px]">Subscribe</button>
 						</div>
+					</div>
+				</div>
+			</div>
+			<div className="divider after:bg-slate-400 before:bg-slate-400 before:h-[1px] after:h-[1px]"></div>
+			<div className="container mx-auto px-[40px] md:px-[120px]">
+				<div className="flex flex-wrap justify-between items-center ">
+					<div className="copyright py-[20px]">
+						<h2 className="text-white uppercase text-sm">
+							© {new Date().getFullYear()} Eshop-spots. Made by{' '}
+							<Link to={`https://webrabbani.web.app/`} className="text-primary">
+								Golam rabbani
+							</Link>
+						</h2>
+					</div>
+					<div className="company">
+						<img src="https://i.ibb.co/340xmC5/payment.png" alt="" />
 					</div>
 				</div>
 			</div>
