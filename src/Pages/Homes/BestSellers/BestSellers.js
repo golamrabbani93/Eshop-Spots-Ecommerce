@@ -8,7 +8,7 @@ const BestSellers = ({cartModal}) => {
 	const {data: bestSeller = [], isLoading} = useQuery({
 		queryKey: ['products', 'bestSeller'],
 		queryFn: async () => {
-			const res = await fetch('http://localhost:5000/products');
+			const res = await fetch('http://localhost:5000/products?bestSeller=true');
 			const data = await res.json();
 			return data;
 		},
