@@ -6,6 +6,7 @@ import NewArrivals from '../NewArrivals/NewArrivals';
 import BasicCollection from '../BasicCollection/BasicCollection';
 import BestSellers from '../BestSellers/BestSellers';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
+import Category from '../Category/Category';
 
 const Home = () => {
 	// !Set Cart data
@@ -23,6 +24,7 @@ const Home = () => {
 			<NewArrivals cartModal={cartModal}></NewArrivals>
 			<BasicCollection></BasicCollection>
 			<BestSellers cartModal={cartModal}></BestSellers>
+			<Category></Category>
 			<CartSuccessModal modalData={modalData} cartModal={cartModal}></CartSuccessModal>
 		</div>
 	);
