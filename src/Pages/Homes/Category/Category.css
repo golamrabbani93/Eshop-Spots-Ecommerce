@@ -1,0 +1,9 @@
+.category-item:hover button {
+	transition: all 0.3s;
+	background-color: #ff365d;
+	color: #fff;
+}
+.category-item:hover h3 {
+	transition: all 0.3s;
+	color: #ff365d;
+}
