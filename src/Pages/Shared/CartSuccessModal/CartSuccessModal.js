@@ -61,12 +61,13 @@ const CartSuccessModal = ({modalData}) => {
 								Total Price:{' '}
 								<span className="text-2xl text-primary font-extrabold">${totalProductsPrice}</span>
 							</h1>
-							<Link
+							<label
 								to={`/shop`}
+								htmlFor="success-modal"
 								className="ml-2 font-bold hover:text-primary transition duration-300 ease-in-out link"
 							>
 								CONTINUE SHOPPING
-							</Link>
+							</label>
 						</div>
 					</div>
 				</div>

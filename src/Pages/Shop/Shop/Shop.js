@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {useQuery} from '@tanstack/react-query';
 import Categories from '../Categories/Categories';
 import Products from '../Products/Products';
 import Loader from '../../Shared/Loader/Loader';
+import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 
 const Shop = () => {
+	// !Set Cart data
+	const [modalData, setModalData] = useState({});
+
+	// !set Cart modal data
+	const cartModal = (data) => {
+		setModalData(data);
+	};
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products'],
@@ -42,10 +50,11 @@ const Shop = () => {
 					</div>
 					{/* !right side bar */}
 					<div className="right-sid col-start-2 col-end-5">
-						<Products products={products}></Products>
+						<Products products={products} cartModal={cartModal}></Products>
 					</div>
 				</div>
 			</div>
+			<CartSuccessModal modalData={modalData}></CartSuccessModal>
 		</div>
 	);
 };
