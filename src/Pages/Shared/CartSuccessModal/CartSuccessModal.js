@@ -73,7 +73,6 @@ const CartSuccessModal = ({modalData}) => {
 				</div>
 			</div>
 		</div>
-		// hello world
 	);
 };
 
