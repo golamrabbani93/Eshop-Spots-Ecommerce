@@ -23,7 +23,7 @@ const Categories = ({CateGories}) => {
 						<li key={category?._id} className="my-2">
 							<Link
 								className="text-xl font-bold hover:text-primary transition duration-300"
-								to={`/shop/${category?.name.toLowerCase()}`}
+								to={`/shop/category/${category?.name.toLowerCase()}`}
 							>
 								{category?.name}
 							</Link>

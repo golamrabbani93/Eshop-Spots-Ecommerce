@@ -5,6 +5,7 @@ import Categories from '../Categories/Categories';
 import Products from '../Products/Products';
 import Loader from '../../Shared/Loader/Loader';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
+import {useParams} from 'react-router-dom';
 
 const Shop = () => {
 	// !Set Cart data
@@ -14,11 +15,14 @@ const Shop = () => {
 	const cartModal = (data) => {
 		setModalData(data);
 	};
+	//!get Params
+	const categoryName = useParams();
+	const url = `http://localhost:5000/products?categoryName=${categoryName?.name}`;
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
-		queryKey: ['products'],
+		queryKey: ['products', categoryName],
 		queryFn: async () => {
-			const res = await fetch('http://localhost:5000/products');
+			const res = await fetch(url);
 			const data = await res.json();
 			return data;
 		},
@@ -34,8 +38,11 @@ const Shop = () => {
 			name: 'Shop',
 			path: '/shop',
 		},
+		categoryName?.name?.length > 0 && {
+			name: categoryName?.name,
+			path: `/shop/category/${categoryName?.name}`,
+		},
 	];
-
 	if (isLoading) {
 		return <Loader></Loader>;
 	}
