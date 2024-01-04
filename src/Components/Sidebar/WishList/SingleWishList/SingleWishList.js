@@ -26,7 +26,7 @@ const SingleWishList = ({wishList}) => {
 							</div>
 						</div>
 						<div className="self-stretch h-[24.50px] pr-[34.10px] flex-col justify-start items-start flex">
-							<div className="text-neutral-500 text-sm font-normal font-['Open Sans'] leading-normal">
+							<div className="text-neutral-500 text-sm font-normal font-['Open Sans'] leading-normal mt-5">
 								1 x ${discount_price || main_price}
 							</div>
 						</div>

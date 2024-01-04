@@ -21,7 +21,7 @@ const SingleCartList = ({cartList}) => {
 							<h2 className="text-neutral-500 text-sm font-bold  leading-normal">{name}</h2>
 						</div>
 						<div className="self-stretch h-[24.50px] pr-[34.10px] flex-col justify-start items-start flex">
-							<h3 className="text-neutral-500 text-sm font-normal  leading-normal">
+							<h3 className="text-neutral-500 text-sm font-normal mt-5  leading-normal">
 								{quantity} x ${discount_price || main_price}
 							</h3>
 						</div>
