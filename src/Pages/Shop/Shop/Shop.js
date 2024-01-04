@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {useQuery} from '@tanstack/react-query';
 import Categories from '../Categories/Categories';
@@ -8,6 +8,10 @@ import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import {useParams} from 'react-router-dom';
 
 const Shop = () => {
+	// !Scroll to top
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	// !Set Cart data
 	const [modalData, setModalData] = useState({});
 

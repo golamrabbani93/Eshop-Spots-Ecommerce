@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Banner from '../Banner/Banner';
 import Services from '../Services/Services';
 import AdsProduct from '../AdsProduct/AdsProduct';
@@ -9,6 +9,10 @@ import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import Category from '../Category/Category';
 
 const Home = () => {
+	// !Scroll to top
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	// !Set Cart data
 	const [modalData, setModalData] = useState({});
 
