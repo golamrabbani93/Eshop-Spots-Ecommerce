@@ -53,7 +53,7 @@ const Shop = () => {
 				<div className="shop-main grid grid-cols-1 md:grid-cols-4 gap-4 mx-20">
 					{/* !left side bar */}
 					<div className="left-side">
-						<Categories></Categories>
+						<Categories categoryName={categoryName}></Categories>
 					</div>
 					{/* !right side bar */}
 					<div className="right-sid col-start-2 col-end-5">

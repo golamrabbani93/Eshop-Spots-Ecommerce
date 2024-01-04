@@ -2,7 +2,7 @@ import {useQuery} from '@tanstack/react-query';
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Categories = ({CateGories}) => {
+const Categories = ({categoryName}) => {
 	// !load cateGories
 	const {data: cateGories} = useQuery({
 		queryKey: ['category'],
@@ -19,11 +19,25 @@ const Categories = ({CateGories}) => {
 
 			<div>
 				<ul>
+					<li className="my-2">
+						<Link
+							className={`text-xl font-bold hover:text-primary transition duration-300 ${
+								Object.keys(categoryName).length === 0 && 'text-primary'
+							}`}
+							to={`/shop`}
+						>
+							All
+						</Link>
+					</li>
 					{cateGories?.map((category) => (
 						<li key={category?._id} className="my-2">
 							<Link
-								className="text-xl font-bold hover:text-primary transition duration-300"
+								className={`text-xl font-bold hover:text-primary transition duration-300 ${
+									categoryName?.name?.toLowerCase() === category?.name?.toLowerCase() &&
+									'text-primary'
+								}`}
 								to={`/shop/category/${category?.name.toLowerCase()}`}
+								// onClick={() => active(category?.name)}
 							>
 								{category?.name}
 							</Link>
