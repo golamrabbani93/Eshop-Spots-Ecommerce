@@ -12,6 +12,8 @@ import PrivateRoutes from '../Private/PrivateRoutes';
 import Payment from '../../Pages/Shop/CheckOut/Payment/Payment';
 import ProductDetails from '../../Pages/Shared/ProductDetails/ProductDetails';
 import MyAccount from '../../Pages/DashBoard/MyAccount/MyAccount';
+import MyAccountLayout from '../../layouts/MyAccountLayout/MyAccountLayout';
+import Orders from '../../Pages/DashBoard/MyAccount/Orders/Orders';
 
 const router = createBrowserRouter([
 	{
@@ -59,14 +61,6 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: '/shop/myaccount',
-				element: (
-					<PrivateRoutes>
-						<MyAccount></MyAccount>
-					</PrivateRoutes>
-				),
-			},
-			{
 				path: '/blog',
 				element: <Blog></Blog>,
 			},
@@ -79,6 +73,34 @@ const router = createBrowserRouter([
 				element: <Login></Login>,
 			},
 		],
+	},
+
+	// *Dashboard Routes Start
+	{
+		path: '/dashboard/myaccount',
+		element: <MyAccountLayout></MyAccountLayout>,
+		children: [
+			{
+				path: '/dashboard/myaccount',
+				element: (
+					<PrivateRoutes>
+						<MyAccount></MyAccount>
+					</PrivateRoutes>
+				),
+			},
+			{
+				path: '/dashboard/myaccount/orders',
+				element: (
+					<PrivateRoutes>
+						<Orders></Orders>
+					</PrivateRoutes>
+				),
+			},
+		],
+	},
+	{
+		path: '*',
+		element: <h1>Not Found</h1>,
 	},
 ]);
 

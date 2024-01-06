@@ -32,6 +32,7 @@ const Header = () => {
 		}
 	}, [cartList]);
 	// *Display Wishlist and cart list show/hidden End
+
 	// *Sticky Header Start
 	window.addEventListener('scroll', () => {
 		var header = document.querySelector('.navigation');
@@ -137,7 +138,7 @@ const Header = () => {
 										>
 											<li>
 												<Link
-													to="/shop/myaccount"
+													to="/dashboard/myaccount"
 													className="justify-between hover:text-primary focus:!text-white"
 												>
 													My Account

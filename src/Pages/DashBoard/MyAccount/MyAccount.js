@@ -2,9 +2,8 @@ import React from 'react';
 
 const MyAccount = () => {
 	return (
-		<div className="mt-[80px]">
-			<div>Nav</div>
-			<div>MyAccount</div>
+		<div className="">
+			<h1>Customer Account Dashboard Page</h1>
 		</div>
 	);
 };
