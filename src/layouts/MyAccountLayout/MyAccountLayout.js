@@ -58,11 +58,11 @@ const MyAccountLayout = () => {
 			<BreadCrumb items={items}></BreadCrumb>
 			<div className="my-[80px]">
 				<div className="grid grid-cols-12 md:grid-cols-4 gap-9 mx-12">
-					<div className="">
+					<div className="account">
 						<ul className="">
 							{sideNavItems.map((item) => (
 								<NavLink
-									className="block text-sm uppercase text-white hover:text-white hover:bg-primary my-2 bg-black py-2 pl-3 font-bold  transition-all duration-500 rounded-md"
+									className="block text-sm uppercase text-white hover:text-white hover:bg-primary my-2 bg-black py-2 pl-3 font-bold  transition-all duration-300 rounded-md"
 									to={item.path}
 									key={item.id}
 									end

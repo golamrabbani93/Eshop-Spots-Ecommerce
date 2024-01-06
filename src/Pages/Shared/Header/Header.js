@@ -36,7 +36,9 @@ const Header = () => {
 	// *Sticky Header Start
 	window.addEventListener('scroll', () => {
 		var header = document.querySelector('.navigation');
-		header.classList.toggle('shadow', window.scrollY > 20);
+		if (header) {
+			header.classList.toggle('shadow', window.scrollY > 20);
+		}
 	});
 	// *Sticky Header End
 
