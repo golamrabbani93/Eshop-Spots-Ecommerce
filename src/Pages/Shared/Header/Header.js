@@ -136,8 +136,11 @@ const Header = () => {
 											className={`mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 font-bold`}
 										>
 											<li>
-												<Link className="justify-between hover:text-primary focus:!text-white">
-													Profile
+												<Link
+													to="/shop/myaccount"
+													className="justify-between hover:text-primary focus:!text-white"
+												>
+													My Account
 												</Link>
 											</li>
 											<li>

@@ -11,6 +11,7 @@ import CheckOut from '../../Pages/Shop/CheckOut/CheckOut';
 import PrivateRoutes from '../Private/PrivateRoutes';
 import Payment from '../../Pages/Shop/CheckOut/Payment/Payment';
 import ProductDetails from '../../Pages/Shared/ProductDetails/ProductDetails';
+import MyAccount from '../../Pages/DashBoard/MyAccount/MyAccount';
 
 const router = createBrowserRouter([
 	{
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
 				element: (
 					<PrivateRoutes>
 						<Payment></Payment>
+					</PrivateRoutes>
+				),
+			},
+			{
+				path: '/shop/myaccount',
+				element: (
+					<PrivateRoutes>
+						<MyAccount></MyAccount>
 					</PrivateRoutes>
 				),
 			},
