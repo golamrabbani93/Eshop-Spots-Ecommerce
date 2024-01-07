@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {AuthContext} from '../../../contexts/AuthProvider';
 import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
+import {format} from 'date-fns';
 
 const CheckOut = () => {
 	const {user} = useContext(AuthContext);
@@ -51,7 +52,10 @@ const CheckOut = () => {
 	if (subTotal) {
 		total += subTotal + shipping;
 	}
-
+	// !get order date
+	const date = new Date();
+	const orderDate = format(date, 'PP');
+	// !handle billingDetails
 	const handleBillingDetails = async (data) => {
 		const billingDetails = {
 			name: data.name,
@@ -63,6 +67,7 @@ const CheckOut = () => {
 			orderNote: data.orderNote,
 			products: newProducts,
 			total: total,
+			date: orderDate,
 		};
 		try {
 			// !post billingDetails to database
