@@ -5,6 +5,7 @@ const UsePostUser = (name, email) => {
 		body: JSON.stringify({
 			name: name,
 			email: email,
+			userRole: 'customer',
 		}),
 	})
 		.then(() => {})

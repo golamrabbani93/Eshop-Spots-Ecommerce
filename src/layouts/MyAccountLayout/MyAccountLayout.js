@@ -57,8 +57,8 @@ const MyAccountLayout = () => {
 			<Header></Header>
 			<BreadCrumb items={items}></BreadCrumb>
 			<div className="my-[80px]">
-				<div className="grid grid-cols-12 md:grid-cols-4 gap-9 mx-12">
-					<div className="account">
+				<div className="grid sm:grid-cols-12 md:grid-cols-4 gap-9 md:mx-12">
+					<div className="account w-[250px]  md:w-full">
 						<ul className="">
 							{sideNavItems.map((item) => (
 								<NavLink
@@ -72,7 +72,7 @@ const MyAccountLayout = () => {
 							))}
 						</ul>
 					</div>
-					<div className="col-span-3">
+					<div className="md:col-span-3 overflow-scroll md:overflow-hidden">
 						<Outlet></Outlet>
 					</div>
 				</div>
