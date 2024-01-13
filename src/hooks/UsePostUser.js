@@ -1,5 +1,5 @@
 const UsePostUser = (name, email) => {
-	fetch('http://localhost:5000/user', {
+	fetch('https://eshopspots-server.vercel.app/user', {
 		method: 'POST',
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({

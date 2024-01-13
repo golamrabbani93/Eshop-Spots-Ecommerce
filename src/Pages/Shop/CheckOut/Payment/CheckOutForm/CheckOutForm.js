@@ -18,7 +18,7 @@ const CheckOutForm = ({booking}) => {
 	// !create payment intent
 	useEffect(() => {
 		//! Create PaymentIntent as soon as the page loads
-		fetch('http://localhost:5000/payment/create-payment-intent', {
+		fetch('https://eshopspots-server.vercel.app/payment/create-payment-intent', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(booking),
@@ -73,7 +73,7 @@ const CheckOutForm = ({booking}) => {
 				cardNumber: paymentMethod.card.last4,
 				bookingId: booking?._id,
 			};
-			fetch('http://localhost:5000/payment/', {
+			fetch('https://eshopspots-server.vercel.app/payment/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

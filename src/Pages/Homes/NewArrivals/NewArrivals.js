@@ -8,7 +8,7 @@ const NewArrivals = ({cartModal}) => {
 	const {data: NewArrivalsData = [], isLoading} = useQuery({
 		queryKey: ['products', 'status'],
 		queryFn: async () => {
-			const res = await fetch('http://localhost:5000/products?status=new');
+			const res = await fetch('https://eshopspots-server.vercel.app/products?status=new');
 			const data = await res.json();
 			return data;
 		},

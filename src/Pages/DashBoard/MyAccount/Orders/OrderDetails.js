@@ -12,7 +12,7 @@ const OrderDetails = () => {
 	const {data: OrderDetails} = useQuery({
 		queryKey: ['booking', id],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/booking/${id}`);
+			const res = await fetch(`https://eshopspots-server.vercel.app/booking/${id}`);
 			const data = await res.json();
 			return data?.data;
 		},
@@ -22,7 +22,7 @@ const OrderDetails = () => {
 	const ids = OrderDetails?.products?.map((product) => product?._id);
 	useEffect(() => {
 		if (ids && OrderDetailsData === 0) {
-			fetch('http://localhost:5000/booking/products/all', {
+			fetch('https://eshopspots-server.vercel.app/booking/products/all', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

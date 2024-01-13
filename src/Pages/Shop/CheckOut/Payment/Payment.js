@@ -13,7 +13,7 @@ const Payment = () => {
 	const {data: booking = []} = useQuery({
 		queryKey: ['booking', id],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/booking/${id}`);
+			const res = await fetch(`https://eshopspots-server.vercel.app/booking/${id}`);
 			const data = res.json();
 			return data;
 		},

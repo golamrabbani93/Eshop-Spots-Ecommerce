@@ -21,7 +21,7 @@ const Shop = () => {
 	};
 	//!get Params
 	const categoryName = useParams();
-	const url = `http://localhost:5000/products?categoryName=${categoryName?.name}`;
+	const url = `https://eshopspots-server.vercel.app/products?categoryName=${categoryName?.name}`;
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products', categoryName],

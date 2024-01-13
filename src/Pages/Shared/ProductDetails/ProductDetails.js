@@ -19,7 +19,7 @@ const ProductDetails = () => {
 	const {data: product = [], isLoading} = useQuery({
 		queryKey: ['product', id],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/products/${id}`);
+			const res = await fetch(`https://eshopspots-server.vercel.app/products/${id}`);
 			const data = await res.json();
 			return data.data;
 		},
