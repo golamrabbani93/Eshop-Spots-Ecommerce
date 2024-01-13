@@ -24,6 +24,7 @@ const CheckOut = () => {
 			const newCartListItems = cartListItems?.map((item) => {
 				return {
 					name: item.name,
+					_id: item._id,
 					price: item.discount_price || item.main_price,
 					quantity: item.quantity,
 					total:

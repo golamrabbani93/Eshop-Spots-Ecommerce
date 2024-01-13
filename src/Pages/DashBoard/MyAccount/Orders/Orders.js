@@ -3,6 +3,7 @@ import {AuthContext} from '../../../../contexts/AuthProvider';
 import {useQuery} from '@tanstack/react-query';
 import {FaCheck} from 'react-icons/fa';
 import {FaXmark} from 'react-icons/fa6';
+import {Link} from 'react-router-dom';
 const Orders = () => {
 	// !get user email
 	const {user} = useContext(AuthContext);
@@ -16,7 +17,6 @@ const Orders = () => {
 			return data?.data;
 		},
 	});
-	console.log('🚀🚀: Orders -> orders', orders);
 	return (
 		<div>
 			{orders?.length > 0 ? (
@@ -53,7 +53,12 @@ const Orders = () => {
 									)}
 								</td>
 								<td className="border border-r-3">
-									<button className="btn btn-sm btn-link">View</button>
+									<Link
+										to={`/dashboard/myaccount/orders/${order?._id}`}
+										className="btn btn-sm btn-link"
+									>
+										View
+									</Link>
 								</td>
 							</tr>
 						))}
