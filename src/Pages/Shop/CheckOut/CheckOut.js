@@ -9,9 +9,12 @@ import toast from 'react-hot-toast';
 import {AuthContext} from '../../../contexts/AuthProvider';
 import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
 import {format} from 'date-fns';
+import UseUserDetails from '../../../hooks/UseUserDetails';
 
 const CheckOut = () => {
 	const {user} = useContext(AuthContext);
+	const userDetails = UseUserDetails(user?.email);
+	console.log('🚀🚀: CheckOut -> userDetails', userDetails);
 	// !get cart data from CartWishListProvider
 	const {cartListItems} = useContext(CartWishListContext);
 	// ! navigate to payment page
