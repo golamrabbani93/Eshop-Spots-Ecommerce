@@ -10,11 +10,12 @@ import {AuthContext} from '../../../contexts/AuthProvider';
 import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
 import {format} from 'date-fns';
 import UseUserDetails from '../../../hooks/UseUserDetails';
+import Loader from '../../Shared/Loader/Loader';
 
 const CheckOut = () => {
 	const {user} = useContext(AuthContext);
 	const userDetails = UseUserDetails(user?.email);
-	console.log('🚀🚀: CheckOut -> userDetails', userDetails);
+
 	// !get cart data from CartWishListProvider
 	const {cartListItems} = useContext(CartWishListContext);
 	// ! navigate to payment page
@@ -59,6 +60,10 @@ const CheckOut = () => {
 	// !get order date
 	const date = new Date();
 	const orderDate = format(date, 'PP');
+	// !useing loader for user information
+	if (Object.keys(userDetails).length === 0) {
+		return <Loader></Loader>;
+	}
 	// !handle billingDetails
 	const handleBillingDetails = async (data) => {
 		const billingDetails = {
@@ -161,7 +166,7 @@ const CheckOut = () => {
 										<input
 											{...register('email', {required: 'Email is required'})}
 											type="text"
-											defaultValue={user?.email}
+											defaultValue={userDetails?.email}
 											readOnly
 											className="bg-[#d6e3f9] p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
 											autoComplete="email"
@@ -174,13 +179,17 @@ const CheckOut = () => {
 										<span className="label-text font-bold">Phone*</span>
 									</label>
 									<input
-										{...register('phone', {required: 'Name is required'})}
+										{...register('phone', {required: 'Phone Number is required'})}
 										type="text"
 										placeholder="Phone Number"
-										className="p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
+										defaultValue={userDetails?.phone}
+										readOnly={userDetails?.phone ? true : false}
+										className={`${
+											userDetails?.phone && 'bg-[#d6e3f9]'
+										} p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black`}
 										autoComplete="phone"
 									/>
-									{errors.phone && <span className="text-red-600">{errors.phone.message}</span>}
+									{errors?.phone && <span className="text-red-600">{errors.phone.message}</span>}
 								</div>
 								<div className="form-control mt-5">
 									<label className="label">
@@ -192,7 +201,15 @@ const CheckOut = () => {
 									>
 										{countryName.map((country, index) => {
 											return (
-												<option key={index} value={country.value}>
+												<option
+													key={index}
+													value={userDetails?.country ? userDetails?.country : country.name}
+													disabled={
+														userDetails?.country && userDetails?.country !== country.name
+															? true
+															: false
+													}
+												>
 													{country.name}
 												</option>
 											);
@@ -208,7 +225,11 @@ const CheckOut = () => {
 										{...register('townCity', {required: 'Town/City is required'})}
 										type="text"
 										placeholder="Town or City name"
-										className="p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
+										defaultValue={userDetails?.townCity}
+										readOnly={userDetails?.townCity ? true : false}
+										className={`${
+											userDetails?.townCity && 'bg-[#d6e3f9]'
+										} p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black`}
 										autoComplete="phone"
 									/>
 									{errors.townCity && (
@@ -222,8 +243,12 @@ const CheckOut = () => {
 									<input
 										{...register('street', {required: 'Street Address is required'})}
 										type="text"
-										placeholder="House number and street name"
-										className="p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black"
+										defaultValue={userDetails?.street}
+										readOnly={userDetails?.street ? true : false}
+										placeholder="Street name and House number"
+										className={`${
+											userDetails?.street && 'bg-[#d6e3f9]'
+										} p-3 border border-spacing-1 outline-[#E5E7EB] rounded text-black placeholder:text-black`}
 										autoComplete="phone"
 									/>
 									{errors.street && <span className="text-red-600">{errors.street.message}</span>}
