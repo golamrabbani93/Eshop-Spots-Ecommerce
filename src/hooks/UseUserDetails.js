@@ -4,7 +4,7 @@ const UseUserDetails = (email) => {
 	const [userDetails, setUserDetails] = useState({});
 	useEffect(() => {
 		if (email) {
-			const url = `http://localhost:5000/user?email=${email}`;
+			const url = `https://eshopspots-server.vercel.app/user?email=${email}`;
 			fetch(url)
 				.then((res) => res.json())
 				.then((data) => {
