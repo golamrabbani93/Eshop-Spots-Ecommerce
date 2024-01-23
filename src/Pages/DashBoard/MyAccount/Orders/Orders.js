@@ -4,12 +4,13 @@ import {useQuery} from '@tanstack/react-query';
 import {FaCheck} from 'react-icons/fa';
 import {FaXmark} from 'react-icons/fa6';
 import {Link} from 'react-router-dom';
+import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 const Orders = () => {
 	// !get user email
 	const {user} = useContext(AuthContext);
 	const userEmail = user?.email;
 	// !get user order data from database
-	const {data: orders} = useQuery({
+	const {data: orders, isLoading} = useQuery({
 		queryKey: ['booking', 'all', userEmail],
 		queryFn: async () => {
 			const res = await fetch(`https://eshopspots-server.vercel.app/booking/all/${userEmail}`);
@@ -17,6 +18,9 @@ const Orders = () => {
 			return data?.data;
 		},
 	});
+	if (isLoading) {
+		return <DashBoardLoader />;
+	}
 	return (
 		<div>
 			{orders?.length > 0 ? (
