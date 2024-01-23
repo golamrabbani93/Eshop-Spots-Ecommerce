@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleOrderDetails from './SingleOrderDetails';
 
@@ -17,6 +17,7 @@ const OrderDetails = () => {
 			return data?.data;
 		},
 	});
+	console.log('🚀🚀: OrderDetails -> OrderDetails', OrderDetails);
 
 	if (isLoading) {
 		return <DashBoardLoader />;
@@ -48,6 +49,13 @@ const OrderDetails = () => {
 									})}
 								</tbody>
 							</table>
+							<div className="text-right">
+								{!OrderDetails?.paymentStatus && (
+									<Link to="/shop/checkout" className="btn btn-primary btn-outline mt-5 text-right">
+										Make Payment
+									</Link>
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
