@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Banner from '../Banner/Banner';
 import Services from '../Services/Services';
 import AdsProduct from '../AdsProduct/AdsProduct';
@@ -7,12 +7,11 @@ import BasicCollection from '../BasicCollection/BasicCollection';
 import BestSellers from '../BestSellers/BestSellers';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import Category from '../Category/Category';
+import UseScrollTop from '../../../hooks/UseScrollTop';
 
 const Home = () => {
 	// !Scroll to top
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+	UseScrollTop();
 	// !Set Cart data
 	const [modalData, setModalData] = useState({});
 

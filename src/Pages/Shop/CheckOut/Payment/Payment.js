@@ -7,7 +7,7 @@ import {useParams} from 'react-router-dom';
 import {useQuery} from '@tanstack/react-query';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-console.log();
+
 const Payment = () => {
 	const {id} = useParams();
 	const {data: booking = []} = useQuery({
