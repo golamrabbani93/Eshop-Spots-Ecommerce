@@ -6,12 +6,11 @@ import Products from '../Products/Products';
 import Loader from '../../Shared/Loader/Loader';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import {useParams} from 'react-router-dom';
+import UseScrollTop from '../../../hooks/UseScrollTop';
 
 const Shop = () => {
 	// !Scroll to top
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+	UseScrollTop();
 	// !Set Cart data
 	const [modalData, setModalData] = useState({});
 
