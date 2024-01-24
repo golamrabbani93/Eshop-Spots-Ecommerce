@@ -122,9 +122,9 @@ const CheckOutForm = ({booking}) => {
 						<button
 							className="btn btn-primary mb-4"
 							type="submit"
-							disabled={!stripe || !clientSecret}
+							disabled={!stripe || !clientSecret || booking?.paymentStatus}
 						>
-							Pay Now {}
+							{booking?.paymentStatus ? 'Already Paid' : 'Pay Now'}
 						</button>
 						<h2>Demo Card Number:4242 4242 4242 4242</h2>
 						<h2>MM: Any Future Date</h2>
