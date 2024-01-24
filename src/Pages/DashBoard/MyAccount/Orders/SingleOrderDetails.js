@@ -2,7 +2,7 @@ import React from 'react';
 import {FaTrash} from 'react-icons/fa';
 
 const SingleOrderDetails = ({singleProduct}) => {
-	const {_id, img, name, price, quantity, total} = singleProduct;
+	const {_id, img, name, discount_price, main_price, quantity, total} = singleProduct;
 	return (
 		<tr className="border border-spacing-3 text-center text-base">
 			<td className="border border-r-3">
@@ -21,9 +21,9 @@ const SingleOrderDetails = ({singleProduct}) => {
 				</div>
 			</td>
 			<td className="border border-r-3">{name}</td>
-			<td className="border border-r-3">${price}</td>
+			<td className="border border-r-3">${discount_price || main_price}</td>
 			<td className="border border-r-3">{quantity}</td>
-			<td className="border border-r-3">{total}</td>
+			<td className="border border-r-3">${total}</td>
 		</tr>
 	);
 };

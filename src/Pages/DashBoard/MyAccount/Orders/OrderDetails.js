@@ -3,6 +3,7 @@ import React from 'react';
 import {Link, useParams} from 'react-router-dom';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleOrderDetails from './SingleOrderDetails';
+import CheckOutProductsDetails from '../../../Shop/CheckOut/Payment/CheckOutForm/CheckOutProductsDetails';
 
 const OrderDetails = () => {
 	// !get id from url
@@ -48,6 +49,11 @@ const OrderDetails = () => {
 									})}
 								</tbody>
 							</table>
+							<div className="mt-6">
+								<CheckOutProductsDetails
+									cartListItems={OrderDetails?.products}
+								></CheckOutProductsDetails>
+							</div>
 							<div className="text-right">
 								{!OrderDetails?.paymentStatus && (
 									<Link
