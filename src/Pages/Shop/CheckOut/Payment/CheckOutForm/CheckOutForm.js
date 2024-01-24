@@ -1,13 +1,11 @@
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './CheckOutForm.css';
-import {CartWishListContext} from '../../../../../contexts/CartWishListProvider';
 import toast from 'react-hot-toast';
 import CheckOutProductsDetails from './CheckOutProductsDetails';
 import Loader from '../../../../Shared/Loader/Loader';
 import {Link} from 'react-router-dom';
 const CheckOutForm = ({booking}) => {
-	const {deleteAllCartlist, cartListItems} = useContext(CartWishListContext);
 	const stripe = useStripe();
 	const elements = useElements();
 	const [clientSecret, setClientSecret] = useState('');
@@ -84,7 +82,6 @@ const CheckOutForm = ({booking}) => {
 				.then((data) => {
 					SetCardError('');
 					toast.success('Payment Success');
-					deleteAllCartlist();
 					setModaldata(paymentData);
 					document.getElementById('my_modal_3').showModal();
 				});
@@ -92,14 +89,14 @@ const CheckOutForm = ({booking}) => {
 		// elements.getElement(CardElement).clear();
 		setProcessing(false);
 	};
-	if (processing) {
+	if (processing || booking?.products.length === 0) {
 		return <Loader></Loader>;
 	}
 	return (
 		<div className="container mx-auto">
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 				<div>
-					<CheckOutProductsDetails cartListItems={cartListItems}></CheckOutProductsDetails>
+					<CheckOutProductsDetails cartListItems={booking?.products}></CheckOutProductsDetails>
 				</div>
 				<div>
 					<form className=" m-auto checkout-form" onSubmit={handleSubmit}>

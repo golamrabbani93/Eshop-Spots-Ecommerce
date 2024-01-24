@@ -17,7 +17,7 @@ const CheckOut = () => {
 	const userDetails = UseUserDetails(user?.email);
 
 	// !get cart data from CartWishListProvider
-	const {cartListItems} = useContext(CartWishListContext);
+	const {cartListItems, deleteAllCartlist} = useContext(CartWishListContext);
 	// ! navigate to payment page
 	const navigate = useNavigate();
 
@@ -27,10 +27,7 @@ const CheckOut = () => {
 		if (cartListItems) {
 			const newCartListItems = cartListItems?.map((item) => {
 				return {
-					name: item.name,
-					_id: item._id,
-					price: item.discount_price || item.main_price,
-					quantity: item.quantity,
+					...item,
 					total:
 						item.discount_price > 0
 							? item.discount_price * item.quantity
@@ -92,6 +89,7 @@ const CheckOut = () => {
 			reset();
 			// !navigate to payment page after post billingDetails to database
 			navigate(`/shop/checkout/payment/${id}`);
+			deleteAllCartlist();
 		} catch (error) {
 			toast.error('Place Order Faild');
 		}
