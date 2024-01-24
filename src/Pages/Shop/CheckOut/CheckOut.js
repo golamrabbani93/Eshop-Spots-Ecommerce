@@ -11,8 +11,11 @@ import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWi
 import {format} from 'date-fns';
 import UseUserDetails from '../../../hooks/UseUserDetails';
 import Loader from '../../Shared/Loader/Loader';
+import UseScrollTop from '../../../hooks/UseScrollTop';
 
 const CheckOut = () => {
+	// !Scroll to top
+	UseScrollTop();
 	const {user} = useContext(AuthContext);
 	const userDetails = UseUserDetails(user?.email);
 

@@ -5,8 +5,11 @@ import {CartWishListContext} from '../../../contexts/CartWishListProvider';
 import Loader from '../../Shared/Loader/Loader';
 import SingleCart from './SingleCart/SingleCart';
 import CartTotal from './CartTotal/CartTotal';
+import UseScrollTop from '../../../hooks/UseScrollTop';
 
 const Cart = () => {
+	// !Scroll to top
+	UseScrollTop();
 	const {cartListItems, loading} = useContext(CartWishListContext);
 	// !breaditems list
 	const breaditems = [

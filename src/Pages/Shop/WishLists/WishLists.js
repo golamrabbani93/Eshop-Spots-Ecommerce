@@ -6,7 +6,10 @@ import SingleWishLists from './SingleWishLists/SingleWishLists';
 import EmptyCartWishList from '../../../Components/EmptyCartWishList/EmptyCartWishList';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import Loader from '../../Shared/Loader/Loader';
+import UseScrollTop from '../../../hooks/UseScrollTop';
 const WishLists = () => {
+	// !Scroll to top
+	UseScrollTop();
 	const {wishListItems} = useContext(CartWishListContext);
 	const {newWishLists, isLoading} = UseWishListProduct(wishListItems);
 	// !set Modal Data

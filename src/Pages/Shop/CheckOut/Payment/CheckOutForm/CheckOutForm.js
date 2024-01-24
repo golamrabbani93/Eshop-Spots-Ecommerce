@@ -5,7 +5,10 @@ import toast from 'react-hot-toast';
 import CheckOutProductsDetails from './CheckOutProductsDetails';
 import Loader from '../../../../Shared/Loader/Loader';
 import {Link} from 'react-router-dom';
+import UseScrollTop from '../../../../../hooks/UseScrollTop';
 const CheckOutForm = ({booking}) => {
+	// !Scroll to top
+	UseScrollTop();
 	const stripe = useStripe();
 	const elements = useElements();
 	const [clientSecret, setClientSecret] = useState('');
