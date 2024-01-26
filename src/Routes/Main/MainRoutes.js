@@ -15,6 +15,7 @@ import MyAccount from '../../Pages/DashBoard/MyAccount/MyAccount';
 import MyAccountLayout from '../../layouts/MyAccountLayout/MyAccountLayout';
 import Orders from '../../Pages/DashBoard/MyAccount/Orders/Orders';
 import OrderDetails from '../../Pages/DashBoard/MyAccount/Orders/OrderDetails';
+import NotFound from '../../Pages/Shared/NotFound/NotFound';
 
 const router = createBrowserRouter([
 	{
@@ -109,7 +110,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '*',
-		element: <h1>Not Found</h1>,
+		element: <NotFound />,
 	},
 ]);
 
