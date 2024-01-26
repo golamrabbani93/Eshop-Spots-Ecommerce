@@ -86,12 +86,36 @@ const Header = () => {
 										/>
 									</svg>
 								</label>
-								<ul
+								<div
 									tabIndex={0}
 									className="menu-sm dropdown-content mt-3 z-[1] p-2  bg-black rounded-box w-52 text-white uppercase"
 								>
-									{navlink}
-								</ul>
+									<ul>{navlink}</ul>
+									<div className="flex mt-4">
+										<div className="wishlist mx-6">
+											<div
+												onClick={() => setWishlist(!wishlist)}
+												className="indicator cursor-pointer transition-colors hover:text-primary"
+											>
+												<span className="indicator-item badge bg-primary text-white  font-bold">
+													{wishListItems?.length || 0}
+												</span>
+												<span className="icon-heart text-2xl"></span>
+											</div>
+										</div>
+										<div className="cart mr-8">
+											<div
+												onClick={() => setCartList(!cartList)}
+												className="indicator cursor-pointer transition-colors hover:text-primary"
+											>
+												<span className="indicator-item badge bg-primary text-white  font-bold">
+													{cartListItems?.length || 0}
+												</span>
+												<span className="icon-bag text-2xl"></span>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<Link to={'/'} className="text-primary text-xl lg:text-2xl font-extrabold">
 								E-ShopSpots
@@ -101,26 +125,28 @@ const Header = () => {
 							<ul className="menu-horizontal px-1 uppercase">{navlink}</ul>
 						</div>
 						<div className="navbar-end transition-colors">
-							<div className="wishlist mx-6">
-								<div
-									onClick={() => setWishlist(!wishlist)}
-									className="indicator cursor-pointer transition-colors hover:text-primary"
-								>
-									<span className="indicator-item badge bg-primary text-white  font-bold">
-										{wishListItems?.length || 0}
-									</span>
-									<span className="icon-heart text-2xl"></span>
+							<div className="hidden lg:flex">
+								<div className="wishlist mx-6">
+									<div
+										onClick={() => setWishlist(!wishlist)}
+										className="indicator cursor-pointer transition-colors hover:text-primary"
+									>
+										<span className="indicator-item badge bg-primary text-white  font-bold">
+											{wishListItems?.length || 0}
+										</span>
+										<span className="icon-heart text-2xl"></span>
+									</div>
 								</div>
-							</div>
-							<div className="cart mr-8">
-								<div
-									onClick={() => setCartList(!cartList)}
-									className="indicator cursor-pointer transition-colors hover:text-primary"
-								>
-									<span className="indicator-item badge bg-primary text-white  font-bold">
-										{cartListItems?.length || 0}
-									</span>
-									<span className="icon-bag text-2xl"></span>
+								<div className="cart mr-8">
+									<div
+										onClick={() => setCartList(!cartList)}
+										className="indicator cursor-pointer transition-colors hover:text-primary"
+									>
+										<span className="indicator-item badge bg-primary text-white  font-bold">
+											{cartListItems?.length || 0}
+										</span>
+										<span className="icon-bag text-2xl"></span>
+									</div>
 								</div>
 							</div>
 							<div>
