@@ -22,7 +22,7 @@ const NotFound = () => {
 			<div className="my-[80px] text-center">
 				<h2 className="text-9xl my-3 text-primary-focus font-extrabold">404</h2>
 				<h3 className="text-black my-3">OPPS! PAGE NOT BE FOUND</h3>
-				<p className="w-1/3 m-auto my-3">
+				<p className="md:w-1/3 m-auto my-3">
 					Sorry but the page you are looking for does not exist, have been removed, name changed or
 					is temporarily unavailable.
 				</p>
