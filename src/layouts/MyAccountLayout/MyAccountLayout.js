@@ -65,7 +65,7 @@ const MyAccountLayout = () => {
 									className="block text-sm uppercase text-white hover:text-white hover:bg-primary my-2 bg-black py-2 pl-3 font-bold  transition-all duration-300 rounded-md"
 									to={item.path}
 									key={item.id}
-									end
+									end={item.id === 1 ? true : false}
 								>
 									{item.name}
 								</NavLink>
