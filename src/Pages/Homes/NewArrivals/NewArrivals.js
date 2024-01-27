@@ -64,7 +64,7 @@ const NewArrivals = ({cartModal}) => {
 	}
 
 	return (
-		<section className="container mx-auto mb-14">
+		<section className="container mx-auto mb-14 overflow-hidden">
 			<div className="mx-5 md:mx-16">
 				<div className="">
 					<h2 className="text-2xl font-bold uppercase">The New Arrivals</h2>

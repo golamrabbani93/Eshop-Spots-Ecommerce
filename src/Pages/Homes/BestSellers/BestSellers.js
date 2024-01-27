@@ -63,7 +63,7 @@ const BestSellers = ({cartModal}) => {
 		return <Loader></Loader>;
 	}
 	return (
-		<section className="container mx-auto my-24">
+		<section className="container mx-auto my-24 overflow-hidden">
 			<div className="mx-5 md:mx-16">
 				<div className="">
 					<h2 className="text-2xl font-bold uppercase">The Best Seller</h2>
