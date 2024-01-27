@@ -52,14 +52,14 @@ const Shop = () => {
 	return (
 		<div>
 			<BreadCrumb items={items}></BreadCrumb>
-			<div className="container mx-auto my-[100px]">
-				<div className="shop-main grid grid-cols-1 md:grid-cols-4 gap-4 mx-20">
+			<div className="container m-auto my-[100px]">
+				<div className="shop-main grid grid-cols-1 md:grid-cols-4 gap-4 mx-8 md:mx-12 xl:mx-20">
 					{/* !left side bar */}
 					<div className="left-side">
 						<Categories categoryName={categoryName}></Categories>
 					</div>
 					{/* !right side bar */}
-					<div className="right-sid col-start-2 col-end-5">
+					<div className="right-sid md:col-start-2 md:col-end-5">
 						<Products products={products} cartModal={cartModal}></Products>
 					</div>
 				</div>

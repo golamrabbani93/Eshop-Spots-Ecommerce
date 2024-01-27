@@ -28,11 +28,11 @@ const SingleProduct = ({data, cartModal}) => {
 
 	return (
 		<div>
-			<div className="!flex justify-center">
-				<div className="new-card card-compact !w-72 md:!w-72 mt-8  mx-3">
+			<div className="flex justify-center">
+				<div className="new-card card-compact !w-56 md:!w-72 mt-8  mx-3">
 					<div className="relative overflow-hidden">
 						<Link to={`/shop/product/${data?._id}`}>
-							<img className="h-[300px]" src={data?.img} alt={data?.name} />
+							<img className=" md:h-[300px]" src={data?.img} alt={data?.name} />
 						</Link>
 
 						<div className="action-link">
