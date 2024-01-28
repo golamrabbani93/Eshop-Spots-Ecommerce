@@ -16,6 +16,7 @@ import MyAccountLayout from '../../layouts/MyAccountLayout/MyAccountLayout';
 import Orders from '../../Pages/DashBoard/MyAccount/Orders/Orders';
 import OrderDetails from '../../Pages/DashBoard/MyAccount/Orders/OrderDetails';
 import NotFound from '../../Pages/Shared/NotFound/NotFound';
+import Address from '../../Pages/DashBoard/MyAccount/Address/Address';
 
 const router = createBrowserRouter([
 	{
@@ -103,6 +104,14 @@ const router = createBrowserRouter([
 				element: (
 					<PrivateRoutes>
 						<OrderDetails></OrderDetails>
+					</PrivateRoutes>
+				),
+			},
+			{
+				path: '/dashboard/myaccount/address',
+				element: (
+					<PrivateRoutes>
+						<Address></Address>
 					</PrivateRoutes>
 				),
 			},

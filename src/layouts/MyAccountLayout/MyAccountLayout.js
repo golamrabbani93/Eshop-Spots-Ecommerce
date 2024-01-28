@@ -39,7 +39,7 @@ const MyAccountLayout = () => {
 		{
 			id: 4,
 			name: 'Addresses',
-			path: '/dashboard/myaccount/addresses',
+			path: '/dashboard/myaccount/address',
 		},
 		{
 			id: 5,
