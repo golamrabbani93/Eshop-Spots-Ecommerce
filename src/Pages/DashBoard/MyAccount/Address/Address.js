@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const Address = () => {
 	const {user} = useContext(AuthContext);
-	const userDetails = UseUserDetails(user?.email);
+	const {userDetails, refetch} = UseUserDetails(user?.email);
 	if (Object.keys(userDetails).length === 0) {
 		return <DashBoardLoader />;
 	}
@@ -53,6 +53,7 @@ const Address = () => {
 				if (data?.user?.modifiedCount === 1) {
 					toast.success('User Details Updated Successfully');
 					modal.close();
+					refetch();
 				}
 			});
 	};
