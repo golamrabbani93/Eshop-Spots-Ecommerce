@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {AuthContext} from '../../../../contexts/AuthProvider';
 import UseUserDetails from '../../../../hooks/UseUserDetails';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
+import toast from 'react-hot-toast';
 
 const Address = () => {
 	const {user} = useContext(AuthContext);
@@ -40,9 +41,20 @@ const Address = () => {
 		const townCity = e.target[2].value;
 		const country = e.target[3].value;
 		const editedData = {phone, street, townCity, country};
-		console.log('🚀🚀: userDetailsEditedData -> editedData', editedData);
 		const modal = document.getElementById('addressModal');
-		modal.close();
+		// const url = `https://eshopspots-server.vercel.app/user?email=${user?.email}`;
+		fetch(`http://localhost:5000/user/${userDetails?._id}`, {
+			method: 'PUT',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify(editedData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data?.user?.modifiedCount === 1) {
+					toast.success('User Details Updated Successfully');
+					modal.close();
+				}
+			});
 	};
 	return (
 		<div className="ml-5">
