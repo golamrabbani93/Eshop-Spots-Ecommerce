@@ -29,6 +29,9 @@ const OrderDetails = () => {
 					{/* !Cart List Start */}
 					<div className="cartlist">
 						<div className="overflow-x-auto mx-7 md:mx-20">
+							<h2 className="bg-black text-white p-4 text-xl font-bold uppercase">
+								Product details
+							</h2>
 							<table className="table">
 								{/* head */}
 								<thead className="text-center bg-[#6c757d50] text-black">

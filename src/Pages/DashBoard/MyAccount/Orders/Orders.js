@@ -23,52 +23,54 @@ const Orders = () => {
 	}
 	return (
 		<div>
-			<h2 className="text-3xl mb-3 font-bold text-primary uppercase">Orders</h2>
 			{orders?.length > 0 ? (
-				<table className="table">
-					{/* head */}
-					<thead className="text-center bg-[#6c757d50] text-black">
-						<tr className="text-base">
-							<th>Order</th>
-							<th>Date</th>
-							<th>Status</th>
-							<th>Total</th>
-							<th>Payment Status</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{orders.map((order, index) => (
-							<tr key={order._id} className="border border-spacing-3 text-center text-base">
-								<td className="border border-r-3">
-									<div className="text-center">
-										<>{index + 1}</>
-									</div>
-								</td>
-								<td className="border border-r-3 ">
-									<>{order?.date}</>
-								</td>
-								<td className="border border-r-3">procceing</td>
-								<td className="border border-r-3">{`${order?.products?.length} for $${order?.total}`}</td>
-								<td>
-									{order?.paymentStatus ? (
-										<FaCheck className="text-green-500 m-auto text-2xl" />
-									) : (
-										<FaXmark className="text-red-500 m-auto text-2xl" />
-									)}
-								</td>
-								<td className="border border-r-3">
-									<Link
-										to={`/dashboard/myaccount/orders/${order?._id}`}
-										className="btn btn-sm btn-link"
-									>
-										View
-									</Link>
-								</td>
+				<>
+					<h2 className="bg-black text-white p-4 text-xl font-bold uppercase">Order</h2>
+					<table className="table">
+						{/* head */}
+						<thead className="text-center bg-[#6c757d50] text-black">
+							<tr className="text-base">
+								<th>Order</th>
+								<th>Date</th>
+								<th>Status</th>
+								<th>Total</th>
+								<th>Payment Status</th>
+								<th>Actions</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{orders.map((order, index) => (
+								<tr key={order._id} className="border border-spacing-3 text-center text-base">
+									<td className="border border-r-3">
+										<div className="text-center">
+											<>{index + 1}</>
+										</div>
+									</td>
+									<td className="border border-r-3 ">
+										<>{order?.date}</>
+									</td>
+									<td className="border border-r-3">procceing</td>
+									<td className="border border-r-3">{`${order?.products?.length} for $${order?.total}`}</td>
+									<td>
+										{order?.paymentStatus ? (
+											<FaCheck className="text-green-500 m-auto text-2xl" />
+										) : (
+											<FaXmark className="text-red-500 m-auto text-2xl" />
+										)}
+									</td>
+									<td className="border border-r-3">
+										<Link
+											to={`/dashboard/myaccount/orders/${order?._id}`}
+											className="btn btn-sm btn-link"
+										>
+											View
+										</Link>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</>
 			) : (
 				<h1 className="text-center text-2xl">No Orders Found</h1>
 			)}
