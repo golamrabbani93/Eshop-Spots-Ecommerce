@@ -151,7 +151,7 @@ const CheckOutForm = ({booking}) => {
 										Home
 									</Link>
 									<Link
-										to={`/dashborad/myaccount/orders`}
+										to={`/dashboard/myaccount/orders`}
 										className="link ml-2 font-bold hover:text-primary transition duration-300 ease-in-out"
 									>
 										Dashboard

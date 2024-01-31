@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom';
 import Rating from '../Rating/Rating';
 import {CartWishListContext} from '../../contexts/CartWishListProvider';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs';
+import UseScrollTop from '../../hooks/UseScrollTop';
 const SingleProduct = ({data, cartModal}) => {
+	UseScrollTop();
 	// !import from CartWishListProvider
 	const {addDeleteWishList, wishListItems, addCart} = useContext(CartWishListContext);
 	// !change icon for add wishListItem
