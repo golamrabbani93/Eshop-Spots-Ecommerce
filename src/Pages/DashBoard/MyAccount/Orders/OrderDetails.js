@@ -4,8 +4,11 @@ import {Link, useParams} from 'react-router-dom';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleOrderDetails from './SingleOrderDetails';
 import CheckOutProductsDetails from '../../../Shop/CheckOut/Payment/CheckOutForm/CheckOutProductsDetails';
+import UseScrollTop from '../../../../hooks/UseScrollTop';
 
 const OrderDetails = () => {
+	// ! Scroll to top
+	UseScrollTop();
 	// !get id from url
 	const id = useParams()?.id;
 	// !Set OrderDetails
@@ -36,7 +39,7 @@ const OrderDetails = () => {
 								{/* head */}
 								<thead className="text-center bg-[#6c757d50] text-black">
 									<tr className="text-base">
-										<th>Delete</th>
+										{!OrderDetails?.paymentStatus && <th>Delete</th>}
 										<th>Image</th>
 										<th>Product</th>
 										<th>Price</th>
@@ -47,7 +50,11 @@ const OrderDetails = () => {
 								<tbody>
 									{OrderDetails?.products?.map((singleProduct) => {
 										return (
-											<SingleOrderDetails key={singleProduct._id} singleProduct={singleProduct} />
+											<SingleOrderDetails
+												key={singleProduct._id}
+												singleProduct={singleProduct}
+												paymentStatus={OrderDetails?.paymentStatus}
+											/>
 										);
 									})}
 								</tbody>
