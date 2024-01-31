@@ -65,8 +65,12 @@ const Address = () => {
 			<h1 className="text-4xl mt-3">Billing Address</h1>
 			<div className="mt-4">
 				<h1 className="text-3xl font-extrabold">{userDetails?.name}</h1>
-				<h1 className="text-3xl mt-2">{userDetails?.phone}</h1>
-				<h2 className="text-2xl mt-2">{`${userDetails?.street},${userDetails?.townCity},${userDetails?.country}`}</h2>
+				{userDetails?.phone && (
+					<>
+						<h1 className="text-3xl mt-2">{userDetails?.phone}</h1>
+						<h2 className="text-2xl mt-2">{`${userDetails?.street},${userDetails?.townCity},${userDetails?.country}`}</h2>
+					</>
+				)}
 
 				<button
 					className="btn btn-link mt-3 text-2xl"
