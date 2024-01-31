@@ -17,7 +17,7 @@ const CheckOut = () => {
 	// !Scroll to top
 	UseScrollTop();
 	const {user} = useContext(AuthContext);
-	const userDetails = UseUserDetails(user?.email);
+	const {userDetails} = UseUserDetails(user?.email);
 
 	// !get cart data from CartWishListProvider
 	const {cartListItems, deleteAllCartlist} = useContext(CartWishListContext);
