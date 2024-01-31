@@ -43,7 +43,7 @@ const Address = () => {
 		const editedData = {phone, street, townCity, country};
 		const modal = document.getElementById('addressModal');
 		// const url = `https://eshopspots-server.vercel.app/user?email=${user?.email}`;
-		fetch(`http://localhost:5000/user/${userDetails?._id}`, {
+		fetch(`https://eshopspots-server.vercel.app/user/${userDetails?._id}`, {
 			method: 'PUT',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify(editedData),
