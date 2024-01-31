@@ -73,6 +73,7 @@ const CheckOutForm = ({booking}) => {
 				transectionId: paymentIntent.id,
 				cardNumber: paymentMethod.card.last4,
 				bookingId: booking?._id,
+				products: booking?.products,
 			};
 			fetch('https://eshopspots-server.vercel.app/payment/', {
 				method: 'POST',
