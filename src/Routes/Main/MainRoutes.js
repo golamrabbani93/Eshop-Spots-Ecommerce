@@ -11,12 +11,12 @@ import CheckOut from '../../Pages/Shop/CheckOut/CheckOut';
 import PrivateRoutes from '../Private/PrivateRoutes';
 import Payment from '../../Pages/Shop/CheckOut/Payment/Payment';
 import ProductDetails from '../../Pages/Shared/ProductDetails/ProductDetails';
-import MyAccount from '../../Pages/DashBoard/MyAccount/MyAccount';
 import MyAccountLayout from '../../layouts/MyAccountLayout/MyAccountLayout';
 import Orders from '../../Pages/DashBoard/MyAccount/Orders/Orders';
 import OrderDetails from '../../Pages/DashBoard/MyAccount/Orders/OrderDetails';
 import NotFound from '../../Pages/Shared/NotFound/NotFound';
 import Address from '../../Pages/DashBoard/MyAccount/Address/Address';
+import DashBoard from '../../Pages/DashBoard/MyAccount/DashBoard/DashBoard';
 
 const router = createBrowserRouter([
 	{
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
 				path: '/dashboard/myaccount',
 				element: (
 					<PrivateRoutes>
-						<MyAccount></MyAccount>
+						<DashBoard></DashBoard>
 					</PrivateRoutes>
 				),
 			},
