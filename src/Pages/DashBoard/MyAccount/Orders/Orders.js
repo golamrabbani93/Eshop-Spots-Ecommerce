@@ -23,6 +23,7 @@ const Orders = () => {
 	}
 	return (
 		<div>
+			<h2 className="text-3xl mb-3 font-bold text-primary uppercase">Orders</h2>
 			{orders?.length > 0 ? (
 				<table className="table">
 					{/* head */}
