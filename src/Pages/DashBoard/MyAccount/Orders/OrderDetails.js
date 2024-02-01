@@ -25,6 +25,9 @@ const OrderDetails = () => {
 	if (isLoading) {
 		return <DashBoardLoader />;
 	}
+	const handleQuantity = (e, _id) => {
+		console.log(e.target.value, _id);
+	};
 	return (
 		<div>
 			<div className="container mx-auto">
@@ -54,6 +57,7 @@ const OrderDetails = () => {
 												key={singleProduct._id}
 												singleProduct={singleProduct}
 												paymentStatus={OrderDetails?.paymentStatus}
+												handleQuantity={handleQuantity}
 											/>
 										);
 									})}

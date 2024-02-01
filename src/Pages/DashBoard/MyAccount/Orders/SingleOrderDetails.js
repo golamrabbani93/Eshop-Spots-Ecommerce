@@ -2,7 +2,7 @@ import React from 'react';
 import {FaTrash} from 'react-icons/fa';
 import UseScrollTop from '../../../../hooks/UseScrollTop';
 
-const SingleOrderDetails = ({singleProduct, paymentStatus}) => {
+const SingleOrderDetails = ({singleProduct, paymentStatus, handleQuantity}) => {
 	// ! Scroll to top
 	UseScrollTop();
 	const {_id, img, name, discount_price, main_price, quantity, total} = singleProduct;
@@ -27,7 +27,16 @@ const SingleOrderDetails = ({singleProduct, paymentStatus}) => {
 			</td>
 			<td className="border border-r-3">{name}</td>
 			<td className="border border-r-3">${discount_price || main_price}</td>
-			<td className="border border-r-3">{quantity}</td>
+			<td className="border border-r-3">
+				<input
+					type="number"
+					onChange={(e) => handleQuantity(e, _id)}
+					defaultValue={quantity || 0}
+					min={1}
+					max={100}
+					className="input input-ghost w-[80px] ml-2"
+				/>
+			</td>
 			<td className="border border-r-3">${total}</td>
 		</tr>
 	);
