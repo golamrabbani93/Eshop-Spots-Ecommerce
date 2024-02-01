@@ -44,6 +44,17 @@ const OrderDetails = () => {
 			return product;
 		});
 		setOrderDetailsData(newProducts);
+		fetch(`http://localhost:5000/booking/update/${bookingId}`, {
+			method: 'PUT',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({products: newProducts}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.data.modifiedCount > 0) {
+					console.log('update');
+				}
+			});
 	};
 	if (isLoading || !OrderDetailsData) {
 		return <DashBoardLoader />;
