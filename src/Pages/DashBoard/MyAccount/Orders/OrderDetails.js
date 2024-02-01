@@ -5,6 +5,7 @@ import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleOrderDetails from './SingleOrderDetails';
 import CheckOutProductsDetails from '../../../Shop/CheckOut/Payment/CheckOutForm/CheckOutProductsDetails';
 import UseScrollTop from '../../../../hooks/UseScrollTop';
+import UseCartTotal from '../../../../hooks/UseCartTotal';
 
 const OrderDetails = () => {
 	// ! Scroll to top
@@ -12,7 +13,9 @@ const OrderDetails = () => {
 	// !get id from url
 	const bookingId = useParams()?.id;
 	// ! Set OrderDetails
-	const [OrderDetailsData, setOrderDetailsData] = useState({});
+	const [OrderDetailsData, setOrderDetailsData] = useState(0);
+	// ! get total products price
+
 	// !Set OrderDetails
 	const {data: OrderDetails, isLoading} = useQuery({
 		queryKey: ['booking', bookingId],
@@ -43,11 +46,18 @@ const OrderDetails = () => {
 			}
 			return product;
 		});
+		// ! get product total price
+		const total = newProducts?.reduce((total, product) => {
+			total += product.total;
+			return total;
+		}, 0);
+		const subTotal = total + 5;
+
 		setOrderDetailsData(newProducts);
 		fetch(`http://localhost:5000/booking/update/${bookingId}`, {
 			method: 'PUT',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({products: newProducts}),
+			body: JSON.stringify({products: newProducts, total: subTotal}),
 		})
 			.then((res) => res.json())
 			.then((data) => {
@@ -56,9 +66,10 @@ const OrderDetails = () => {
 				}
 			});
 	};
-	if (isLoading || !OrderDetailsData) {
+	if (isLoading || OrderDetailsData === 0) {
 		return <DashBoardLoader />;
 	}
+
 	return (
 		<div>
 			<div className="container mx-auto">
