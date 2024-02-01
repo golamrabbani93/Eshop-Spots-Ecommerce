@@ -1,5 +1,5 @@
 import {useQuery} from '@tanstack/react-query';
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleOrderDetails from './SingleOrderDetails';
@@ -10,24 +10,44 @@ const OrderDetails = () => {
 	// ! Scroll to top
 	UseScrollTop();
 	// !get id from url
-	const id = useParams()?.id;
+	const bookingId = useParams()?.id;
+	// ! Set OrderDetails
+	const [OrderDetailsData, setOrderDetailsData] = useState({});
 	// !Set OrderDetails
-
 	const {data: OrderDetails, isLoading} = useQuery({
-		queryKey: ['booking', id],
+		queryKey: ['booking', bookingId],
 		queryFn: async () => {
-			const res = await fetch(`https://eshopspots-server.vercel.app/booking/${id}`);
+			const res = await fetch(`https://eshopspots-server.vercel.app/booking/${bookingId}`);
 			const data = await res.json();
+			setOrderDetailsData(data?.data?.products);
 			return data?.data;
 		},
 	});
 
-	if (isLoading) {
+	const handleQuantity = (e, _id) => {
+		const newQuantity = e.target.value;
+		const productId = _id;
+
+		const newProducts = OrderDetails?.products?.map((product) => {
+			if (product._id === productId) {
+				product.quantity = +newQuantity;
+				if (product?.discount_price > 0) {
+					// !if discount_price found
+					const total = product.discount_price * product.quantity;
+					product.total = total;
+				} else {
+					// !if discount_price not found or 0
+					const total = product.main_price * product.quantity;
+					product.total = total;
+				}
+			}
+			return product;
+		});
+		setOrderDetailsData(newProducts);
+	};
+	if (isLoading || !OrderDetailsData) {
 		return <DashBoardLoader />;
 	}
-	const handleQuantity = (e, _id) => {
-		console.log(e.target.value, _id);
-	};
 	return (
 		<div>
 			<div className="container mx-auto">
@@ -51,7 +71,7 @@ const OrderDetails = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{OrderDetails?.products?.map((singleProduct) => {
+									{OrderDetailsData?.map((singleProduct) => {
 										return (
 											<SingleOrderDetails
 												key={singleProduct._id}
@@ -64,9 +84,7 @@ const OrderDetails = () => {
 								</tbody>
 							</table>
 							<div className="mt-6">
-								<CheckOutProductsDetails
-									cartListItems={OrderDetails?.products}
-								></CheckOutProductsDetails>
+								<CheckOutProductsDetails cartListItems={OrderDetailsData}></CheckOutProductsDetails>
 							</div>
 							<div className="text-right">
 								{!OrderDetails?.paymentStatus && (
