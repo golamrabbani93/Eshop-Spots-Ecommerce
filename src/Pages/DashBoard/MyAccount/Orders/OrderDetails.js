@@ -5,7 +5,6 @@ import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleOrderDetails from './SingleOrderDetails';
 import CheckOutProductsDetails from '../../../Shop/CheckOut/Payment/CheckOutForm/CheckOutProductsDetails';
 import UseScrollTop from '../../../../hooks/UseScrollTop';
-import UseCartTotal from '../../../../hooks/UseCartTotal';
 
 const OrderDetails = () => {
 	// ! Scroll to top

@@ -29,7 +29,7 @@ const SingleOrderDetails = ({singleProduct, paymentStatus, handleQuantity}) => {
 			<td className="border border-r-3">${discount_price || main_price}</td>
 			<td className="border border-r-3">
 				<input
-					type="number"
+					type={paymentStatus ? 'text' : 'number'}
 					onChange={(e) => handleQuantity(e, _id)}
 					defaultValue={quantity || 0}
 					min={1}
