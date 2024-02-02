@@ -2,7 +2,7 @@ import React from 'react';
 import {FaTrash} from 'react-icons/fa';
 import UseScrollTop from '../../../../hooks/UseScrollTop';
 
-const SingleOrderDetails = ({singleProduct, paymentStatus, handleQuantity}) => {
+const SingleOrderDetails = ({singleProduct, paymentStatus, handleQuantity, handleDelete}) => {
 	// ! Scroll to top
 	UseScrollTop();
 	const {_id, img, name, discount_price, main_price, quantity, total} = singleProduct;
@@ -12,7 +12,7 @@ const SingleOrderDetails = ({singleProduct, paymentStatus, handleQuantity}) => {
 				<td className="border border-r-3">
 					<div className="text-center">
 						<FaTrash
-							onClick={() => console.log(_id)}
+							onClick={() => handleDelete(_id)}
 							className="w-5 h-5 text-center m-auto text-red-500 hover:text-red-600 cursor-pointer"
 						/>
 					</div>
