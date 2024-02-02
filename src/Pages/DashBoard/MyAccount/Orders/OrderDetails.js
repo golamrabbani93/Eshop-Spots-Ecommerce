@@ -53,7 +53,7 @@ const OrderDetails = () => {
 		const subTotal = total + 5;
 
 		setOrderDetailsData(newProducts);
-		fetch(`http://localhost:5000/booking/update/${bookingId}`, {
+		fetch(`https://eshopspots-server.vercel.app/booking/update/${bookingId}`, {
 			method: 'PUT',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({products: newProducts, total: subTotal}),
