@@ -52,6 +52,11 @@ const MyAccountLayout = () => {
 		},
 		{
 			id: 6,
+			name: 'All Customers',
+			path: '/dashboard/admin/allcustomer',
+		},
+		{
+			id: 7,
 			name: 'Logout',
 		},
 	];
