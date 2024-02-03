@@ -6,7 +6,8 @@ import toast from 'react-hot-toast';
 
 const Address = () => {
 	const {user} = useContext(AuthContext);
-	const {userDetails, refetch} = UseUserDetails(user?.email);
+	const {userDetails, refetch, userRole} = UseUserDetails(user?.email);
+	console.log('🚀🚀: Address -> userRole', userRole);
 	if (Object.keys(userDetails).length === 0) {
 		return <DashBoardLoader />;
 	}
