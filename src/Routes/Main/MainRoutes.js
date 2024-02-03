@@ -17,6 +17,8 @@ import OrderDetails from '../../Pages/DashBoard/MyAccount/Orders/OrderDetails';
 import NotFound from '../../Pages/Shared/NotFound/NotFound';
 import Address from '../../Pages/DashBoard/MyAccount/Address/Address';
 import DashBoard from '../../Pages/DashBoard/MyAccount/DashBoard/DashBoard';
+import DownLoad from '../../Pages/DashBoard/MyAccount/DownLoad/DownLoad';
+import AccountDetails from '../../Pages/DashBoard/MyAccount/AccountDetails/AccountDetails';
 
 const router = createBrowserRouter([
 	{
@@ -108,10 +110,26 @@ const router = createBrowserRouter([
 				),
 			},
 			{
+				path: '/dashboard/myaccount/downloads',
+				element: (
+					<PrivateRoutes>
+						<DownLoad></DownLoad>
+					</PrivateRoutes>
+				),
+			},
+			{
 				path: '/dashboard/myaccount/address',
 				element: (
 					<PrivateRoutes>
 						<Address></Address>
+					</PrivateRoutes>
+				),
+			},
+			{
+				path: '/dashboard/myaccount/accountdetails',
+				element: (
+					<PrivateRoutes>
+						<AccountDetails></AccountDetails>
 					</PrivateRoutes>
 				),
 			},
