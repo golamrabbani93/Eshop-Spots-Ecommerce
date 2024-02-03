@@ -1,9 +1,13 @@
-import React from 'react';
-import {NavLink, Outlet} from 'react-router-dom';
+import React, {useContext} from 'react';
+import {NavLink, Outlet, useNavigate} from 'react-router-dom';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb';
 import Header from '../../Pages/Shared/Header/Header';
 import './MyAccountLayout.css';
+import {AuthContext} from '../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 const MyAccountLayout = () => {
+	const {logOut} = useContext(AuthContext);
+	const navigate = useNavigate();
 	// !breaditems list
 	const items = [
 		{
@@ -49,9 +53,14 @@ const MyAccountLayout = () => {
 		{
 			id: 6,
 			name: 'Logout',
-			path: '/dashboard/myaccount/logout',
 		},
 	];
+
+	const handleLogout = () => {
+		navigate('/');
+		logOut();
+		toast.success('Logged out');
+	};
 	return (
 		<div className="mt-[80px]">
 			<Header></Header>
@@ -60,16 +69,26 @@ const MyAccountLayout = () => {
 				<div className="grid sm:grid-cols-12 md:grid-cols-4 gap-9 md:mx-12">
 					<div className="account w-[250px]  md:w-full">
 						<ul className="">
-							{sideNavItems.map((item) => (
-								<NavLink
-									className="block text-sm uppercase text-white hover:text-white hover:bg-primary my-2 bg-black py-2 pl-3 font-bold  transition-all duration-300 rounded-md"
-									to={item.path}
-									key={item.id}
-									end={item.id === 1 ? true : false}
-								>
-									{item.name}
-								</NavLink>
-							))}
+							{sideNavItems.map((item) =>
+								item.name === 'Logout' ? (
+									<button
+										key={item.id}
+										className="block text-sm uppercase text-white hover:text-white hover:bg-primary my-2 bg-black py-2 pl-3 font-bold text-left  transition-all duration-300 rounded-md w-full"
+										onClick={() => handleLogout()}
+									>
+										{item.name}
+									</button>
+								) : (
+									<NavLink
+										className="block text-sm uppercase text-white hover:text-white hover:bg-primary my-2 bg-black py-2 pl-3 font-bold  transition-all duration-300 rounded-md"
+										to={item.path}
+										key={item.id}
+										end={item.id === 1 ? true : false}
+									>
+										{item.name}
+									</NavLink>
+								),
+							)}
 						</ul>
 					</div>
 					<div className="md:col-span-3 overflow-scroll md:overflow-hidden">
