@@ -19,6 +19,9 @@ import Address from '../../Pages/DashBoard/MyAccount/Address/Address';
 import DashBoard from '../../Pages/DashBoard/MyAccount/DashBoard/DashBoard';
 import DownLoad from '../../Pages/DashBoard/MyAccount/DownLoad/DownLoad';
 import AccountDetails from '../../Pages/DashBoard/MyAccount/AccountDetails/AccountDetails';
+import AdminLayout from '../../layouts/AdminLayout/AdminLayout';
+import AdminRoute from '../Admin/AdminRoute';
+import AllCustomers from '../../Pages/DashBoard/Admin/AllCustomers/AllCustomers';
 
 const router = createBrowserRouter([
 	{
@@ -82,6 +85,7 @@ const router = createBrowserRouter([
 
 	// *Dashboard Routes Start
 	{
+		// *customer dashboard Start
 		path: '/dashboard/myaccount',
 		element: <MyAccountLayout></MyAccountLayout>,
 		children: [
@@ -134,7 +138,40 @@ const router = createBrowserRouter([
 				),
 			},
 		],
+		// *customer dashboard end
 	},
+	// *Admmin Dashboard Start
+	{
+		path: '/dashboard/admin',
+		element: (
+			<AdminRoute>
+				<AdminLayout></AdminLayout>
+			</AdminRoute>
+		),
+		children: [
+			{
+				path: '/dashboard/admin',
+				element: (
+					<AdminRoute>
+						<PrivateRoutes>
+							<DashBoard></DashBoard>
+						</PrivateRoutes>
+					</AdminRoute>
+				),
+			},
+			{
+				path: '/dashboard/allcustomer',
+				element: (
+					<AdminRoute>
+						<PrivateRoutes>
+							<AllCustomers></AllCustomers>
+						</PrivateRoutes>
+					</AdminRoute>
+				),
+			},
+		],
+	},
+	// *Admmin Dashboard End
 	{
 		path: '*',
 		element: <NotFound />,
