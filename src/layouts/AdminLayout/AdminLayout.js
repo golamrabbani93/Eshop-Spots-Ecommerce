@@ -32,8 +32,8 @@ const AdminLayout = () => {
 		},
 		{
 			id: 2,
-			name: 'All Customers',
-			path: '/dashboard/admin/allcustomer',
+			name: 'All Users',
+			path: '/dashboard/admin/allusers',
 		},
 		{
 			id: 7,

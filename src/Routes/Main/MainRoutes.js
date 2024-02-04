@@ -21,7 +21,7 @@ import DownLoad from '../../Pages/DashBoard/MyAccount/DownLoad/DownLoad';
 import AccountDetails from '../../Pages/DashBoard/MyAccount/AccountDetails/AccountDetails';
 import AdminLayout from '../../layouts/AdminLayout/AdminLayout';
 import AdminRoute from '../Admin/AdminRoute';
-import AllCustomers from '../../Pages/DashBoard/Admin/AllCustomers/AllCustomers';
+import AllUsers from '../../Pages/DashBoard/Admin/AllUsers/AllUsers';
 
 const router = createBrowserRouter([
 	{
@@ -156,11 +156,11 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: '/dashboard/admin/allcustomer',
+				path: '/dashboard/admin/allusers',
 				element: (
 					<AdminRoute>
 						<PrivateRoutes>
-							<AllCustomers></AllCustomers>
+							<AllUsers></AllUsers>
 						</PrivateRoutes>
 					</AdminRoute>
 				),
