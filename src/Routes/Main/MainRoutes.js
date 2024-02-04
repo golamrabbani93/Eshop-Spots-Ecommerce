@@ -143,11 +143,7 @@ const router = createBrowserRouter([
 	// *Admmin Dashboard Start
 	{
 		path: '/dashboard/admin',
-		element: (
-			<AdminRoute>
-				<AdminLayout></AdminLayout>
-			</AdminRoute>
-		),
+		element: <AdminLayout></AdminLayout>,
 		children: [
 			{
 				path: '/dashboard/admin',
@@ -160,7 +156,7 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: '/dashboard/allcustomer',
+				path: '/dashboard/admin/allcustomer',
 				element: (
 					<AdminRoute>
 						<PrivateRoutes>
