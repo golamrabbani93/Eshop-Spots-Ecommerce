@@ -14,8 +14,12 @@ const UseUserDetails = (email) => {
 			if (data.message === 'success') {
 				setUserDetails(data?.user);
 				setUserRole(data?.user?.userRole);
+				setUserLoader(false);
 			}
-			setUserLoader(false);
+
+			setTimeout(() => {
+				setUserLoader(false);
+			}, 1500);
 			return data;
 		},
 	});
