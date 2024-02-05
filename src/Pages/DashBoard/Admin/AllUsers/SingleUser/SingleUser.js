@@ -18,6 +18,23 @@ const SingleUser = ({user, index, refetch}) => {
 			toast.error('Something Went Wrong');
 		}
 	};
+	// !Delete User
+	const deleteUser = async (id) => {
+		const res = await fetch(`http://localhost:5000/user/delete/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const data = await res.json();
+		if (data.message === 'Delete success') {
+			refetch();
+			toast.success('User Deleted');
+		} else {
+			toast.error('Something Went Wrong');
+		}
+	};
+
 	return (
 		<tr className="border border-spacing-3 text-center text-base">
 			<td className="border border-r-3">
@@ -30,7 +47,7 @@ const SingleUser = ({user, index, refetch}) => {
 				<div className="text-center">{user?.email}</div>
 			</td>
 			<td className="border border-r-3">
-				<div className="text-center">{user?.userRole}</div>
+				<div className="text-center capitalize">{user?.userRole}</div>
 			</td>
 			<td className="border border-r-3">
 				<div className="text-center">
@@ -42,8 +59,9 @@ const SingleUser = ({user, index, refetch}) => {
 						Make Admin
 					</button>
 					<button
-						onClick={() => console.log('Delete User' + user?._id)}
+						onClick={() => deleteUser(user?._id)}
 						className="btn btn-sm bg-red-500 hover:bg-red-600 text-white mr-3"
+						disabled={user?.userRole === 'admin'}
 					>
 						Delete User
 					</button>
