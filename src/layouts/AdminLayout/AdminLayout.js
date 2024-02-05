@@ -36,6 +36,11 @@ const AdminLayout = () => {
 			path: '/dashboard/admin/allusers',
 		},
 		{
+			id: 3,
+			name: 'All Orders',
+			path: '/dashboard/admin/allorders',
+		},
+		{
 			id: 7,
 			name: 'Logout',
 		},
