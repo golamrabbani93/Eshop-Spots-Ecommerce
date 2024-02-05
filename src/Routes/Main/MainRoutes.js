@@ -22,6 +22,7 @@ import AccountDetails from '../../Pages/DashBoard/MyAccount/AccountDetails/Accou
 import AdminLayout from '../../layouts/AdminLayout/AdminLayout';
 import AdminRoute from '../Admin/AdminRoute';
 import AllUsers from '../../Pages/DashBoard/Admin/AllUsers/AllUsers';
+import Dashboard from '../../Pages/DashBoard/Admin/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
 	{
@@ -150,7 +151,7 @@ const router = createBrowserRouter([
 				element: (
 					<AdminRoute>
 						<PrivateRoutes>
-							<DashBoard></DashBoard>
+							<Dashboard></Dashboard>
 						</PrivateRoutes>
 					</AdminRoute>
 				),
