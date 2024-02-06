@@ -12,20 +12,23 @@ const AllOrders = () => {
 			return data.data;
 		},
 	});
+
+	if (isLoading) {
+		return <DashBoardLoader />;
+	}
 	let newOrders = allOrders?.reduce((accObj, currentObj) => {
-		accObj[currentObj.email] = accObj[currentObj.email] || [];
-		accObj[currentObj.email].push(currentObj);
+		accObj[currentObj?.email] = accObj[currentObj?.email] || [];
+		accObj[currentObj?.email]?.push(currentObj);
 		return accObj;
 	}, []);
 
-	newOrders = Object.values(newOrders);
-
-	if (isLoading || newOrders.length === 0) {
+	newOrders = Object?.values(newOrders);
+	if (newOrders.length === 0) {
 		return <DashBoardLoader />;
 	}
 	return (
 		<div>
-			{allOrders?.length > 0 ? (
+			{newOrders?.length > 0 ? (
 				<>
 					<h2 className="bg-black text-white p-4 text-xl font-bold uppercase">Orders</h2>
 					<table className="table">
@@ -41,7 +44,7 @@ const AllOrders = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{newOrders.map((order, index) => (
+							{newOrders?.map((order, index) => (
 								<tr key={index} className="border border-spacing-3 text-center text-base">
 									<td className="border border-r-3">
 										<div className="text-center">

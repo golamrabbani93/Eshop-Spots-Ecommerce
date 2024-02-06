@@ -24,6 +24,7 @@ import AdminRoute from '../Admin/AdminRoute';
 import AllUsers from '../../Pages/DashBoard/Admin/AllUsers/AllUsers';
 import Dashboard from '../../Pages/DashBoard/Admin/Dashboard/Dashboard';
 import AllOrders from '../../Pages/DashBoard/Admin/AllOrders/AllOrders';
+import UserOrderDetails from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/UserOrderDetails';
 
 const router = createBrowserRouter([
 	{
@@ -173,6 +174,16 @@ const router = createBrowserRouter([
 					<AdminRoute>
 						<PrivateRoutes>
 							<AllOrders></AllOrders>
+						</PrivateRoutes>
+					</AdminRoute>
+				),
+			},
+			{
+				path: '/dashboard/admin/orders/:email',
+				element: (
+					<AdminRoute>
+						<PrivateRoutes>
+							<UserOrderDetails></UserOrderDetails>
 						</PrivateRoutes>
 					</AdminRoute>
 				),
