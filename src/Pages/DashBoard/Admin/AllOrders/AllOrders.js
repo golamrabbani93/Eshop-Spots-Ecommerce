@@ -59,7 +59,7 @@ const AllOrders = () => {
 									<td>{order?.length}</td>
 									<td className="border border-r-3">
 										<Link
-											to={`/dashboard/admin/orders/${order[0]?.email}`}
+											to={`/dashboard/admin/allorders/${order[0]?.email}`}
 											className="btn btn-sm btn-link"
 										>
 											View

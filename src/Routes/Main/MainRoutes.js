@@ -179,7 +179,7 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: '/dashboard/admin/orders/:email',
+				path: '/dashboard/admin/allorders/:email',
 				element: (
 					<AdminRoute>
 						<PrivateRoutes>
