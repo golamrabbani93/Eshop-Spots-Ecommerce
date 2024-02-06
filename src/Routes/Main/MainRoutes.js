@@ -25,6 +25,7 @@ import AllUsers from '../../Pages/DashBoard/Admin/AllUsers/AllUsers';
 import Dashboard from '../../Pages/DashBoard/Admin/Dashboard/Dashboard';
 import AllOrders from '../../Pages/DashBoard/Admin/AllOrders/AllOrders';
 import UserOrderDetails from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/UserOrderDetails';
+import ProductList from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/ProductList/ProductList';
 
 const router = createBrowserRouter([
 	{
@@ -184,6 +185,16 @@ const router = createBrowserRouter([
 					<AdminRoute>
 						<PrivateRoutes>
 							<UserOrderDetails></UserOrderDetails>
+						</PrivateRoutes>
+					</AdminRoute>
+				),
+			},
+			{
+				path: '/dashboard/admin/allorders/order/:id',
+				element: (
+					<AdminRoute>
+						<PrivateRoutes>
+							<ProductList></ProductList>
 						</PrivateRoutes>
 					</AdminRoute>
 				),
