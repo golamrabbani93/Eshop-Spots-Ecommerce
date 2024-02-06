@@ -15,6 +15,19 @@ const UserOrderDetails = () => {
 			return data?.data;
 		},
 	});
+	const changeStatus = async (status) => {
+		console.log('🚀🚀: changeStatus -> status', status);
+		// const res = await fetch(`https://eshopspots-server.vercel.app/booking/status/${email}`, {
+		// 	method: 'PATCH',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 	},
+		// 	body: JSON.stringify({status}),
+		// });
+		// const data = await res.json();
+		// console.log(data);
+	};
+
 	if (isLoading) {
 		return <DashBoardLoader />;
 	}
@@ -30,6 +43,7 @@ const UserOrderDetails = () => {
 								<th>Order</th>
 								<th>Date</th>
 								<th>Status</th>
+								<th>Change Status</th>
 								<th>Total</th>
 								<th>Payment Status</th>
 								<th>Actions</th>
@@ -47,6 +61,19 @@ const UserOrderDetails = () => {
 										<>{order?.date}</>
 									</td>
 									<td className="border border-r-3">procceing</td>
+									<td className="w-[200px]">
+										<select
+											name=""
+											id=""
+											className="w-[200px]"
+											onChange={(e) => changeStatus(e.target.value)}
+										>
+											<option value="Processing">Processing</option>
+											<option value="Shipped">Shipped</option>
+											<option value="Delivered">Delivered</option>
+											<option value="cancelled">Cancelled</option>
+										</select>
+									</td>
 									<td className="border border-r-3">{`${order?.products?.length} for $${order?.total}`}</td>
 									<td>
 										{order?.paymentStatus ? (
@@ -55,6 +82,7 @@ const UserOrderDetails = () => {
 											<FaXmark className="text-red-500 m-auto text-2xl" />
 										)}
 									</td>
+
 									<td className="border border-r-3">
 										<Link
 											to={`/dashboard/myaccount/orders/${order?._id}`}
