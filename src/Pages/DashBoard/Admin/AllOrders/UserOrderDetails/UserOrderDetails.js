@@ -7,7 +7,11 @@ import {FaCheck, FaXmark} from 'react-icons/fa6';
 const UserOrderDetails = () => {
 	const email = useParams().email;
 	// !get user order data from database
-	const {data: orders, isLoading} = useQuery({
+	const {
+		data: orders,
+		refetch,
+		isLoading,
+	} = useQuery({
 		queryKey: ['booking', 'all', email],
 		queryFn: async () => {
 			const res = await fetch(`https://eshopspots-server.vercel.app/booking/all/${email}`);
@@ -15,17 +19,20 @@ const UserOrderDetails = () => {
 			return data?.data;
 		},
 	});
-	const changeStatus = async (status) => {
-		console.log('🚀🚀: changeStatus -> status', status);
-		// const res = await fetch(`https://eshopspots-server.vercel.app/booking/status/${email}`, {
-		// 	method: 'PATCH',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify({status}),
-		// });
-		// const data = await res.json();
-		// console.log(data);
+	const changeStatus = async (status, id) => {
+		fetch(`http://localhost:5000/booking/status/${id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({status}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.data.modifiedCount > 0) {
+					refetch();
+				}
+			});
 	};
 
 	if (isLoading) {
@@ -66,12 +73,12 @@ const UserOrderDetails = () => {
 											name=""
 											id=""
 											className="w-[200px]"
-											onChange={(e) => changeStatus(e.target.value)}
+											onChange={(e) => changeStatus(e.target.value, order._id)}
 										>
 											<option value="Processing">Processing</option>
 											<option value="Shipped">Shipped</option>
 											<option value="Delivered">Delivered</option>
-											<option value="cancelled">Cancelled</option>
+											<option value="Cancelled">Cancelled</option>
 										</select>
 									</td>
 									<td className="border border-r-3">{`${order?.products?.length} for $${order?.total}`}</td>
