@@ -49,7 +49,7 @@ const Orders = () => {
 									<td className="border border-r-3 ">
 										<>{order?.date}</>
 									</td>
-									<td className="border border-r-3">procceing</td>
+									<td className="border border-r-3">{order.status}</td>
 									<td className="border border-r-3">{`${order?.products?.length} for $${order?.total}`}</td>
 									<td>
 										{order?.paymentStatus ? (
