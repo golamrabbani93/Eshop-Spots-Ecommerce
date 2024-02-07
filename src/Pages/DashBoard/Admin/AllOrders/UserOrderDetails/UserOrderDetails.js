@@ -20,7 +20,7 @@ const UserOrderDetails = () => {
 		},
 	});
 	const changeStatus = async (status, id) => {
-		fetch(`http://localhost:5000/booking/status/${id}`, {
+		fetch(`https://eshopspots-server.vercel.app/booking/status/${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',

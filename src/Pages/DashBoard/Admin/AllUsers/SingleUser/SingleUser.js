@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 const SingleUser = ({user, index, refetch}) => {
 	// !Make Admin
 	const makeAdmin = async (id) => {
-		const res = await fetch(`http://localhost:5000/user/makeAdmin/${id}`, {
+		const res = await fetch(`https://eshopspots-server.vercel.app/user/makeAdmin/${id}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const SingleUser = ({user, index, refetch}) => {
 	};
 	// !Delete User
 	const deleteUser = async (id) => {
-		const res = await fetch(`http://localhost:5000/user/delete/${id}`, {
+		const res = await fetch(`https://eshopspots-server.vercel.app/user/delete/${id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',

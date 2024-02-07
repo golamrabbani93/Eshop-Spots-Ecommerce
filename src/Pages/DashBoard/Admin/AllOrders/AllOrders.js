@@ -7,7 +7,7 @@ const AllOrders = () => {
 	const {data: allOrders, isLoading} = useQuery({
 		queryKey: ['allOrders', 'booking'],
 		queryFn: async () => {
-			const response = await fetch('http://localhost:5000/booking');
+			const response = await fetch('https://eshopspots-server.vercel.app/booking');
 			const data = await response.json();
 			return data.data;
 		},
