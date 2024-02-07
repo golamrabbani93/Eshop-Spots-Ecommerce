@@ -77,6 +77,7 @@ const CheckOut = () => {
 			products: newProducts,
 			total: total,
 			date: orderDate,
+			status: 'Processing',
 		};
 		try {
 			// !post billingDetails to database
