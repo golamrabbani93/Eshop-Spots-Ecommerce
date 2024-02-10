@@ -16,6 +16,8 @@ const Header = () => {
 	// *Display Wishlist and cart list show/hidden Start
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
+	const [notification, setNotification] = useState(false);
+	console.log('🚀🚀: Header -> notification', notification);
 	// !wishlist && !cartList
 	useEffect(() => {
 		if (!wishlist) {
@@ -126,14 +128,29 @@ const Header = () => {
 						</div>
 						<div className="navbar-end transition-colors">
 							<div className="hidden lg:flex">
+								<div className="wishlist">
+									<div
+										onClick={() => setNotification(!notification)}
+										className="indicator cursor-pointer transition-colors hover:text-primary"
+									>
+										{wishListItems?.length > 0 && (
+											<span className="indicator-item badge bg-primary text-white  font-bold">
+												{wishListItems?.length}
+											</span>
+										)}
+										<span className="icon-bell text-2xl"></span>
+									</div>
+								</div>
 								<div className="wishlist mx-6">
 									<div
 										onClick={() => setWishlist(!wishlist)}
 										className="indicator cursor-pointer transition-colors hover:text-primary"
 									>
-										<span className="indicator-item badge bg-primary text-white  font-bold">
-											{wishListItems?.length || 0}
-										</span>
+										{wishListItems?.length > 0 && (
+											<span className="indicator-item badge bg-primary text-white  font-bold">
+												{wishListItems?.length}
+											</span>
+										)}
 										<span className="icon-heart text-2xl"></span>
 									</div>
 								</div>
