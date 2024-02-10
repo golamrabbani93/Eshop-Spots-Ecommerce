@@ -17,7 +17,7 @@ const CheckOut = () => {
 	// !Scroll to top
 	UseScrollTop();
 	const {user} = useContext(AuthContext);
-	const {userDetails} = UseUserDetails(user?.email);
+	const {userDetails, userLoader, refetch} = UseUserDetails(user?.email);
 
 	// !get cart data from CartWishListProvider
 	const {cartListItems, deleteAllCartlist} = useContext(CartWishListContext);
@@ -61,7 +61,8 @@ const CheckOut = () => {
 	const date = new Date();
 	const orderDate = format(date, 'PP');
 	// !useing loader for user information
-	if (Object.keys(userDetails).length === 0) {
+	if (userLoader) {
+		refetch();
 		return <Loader></Loader>;
 	}
 	// !handle billingDetails
