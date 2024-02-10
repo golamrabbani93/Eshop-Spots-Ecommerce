@@ -9,12 +9,15 @@ import {AuthContext} from '../../../contexts/AuthProvider';
 import {FaUserCircle} from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import Notification from '../../../Components/Sidebar/Notification/Notification';
+import UseUserDetails from '../../../hooks/UseUserDetails';
 const Header = () => {
 	// !cart Context
 	const {wishListItems, cartListItems} = useContext(CartWishListContext);
 	// !Auth Context
 	const {user, logOut} = useContext(AuthContext);
 	// *Display Wishlist and cart list show/hidden Start
+	const {userRole} = UseUserDetails(user?.email);
+	console.log('🚀🚀: Header -> userRole', userRole);
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
 	const [notification, setNotification] = useState(false);
@@ -129,19 +132,21 @@ const Header = () => {
 						</div>
 						<div className="navbar-end transition-colors">
 							<div className="hidden lg:flex">
-								<div className="wishlist">
-									<div
-										onClick={() => setNotification(!notification)}
-										className="indicator cursor-pointer transition-colors hover:text-primary"
-									>
-										{wishListItems?.length > 0 && (
-											<span className="indicator-item badge bg-primary text-white  font-bold">
-												{wishListItems?.length}
-											</span>
-										)}
-										<span className="icon-bell text-2xl"></span>
+								{userRole === 'admin' && (
+									<div className="wishlist">
+										<div
+											onClick={() => setNotification(!notification)}
+											className="indicator cursor-pointer transition-colors hover:text-primary"
+										>
+											{wishListItems?.length > 0 && (
+												<span className="indicator-item badge bg-primary text-white  font-bold">
+													{wishListItems?.length}
+												</span>
+											)}
+											<span className="icon-bell text-2xl"></span>
+										</div>
 									</div>
-								</div>
+								)}
 								<div className="wishlist mx-6">
 									<div
 										onClick={() => setWishlist(!wishlist)}
