@@ -1,7 +1,9 @@
 import React from 'react';
 import {RxCross1} from 'react-icons/rx';
 import UseNotification from '../../../hooks/UseNotification';
-
+import productImage from '../../../images/new-product.png';
+import {FaExternalLinkAlt} from 'react-icons/fa';
+import {Link} from 'react-router-dom';
 const Notification = ({notification, setNotification}) => {
 	const {notificationData} = UseNotification();
 	console.log('🚀🚀: Notification -> notificationData', notificationData);
@@ -22,29 +24,31 @@ const Notification = ({notification, setNotification}) => {
 			</div>
 			<div className="self-stretch flex-col justify-start items-start gap-10 flex">
 				<div className="self-stretch h-[25.20px] pr-[284px] flex-col justify-start items-start flex">
-					<h2 className="text-xl font-bold uppercase text-primary">Wishlist</h2>
+					<h2 className="text-xl font-bold uppercase text-primary">Recent Order Notification</h2>
 				</div>
-				notification
+
+				{notificationData.length > 0 ? (
+					notificationData?.map((data, index) => {
+						return (
+							<div className="flex justify-center items-center">
+								<div className="flex justify-center items-center mr-4">
+									<img className="w-[50px] mr-2" src={productImage} alt="" />
+									<h2>You have a new order from {data?.name}</h2>
+								</div>
+								<Link
+									onClick={() => setNotification(!notification)}
+									to={`/dashboard/admin/allorders/${data?.email}`}
+									className="btn btn-primary btn-sm text-white"
+								>
+									View Order <FaExternalLinkAlt />
+								</Link>
+							</div>
+						);
+					})
+				) : (
+					<h2>No Notification Found</h2>
+				)}
 			</div>
-			{/* {newWishLists?.length > 0 ? (
-				// ! if  wishList items found then show this button
-				<Link
-					onClick={() => setWishlist(!wishlist)}
-					to={'/shop/wishlist'}
-					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
-				>
-					View wishlist
-				</Link>
-			) : (
-				// ! if No wishList items found then show this button
-				<Link
-					onClick={() => setWishlist(!wishlist)}
-					className={`mt-10 mb-10 w-[100%] btn btn-primary text-white self-stretch h-[35.60px]`}
-					to={'/shop'}
-				>
-					Visit Shop
-				</Link>
-			)} */}
 		</div>
 	);
 };
