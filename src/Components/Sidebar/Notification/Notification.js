@@ -6,7 +6,6 @@ import {FaExternalLinkAlt} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
 const Notification = ({notification, setNotification}) => {
 	const {notificationData} = UseNotification();
-	console.log('🚀🚀: Notification -> notificationData', notificationData);
 	return (
 		<div
 			id="offcanvas"
@@ -27,10 +26,10 @@ const Notification = ({notification, setNotification}) => {
 					<h2 className="text-xl font-bold uppercase text-primary">Recent Order Notification</h2>
 				</div>
 
-				{notificationData.length > 0 ? (
+				{notificationData?.length > 0 ? (
 					notificationData?.map((data, index) => {
 						return (
-							<div className="flex justify-center items-center">
+							<div key={index} className="flex justify-center items-center">
 								<div className="flex justify-center items-center mr-4">
 									<img className="w-[50px] mr-2" src={productImage} alt="" />
 									<h2>You have a new order from {data?.name}</h2>

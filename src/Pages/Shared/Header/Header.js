@@ -10,13 +10,16 @@ import {FaUserCircle} from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import Notification from '../../../Components/Sidebar/Notification/Notification';
 import UseUserDetails from '../../../hooks/UseUserDetails';
+import UseNotification from '../../../hooks/UseNotification';
 const Header = () => {
 	// !cart Context
 	const {wishListItems, cartListItems} = useContext(CartWishListContext);
+	//*get notification
+	const {notificationData} = UseNotification();
 	// !Auth Context
 	const {user, logOut} = useContext(AuthContext);
 	// *Display Wishlist , cart  , Notification list show/hidden Start
-	const {userRole} = UseUserDetails(user?.email);
+	const {userRole, userLoader, refetch} = UseUserDetails(user?.email);
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
 	const [notification, setNotification] = useState(false);
@@ -61,6 +64,9 @@ const Header = () => {
 			</li>
 		</>
 	);
+	if (userLoader) {
+		refetch();
+	}
 	return (
 		<div className="relative">
 			<div className=" sticky z-[2] top-0 dark:text-black">
@@ -130,9 +136,9 @@ const Header = () => {
 											onClick={() => setNotification(!notification)}
 											className="indicator cursor-pointer transition-colors hover:text-primary"
 										>
-											{wishListItems?.length > 0 && (
+											{notificationData?.length > 0 && (
 												<span className="indicator-item badge bg-primary text-white  font-bold">
-													{wishListItems?.length}
+													{notificationData?.length}
 												</span>
 											)}
 											<span className="icon-bell text-2xl"></span>
