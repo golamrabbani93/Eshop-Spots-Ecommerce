@@ -8,6 +8,7 @@ import {MdLogin} from 'react-icons/md';
 import {AuthContext} from '../../../contexts/AuthProvider';
 import {FaUserCircle} from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import Notification from '../../../Components/Sidebar/Notification/Notification';
 const Header = () => {
 	// !cart Context
 	const {wishListItems, cartListItems} = useContext(CartWishListContext);
@@ -217,6 +218,7 @@ const Header = () => {
             */}
 			<WishList wishlist={wishlist} setWishlist={setWishlist}></WishList>
 			<CartList cartList={cartList} setCartList={setCartList}></CartList>
+			<Notification notification={notification} setNotification={setNotification} />
 			{/* 
 			 Side wishlist end 
 			*/}
