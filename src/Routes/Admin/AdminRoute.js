@@ -6,9 +6,10 @@ import UseUserDetails from '../../hooks/UseUserDetails';
 
 const AdminRoute = ({children}) => {
 	const {user, loader} = useContext(AuthContext);
-	const {userRole, userLoader} = UseUserDetails(user?.email);
+	const {userRole, userLoader, refetch} = UseUserDetails(user?.email);
 	const location = useLocation();
 	if (loader || userLoader) {
+		refetch();
 		return <Loader></Loader>;
 	}
 
