@@ -1,7 +1,10 @@
 import React from 'react';
 import {RxCross1} from 'react-icons/rx';
+import UseNotification from '../../../hooks/UseNotification';
 
 const Notification = ({notification, setNotification}) => {
+	const {notificationData} = UseNotification();
+	console.log('🚀🚀: Notification -> notificationData', notificationData);
 	return (
 		<div
 			id="offcanvas"
