@@ -7,7 +7,7 @@ const Notification = ({notification, setNotification}) => {
 			id="offcanvas"
 			className={` ${
 				notification ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[100%]'
-			} offcanvas-rightside fixed z-10 top-0 right-0 w-[320px]   md:w-[400px] h-[100%] px-5 pt-5 mb-10  bg-white transition duration-1000 overflow-auto overflow-x-hidden`}
+			} offcanvas-rightside fixed z-10 top-0 right-0 w-[320px]   md:w-[400px] lg:w-[500px] xl:w-[700px] h-[100%] px-5 pt-5 mb-10  bg-white transition duration-1000 overflow-auto overflow-x-hidden`}
 		>
 			<div className="self-stretch h-10 pl-[275px] md:pl-[324.26px] pr-[5.74px] pt-[5.80px] pb-[4.20px] flex-col justify-start items-end flex">
 				<div

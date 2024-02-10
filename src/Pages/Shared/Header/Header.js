@@ -15,28 +15,20 @@ const Header = () => {
 	const {wishListItems, cartListItems} = useContext(CartWishListContext);
 	// !Auth Context
 	const {user, logOut} = useContext(AuthContext);
-	// *Display Wishlist and cart list show/hidden Start
+	// *Display Wishlist , cart  , Notification list show/hidden Start
 	const {userRole} = UseUserDetails(user?.email);
-	console.log('🚀🚀: Header -> userRole', userRole);
 	const [wishlist, setWishlist] = useState(false);
 	const [cartList, setCartList] = useState(false);
 	const [notification, setNotification] = useState(false);
-	console.log('🚀🚀: Header -> notification', notification);
-	// !wishlist && !cartList
+	// !wishlist && !cartList && !notification
 	useEffect(() => {
-		if (!wishlist) {
+		if (!wishlist && !cartList && !notification) {
 			document.getElementById('page').classList.remove('body-opacity');
 		} else {
 			document.getElementById('page').classList.add('body-opacity');
 		}
-	}, [wishlist]);
-	useEffect(() => {
-		if (!cartList) {
-			document.getElementById('page').classList.remove('body-opacity');
-		} else {
-			document.getElementById('page').classList.add('body-opacity');
-		}
-	}, [cartList]);
+	}, [wishlist, cartList, notification]);
+
 	// *Display Wishlist and cart list show/hidden End
 
 	// *Sticky Header Start
