@@ -96,6 +96,21 @@ const Header = () => {
 								>
 									<ul>{navlink}</ul>
 									<div className="flex mt-4">
+										{userRole === 'admin' && user?.uid && (
+											<div className="wishlist">
+												<div
+													onClick={() => setNotification(!notification)}
+													className="indicator cursor-pointer transition-colors hover:text-primary"
+												>
+													{notificationData?.length > 0 && (
+														<span className="indicator-item badge bg-primary text-white  font-bold">
+															{notificationData?.length}
+														</span>
+													)}
+													<span className="icon-bell text-2xl"></span>
+												</div>
+											</div>
+										)}
 										<div className="wishlist mx-6">
 											<div
 												onClick={() => setWishlist(!wishlist)}
@@ -130,7 +145,7 @@ const Header = () => {
 						</div>
 						<div className="navbar-end transition-colors">
 							<div className="hidden lg:flex">
-								{userRole === 'admin' && (
+								{userRole === 'admin' && user?.uid && (
 									<div className="wishlist">
 										<div
 											onClick={() => setNotification(!notification)}
@@ -163,9 +178,11 @@ const Header = () => {
 										onClick={() => setCartList(!cartList)}
 										className="indicator cursor-pointer transition-colors hover:text-primary"
 									>
-										<span className="indicator-item badge bg-primary text-white  font-bold">
-											{cartListItems?.length || 0}
-										</span>
+										{cartListItems?.length > 0 && (
+											<span className="indicator-item badge bg-primary text-white  font-bold">
+												{cartListItems?.length}
+											</span>
+										)}
 										<span className="icon-bag text-2xl"></span>
 									</div>
 								</div>

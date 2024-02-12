@@ -100,7 +100,7 @@ const UserOrderDetails = () => {
 
 									<td className="border border-r-3">
 										<Link
-											to={`http://localhost:3000/dashboard/admin/allorders/order/${order?._id}`}
+											to={`/dashboard/admin/allorders/order/${order?._id}`}
 											className="btn btn-sm btn-link"
 										>
 											View
