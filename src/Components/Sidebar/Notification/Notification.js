@@ -42,8 +42,11 @@ const Notification = ({notification, setNotification}) => {
 					<div>
 						{notificationData?.map((data, index) => {
 							return (
-								<div key={index} className="flex justify-center items-center mb-2">
-									<div className="flex justify-center items-center mr-4">
+								<div
+									key={index}
+									className="flex justify-center items-center mb-2 border-spacing-2 border border-primary p-4 lg:p-2"
+								>
+									<div className="lg:flex justify-center items-center mr-4">
 										<img className="w-[50px] mr-2" src={productImage} alt="" />
 										<h2>You have a new order from {data?.name}</h2>
 									</div>
