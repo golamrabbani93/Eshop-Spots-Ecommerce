@@ -17,9 +17,6 @@ const UseUserDetails = (email) => {
 				setUserLoader(false);
 			}
 
-			setTimeout(() => {
-				setUserLoader(false);
-			}, 3000);
 			return data;
 		},
 	});

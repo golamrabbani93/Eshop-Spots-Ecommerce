@@ -2,14 +2,13 @@ import {useContext} from 'react';
 import {AuthContext} from '../../contexts/AuthProvider';
 import {Navigate, useLocation} from 'react-router-dom';
 import Loader from '../../Pages/Shared/Loader/Loader';
-import UseUserDetails from '../../hooks/UseUserDetails';
+import UseIsAdmin from '../../hooks/UseIsAdmin';
 
 const AdminRoute = ({children}) => {
 	const {user, loader} = useContext(AuthContext);
-	const {userRole, userLoader, refetch} = UseUserDetails(user?.email);
+	const {userRole, userLoader} = UseIsAdmin(user?.email);
 	const location = useLocation();
 	if (loader || userLoader) {
-		refetch();
 		return <Loader></Loader>;
 	}
 
