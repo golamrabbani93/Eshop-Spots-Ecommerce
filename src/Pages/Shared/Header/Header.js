@@ -95,30 +95,41 @@ const Header = () => {
 									className="menu-sm dropdown-content mt-3 z-[1] p-2  bg-black rounded-box w-52 text-white uppercase"
 								>
 									<ul>{navlink}</ul>
-									<div className="flex mt-4">
+									<div className="flex mt-4 -ml-3">
 										{userRole === 'admin' && user?.uid && (
-											<div className="wishlist">
-												<div
-													onClick={() => setNotification(!notification)}
-													className="indicator cursor-pointer transition-colors hover:text-primary"
-												>
-													{notificationData?.length > 0 && (
-														<span className="indicator-item badge bg-primary text-white  font-bold">
-															{notificationData?.length}
-														</span>
-													)}
-													<span className="icon-bell text-2xl"></span>
+											<>
+												<div className="wishlist mx-6">
+													<div className="indicator cursor-pointer transition-colors hover:text-primary">
+														<Link to={`/dashboard/admin`} id="rotate">
+															<span className="icon-settings text-2xl"></span>
+														</Link>
+													</div>
 												</div>
-											</div>
+												<div className="wishlist">
+													<div
+														onClick={() => setNotification(!notification)}
+														className="indicator cursor-pointer transition-colors hover:text-primary"
+													>
+														{notificationData?.length > 0 && (
+															<span className="indicator-item badge bg-primary text-white  font-bold">
+																{notificationData?.length}
+															</span>
+														)}
+														<span className="icon-bell text-2xl"></span>
+													</div>
+												</div>
+											</>
 										)}
 										<div className="wishlist mx-6">
 											<div
 												onClick={() => setWishlist(!wishlist)}
 												className="indicator cursor-pointer transition-colors hover:text-primary"
 											>
-												<span className="indicator-item badge bg-primary text-white  font-bold">
-													{wishListItems?.length || 0}
-												</span>
+												{wishListItems?.length > 0 && (
+													<span className="indicator-item badge bg-primary text-white  font-bold">
+														{wishListItems?.length || 0}
+													</span>
+												)}
 												<span className="icon-heart text-2xl"></span>
 											</div>
 										</div>
@@ -127,9 +138,11 @@ const Header = () => {
 												onClick={() => setCartList(!cartList)}
 												className="indicator cursor-pointer transition-colors hover:text-primary"
 											>
-												<span className="indicator-item badge bg-primary text-white  font-bold">
-													{cartListItems?.length || 0}
-												</span>
+												{cartListItems?.length > 0 && (
+													<span className="indicator-item badge bg-primary text-white  font-bold">
+														{cartListItems?.length || 0}
+													</span>
+												)}
 												<span className="icon-bag text-2xl"></span>
 											</div>
 										</div>
@@ -146,19 +159,28 @@ const Header = () => {
 						<div className="navbar-end transition-colors">
 							<div className="hidden lg:flex">
 								{userRole === 'admin' && user?.uid && (
-									<div className="wishlist">
-										<div
-											onClick={() => setNotification(!notification)}
-											className="indicator cursor-pointer transition-colors hover:text-primary"
-										>
-											{notificationData?.length > 0 && (
-												<span className="indicator-item badge bg-primary text-white  font-bold">
-													{notificationData?.length}
-												</span>
-											)}
-											<span className="icon-bell text-2xl"></span>
+									<>
+										<div className="wishlist mx-6">
+											<div className="indicator cursor-pointer transition-colors hover:text-primary">
+												<Link to={`/dashboard/admin`} id="rotate">
+													<span className="icon-settings text-2xl"></span>
+												</Link>
+											</div>
 										</div>
-									</div>
+										<div className="wishlist">
+											<div
+												onClick={() => setNotification(!notification)}
+												className="indicator cursor-pointer transition-colors hover:text-primary"
+											>
+												{notificationData?.length > 0 && (
+													<span className="indicator-item badge bg-primary text-white  font-bold">
+														{notificationData?.length}
+													</span>
+												)}
+												<span className="icon-bell text-2xl"></span>
+											</div>
+										</div>
+									</>
 								)}
 								<div className="wishlist mx-6">
 									<div
