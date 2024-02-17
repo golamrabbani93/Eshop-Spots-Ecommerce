@@ -1,14 +1,25 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../../contexts/AuthProvider';
 import UsePostUser from '../../../hooks/UsePostUser';
+import UseGetToken from '../../../hooks/UseGetToken';
 
 const Login = () => {
 	const {userSignIn, googleSignIn, loader, setLoader} = useContext(AuthContext);
 	const navigate = useNavigate();
 	const location = useLocation();
+	//!Set email For Token
+	const [userEmail, setUserEmail] = useState('');
+	const [token] = UseGetToken(userEmail);
+	useEffect(() => {
+		if (token) {
+			toast.success('Login Complete');
+			navigate(from, {replace: true});
+			setLoader(false);
+		}
+	});
 	// !if location.state is not found then set from to '/' path
 	const from = location.state?.from || {pathname: '/'};
 	const {
@@ -20,9 +31,7 @@ const Login = () => {
 	const handleLogin = (data) => {
 		userSignIn(data.email, data.password)
 			.then((result) => {
-				toast.success('Login Complete');
-				navigate(from, {replace: true});
-				setLoader(false);
+				setUserEmail(data.email);
 				reset();
 			})
 			.catch((err) => {

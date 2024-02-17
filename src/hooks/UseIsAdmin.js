@@ -5,7 +5,12 @@ const UseIsAdmin = (email) => {
 	const [userLoader, setUserLoader] = useState(true);
 	useEffect(() => {
 		if (email) {
-			fetch(`https://eshopspots-server.vercel.app/user?email=${email}`)
+			fetch(`https://eshopspots-server.vercel.app/user?email=${email}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('token')}`,
+				},
+			})
 				.then((res) => res.json())
 				.then((data) => {
 					if (data.message === 'success') {
