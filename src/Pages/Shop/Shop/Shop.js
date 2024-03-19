@@ -21,7 +21,7 @@ const Shop = () => {
 	};
 	//!get Params
 	const categoryName = useParams();
-	const url = `https://eshopspots-server.vercel.app/products?categoryName=${categoryName?.name}`;
+	const url = `http://localhost:5000/products?categoryName=${categoryName?.name}`;
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products', categoryName],
@@ -71,7 +71,11 @@ const Shop = () => {
 					</div>
 				</div>
 				<div className="text-center mt-12">
-					<button className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all">
+					<button
+						className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
+						onClick={() => setPage(page - 1)}
+						disabled={page === 1}
+					>
 						<FaArrowLeft />
 					</button>
 					{[...Array(totalPages).keys()].map((pg) => (
@@ -85,7 +89,11 @@ const Shop = () => {
 							{pg + 1}
 						</button>
 					))}
-					<button className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all">
+					<button
+						onClick={() => setPage(page + 1)}
+						className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
+						disabled={page === totalPages}
+					>
 						<FaArrowRight />
 					</button>
 				</div>
