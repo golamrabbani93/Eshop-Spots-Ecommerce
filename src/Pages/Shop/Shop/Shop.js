@@ -7,6 +7,7 @@ import Loader from '../../Shared/Loader/Loader';
 import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import {useParams} from 'react-router-dom';
 import UseScrollTop from '../../../hooks/UseScrollTop';
+import {FaArrowLeft, FaArrowRight} from 'react-icons/fa';
 
 const Shop = () => {
 	// !Scroll to top
@@ -30,7 +31,12 @@ const Shop = () => {
 			return data;
 		},
 	});
-	console.log('🚀🚀: Shop -> products', products);
+	// !pagination
+	const [page, setPage] = useState(1);
+	console.log('🚀🚀: page', page);
+	const productsSize = products?.data?.length;
+	const perPage = 10;
+	const totalPages = Math.ceil(productsSize / perPage);
 
 	// !breaditems list
 	const items = [
@@ -64,7 +70,25 @@ const Shop = () => {
 						<Products products={products} cartModal={cartModal}></Products>
 					</div>
 				</div>
-				<div className="text-center">Pagination</div>
+				<div className="text-center mt-12">
+					<button className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all">
+						<FaArrowLeft />
+					</button>
+					{[...Array(totalPages).keys()].map((pg) => (
+						<button
+							onClick={() => setPage(pg + 1)}
+							key={pg}
+							className={`${
+								page === pg + 1 ? 'bg-primary text-white' : ' bg-black text-white'
+							} p-2 m-2 rounded-md w-10 hover:bg-primary hover:text-white transition-all`}
+						>
+							{pg + 1}
+						</button>
+					))}
+					<button className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all">
+						<FaArrowRight />
+					</button>
+				</div>
 			</div>
 			<CartSuccessModal modalData={modalData}></CartSuccessModal>
 		</div>
