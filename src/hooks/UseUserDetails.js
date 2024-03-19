@@ -1,7 +1,9 @@
 import {useQuery} from '@tanstack/react-query';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
+import {AuthContext} from '../contexts/AuthProvider';
 
 const UseUserDetails = (email) => {
+	const {logOut} = useContext(AuthContext);
 	const [userDetails, setUserDetails] = useState({});
 	const [userRole, setUserRole] = useState('');
 	const [userLoader, setUserLoader] = useState(true);
@@ -15,6 +17,11 @@ const UseUserDetails = (email) => {
 					authorization: `Bearer ${localStorage.getItem('token')}`,
 				},
 			});
+			if (res.status === 403) {
+				setTimeout(() => {
+					logOut();
+				}, 3000);
+			}
 			const data = await res.json();
 			if (data.message === 'success') {
 				setUserDetails(data?.user);
@@ -25,6 +32,7 @@ const UseUserDetails = (email) => {
 			return data;
 		},
 	});
+
 	return {userDetails, refetch, userRole, userLoader};
 };
 
