@@ -10,7 +10,7 @@ import UseScrollTop from '../../../hooks/UseScrollTop';
 
 const Shop = () => {
 	// !Scroll to top
-	UseScrollTop();
+	// UseScrollTop();
 	// !Set Cart data
 	const [modalData, setModalData] = useState({});
 
@@ -30,6 +30,7 @@ const Shop = () => {
 			return data;
 		},
 	});
+	console.log('🚀🚀: Shop -> products', products);
 
 	// !breaditems list
 	const items = [
@@ -63,6 +64,7 @@ const Shop = () => {
 						<Products products={products} cartModal={cartModal}></Products>
 					</div>
 				</div>
+				<div className="text-center">Pagination</div>
 			</div>
 			<CartSuccessModal modalData={modalData}></CartSuccessModal>
 		</div>

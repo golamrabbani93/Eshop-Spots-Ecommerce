@@ -11,7 +11,12 @@ const AllUsers = () => {
 	} = useQuery({
 		queryKey: ['users'],
 		queryFn: async () => {
-			const res = await fetch(`https://eshopspots-server.vercel.app/user`);
+			const res = await fetch(`https://eshopspots-server.vercel.app/user`, {
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('token')}`,
+				},
+			});
 			const data = await res.json();
 			return data.data;
 		},
