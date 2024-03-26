@@ -19,24 +19,26 @@ const Shop = () => {
 	const cartModal = (data) => {
 		setModalData(data);
 	};
+	// !pagination
+	const [page, setPage] = useState(0);
+	const [productsSize, setProductsSize] = useState(0);
+	const perPage = 9;
+	const totalPages = Math.ceil(productsSize / perPage);
 	//!get Params
 	const categoryName = useParams();
-	const url = `http://localhost:5000/products?categoryName=${categoryName?.name}`;
+	const url = `http://localhost:5000/products?categoryName=${
+		categoryName?.name
+	}&page=${page}&limit=${9}`;
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
-		queryKey: ['products', categoryName],
+		queryKey: ['products', categoryName, page],
 		queryFn: async () => {
 			const res = await fetch(url);
 			const data = await res.json();
+			setProductsSize(data.total);
 			return data;
 		},
 	});
-	// !pagination
-	const [page, setPage] = useState(1);
-	console.log('🚀🚀: page', page);
-	const productsSize = products?.data?.length;
-	const perPage = 10;
-	const totalPages = Math.ceil(productsSize / perPage);
 
 	// !breaditems list
 	const items = [
@@ -74,25 +76,25 @@ const Shop = () => {
 					<button
 						className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
 						onClick={() => setPage(page - 1)}
-						disabled={page === 1}
+						disabled={page === 0}
 					>
 						<FaArrowLeft />
 					</button>
 					{[...Array(totalPages).keys()].map((pg) => (
 						<button
-							onClick={() => setPage(pg + 1)}
+							onClick={() => setPage(pg)}
 							key={pg}
 							className={`${
-								page === pg + 1 ? 'bg-primary text-white' : ' bg-black text-white'
+								page === pg ? 'bg-primary text-white' : ' bg-black text-white'
 							} p-2 m-2 rounded-md w-10 hover:bg-primary hover:text-white transition-all`}
 						>
-							{pg + 1}
+							{pg}
 						</button>
 					))}
 					<button
 						onClick={() => setPage(page + 1)}
 						className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
-						disabled={page === totalPages}
+						disabled={totalPages - 1 === page || page === totalPages}
 					>
 						<FaArrowRight />
 					</button>
