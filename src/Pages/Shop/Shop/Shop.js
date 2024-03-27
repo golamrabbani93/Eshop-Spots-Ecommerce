@@ -11,7 +11,7 @@ import {FaArrowLeft, FaArrowRight} from 'react-icons/fa';
 
 const Shop = () => {
 	// !Scroll to top
-	// UseScrollTop();
+	UseScrollTop();
 	// !Set Cart data
 	const [modalData, setModalData] = useState({});
 
@@ -88,7 +88,7 @@ const Shop = () => {
 								page === pg ? 'bg-primary text-white' : ' bg-black text-white'
 							} p-2 m-2 rounded-md w-10 hover:bg-primary hover:text-white transition-all`}
 						>
-							{pg}
+							{pg + 1}
 						</button>
 					))}
 					<button
