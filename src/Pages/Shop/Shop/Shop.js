@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BreadCrumb from '../../../Components/BreadCrumb/BreadCrumb';
 import {useQuery} from '@tanstack/react-query';
 import Categories from '../Categories/Categories';
@@ -26,6 +26,12 @@ const Shop = () => {
 	const totalPages = Math.ceil(productsSize / perPage);
 	//!get Params
 	const categoryName = useParams();
+	const {name} = useParams();
+
+	useEffect(() => {
+		setPage(0);
+	}, [name]);
+
 	const url = `http://localhost:5000/products?categoryName=${
 		categoryName?.name
 	}&page=${page}&limit=${9}`;
