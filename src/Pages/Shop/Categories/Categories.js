@@ -15,11 +15,14 @@ const Categories = ({categoryName}) => {
 	return (
 		<div>
 			<h2 className="text-xl uppercase font-bold">Categories</h2>
-			<div className="divider mt-5"></div>
+			<div className="relative">
+				<div className="divider mt-5"></div>
+				<div className="w-14 h-[0.125rem] bg-primary-focus absolute top-[7px]"></div>
+			</div>
 
 			<div>
-				<ul>
-					<li className="my-2">
+				<ul className="font-sans">
+					<li className="my-3">
 						<Link
 							className={`text-xl font-bold hover:text-primary transition duration-300 ${
 								Object.keys(categoryName).length === 0 && 'text-primary'
@@ -30,7 +33,7 @@ const Categories = ({categoryName}) => {
 						</Link>
 					</li>
 					{cateGories?.map((category) => (
-						<li key={category?._id} className="my-2">
+						<li key={category?._id} className="my-3">
 							<Link
 								className={`text-xl font-bold hover:text-primary transition duration-300 ${
 									categoryName?.name?.toLowerCase() === category?.name?.toLowerCase() &&
