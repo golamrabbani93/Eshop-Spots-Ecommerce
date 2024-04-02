@@ -8,6 +8,7 @@ import CartSuccessModal from '../../Shared/CartSuccessModal/CartSuccessModal';
 import {useParams} from 'react-router-dom';
 import UseScrollTop from '../../../hooks/UseScrollTop';
 import {FaArrowLeft, FaArrowRight} from 'react-icons/fa';
+import FilterByPrize from '../FilterByPrize/FilterByPrize';
 
 const Shop = () => {
 	// !Scroll to top
@@ -32,9 +33,16 @@ const Shop = () => {
 		setPage(0);
 	}, [name]);
 
+	//!Filter by prize
+	const [minValue, setMinValue] = useState(250);
+	const [maxValue, setMaxValue] = useState(750);
+	const handleInputPrize = (e) => {
+		setMinValue(e.minValue);
+		setMaxValue(e.maxValue);
+	};
 	const url = `http://localhost:5000/products?categoryName=${
 		categoryName?.name
-	}&page=${page}&limit=${9}`;
+	}&page=${page}&limit=${9}&minPrice=${minValue}&maxPrice=${maxValue}`;
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
 		queryKey: ['products', categoryName, page],
@@ -72,6 +80,11 @@ const Shop = () => {
 					{/* !left side bar */}
 					<div className="left-side">
 						<Categories categoryName={categoryName}></Categories>
+						<FilterByPrize
+							minValue={minValue}
+							maxValue={maxValue}
+							handleInputPrize={handleInputPrize}
+						></FilterByPrize>
 					</div>
 					{/* !right side bar */}
 					<div className="right-sid md:col-start-2 md:col-end-5">
