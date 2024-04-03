@@ -28,24 +28,24 @@ const Shop = () => {
 	//!get Params
 	const categoryName = useParams();
 	const {name} = useParams();
-
-	useEffect(() => {
-		setPage(0);
-	}, [name]);
-
 	//!Filter by prize
-	const [minValue, setMinValue] = useState(250);
+	const [minValue, setMinValue] = useState(100);
 	const [maxValue, setMaxValue] = useState(750);
 	const handleInputPrize = (e) => {
 		setMinValue(e.minValue);
 		setMaxValue(e.maxValue);
 	};
+	// !set page to 0 when category changes
+	useEffect(() => {
+		setPage(0);
+	}, [name]);
+
 	const url = `http://localhost:5000/products?categoryName=${
 		categoryName?.name
 	}&page=${page}&limit=${9}&minPrice=${minValue}&maxPrice=${maxValue}`;
 	// !get all products
 	const {data: products = [], isLoading} = useQuery({
-		queryKey: ['products', categoryName, page],
+		queryKey: ['products', categoryName, page, minValue, maxValue],
 		queryFn: async () => {
 			const res = await fetch(url);
 			const data = await res.json();
@@ -91,33 +91,35 @@ const Shop = () => {
 						<Products products={products} cartModal={cartModal}></Products>
 					</div>
 				</div>
-				<div className="text-center mt-12">
-					<button
-						className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
-						onClick={() => setPage(page - 1)}
-						disabled={page === 0}
-					>
-						<FaArrowLeft />
-					</button>
-					{[...Array(totalPages).keys()].map((pg) => (
+				{
+					<div className="text-center mt-12">
 						<button
-							onClick={() => setPage(pg)}
-							key={pg}
-							className={`${
-								page === pg ? 'bg-primary text-white' : ' bg-black text-white'
-							} p-2 m-2 rounded-md w-10 hover:bg-primary hover:text-white transition-all`}
+							className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
+							onClick={() => setPage(page - 1)}
+							disabled={page === 0}
 						>
-							{pg + 1}
+							<FaArrowLeft />
 						</button>
-					))}
-					<button
-						onClick={() => setPage(page + 1)}
-						className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
-						disabled={totalPages - 1 === page || page === totalPages}
-					>
-						<FaArrowRight />
-					</button>
-				</div>
+						{[...Array(totalPages).keys()].map((pg) => (
+							<button
+								onClick={() => setPage(pg)}
+								key={pg}
+								className={`${
+									page === pg ? 'bg-primary text-white' : ' bg-black text-white'
+								} p-2 m-2 rounded-md w-10 hover:bg-primary hover:text-white transition-all`}
+							>
+								{pg + 1}
+							</button>
+						))}
+						<button
+							onClick={() => setPage(page + 1)}
+							className="text-black p-2 m-2 rounded-md w-10 hover:text-primary transition-all disabled:opacity-50"
+							disabled={totalPages - 1 === page || page === totalPages}
+						>
+							<FaArrowRight />
+						</button>
+					</div>
+				}
 			</div>
 			<CartSuccessModal modalData={modalData}></CartSuccessModal>
 		</div>
