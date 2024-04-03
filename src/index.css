@@ -86,3 +86,12 @@ img {
 .lf-player-container {
 	margin-left: -80px;
 }
+
+/* !price Range  css*/
+.multi-range-slider .thumb::before {
+	box-shadow: none !important;
+}
+
+.multi-range-slider .bar-inner {
+	border: none !important;
+}
