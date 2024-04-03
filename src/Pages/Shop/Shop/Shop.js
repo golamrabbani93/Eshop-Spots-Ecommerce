@@ -29,7 +29,7 @@ const Shop = () => {
 	const categoryName = useParams();
 	const {name} = useParams();
 	//!Filter by prize
-	const [minValue, setMinValue] = useState(100);
+	const [minValue, setMinValue] = useState(60);
 	const [maxValue, setMaxValue] = useState(750);
 	const handleInputPrize = (e) => {
 		setMinValue(e.minValue);
