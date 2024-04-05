@@ -40,7 +40,7 @@ const Shop = () => {
 		setPage(0);
 	}, [name]);
 
-	const url = `http://localhost:5000/products?categoryName=${
+	const url = `https://eshopspots-server.vercel.app/products?categoryName=${
 		categoryName?.name
 	}&page=${page}&limit=${9}&minPrice=${minValue}&maxPrice=${maxValue}`;
 	// !get all products

@@ -14,7 +14,7 @@ const Category = () => {
 	});
 
 	return (
-		<div className="my-24">
+		<div className="mt-24">
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
 				{cateGories?.map((category) => (
 					<Link
