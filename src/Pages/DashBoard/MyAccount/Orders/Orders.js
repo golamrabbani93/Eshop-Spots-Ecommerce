@@ -5,16 +5,25 @@ import {FaCheck} from 'react-icons/fa';
 import {FaXmark} from 'react-icons/fa6';
 import {Link} from 'react-router-dom';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
+
 const Orders = () => {
 	// !get user email
-	const {user} = useContext(AuthContext);
+	const {user, logOut} = useContext(AuthContext);
 	const userEmail = user?.email;
 	// !get user order data from database
 	const {data: orders, isLoading} = useQuery({
 		queryKey: ['booking', 'all', userEmail],
 		queryFn: async () => {
-			const res = await fetch(`https://eshopspots-server.vercel.app/booking/all/${userEmail}`);
+			const res = await fetch(`http://localhost:5000/booking/all/${userEmail}`, {
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('token')}`,
+				},
+			});
 			const data = await res.json();
+			if (data.message === 'Token Expired') {
+				logOut();
+			}
 			return data?.data;
 		},
 	});

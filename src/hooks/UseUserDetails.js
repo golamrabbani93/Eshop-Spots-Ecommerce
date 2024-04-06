@@ -9,7 +9,7 @@ const UseUserDetails = (email) => {
 	const {refetch} = useQuery({
 		queryKey: ['user', email],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/user?email=${email}`, {
+			const res = await fetch(`https://eshopspots-server.vercel.app/user?email=${email}`, {
 				headers: {
 					'Content-Type': 'application/json',
 					authorization: `Bearer ${localStorage.getItem('token')}`,
