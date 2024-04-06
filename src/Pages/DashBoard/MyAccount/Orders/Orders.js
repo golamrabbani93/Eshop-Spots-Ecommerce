@@ -15,7 +15,7 @@ const Orders = () => {
 	const {data: orders, isLoading} = useQuery({
 		queryKey: ['booking', 'all', userEmail],
 		queryFn: async () => {
-			const res = await fetch(`http://localhost:5000/booking/all/${userEmail}`, {
+			const res = await fetch(`https://eshopspots-server.vercel.app/booking/all/${userEmail}`, {
 				headers: {
 					'Content-Type': 'application/json',
 					authorization: `Bearer ${localStorage.getItem('token')}`,

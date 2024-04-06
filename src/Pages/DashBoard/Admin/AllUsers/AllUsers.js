@@ -1,9 +1,12 @@
 import {useQuery} from '@tanstack/react-query';
-import React from 'react';
+import React, {useContext} from 'react';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
 import SingleUser from './SingleUser/SingleUser';
+import {AuthContext} from '../../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const AllUsers = () => {
+	const {logOut} = useContext(AuthContext);
 	const {
 		data: users,
 		isLoading,
@@ -18,6 +21,10 @@ const AllUsers = () => {
 				},
 			});
 			const data = await res.json();
+			if (data.message === 'Token Expired') {
+				toast.error('Token Expired');
+				logOut();
+			}
 			return data.data;
 		},
 	});

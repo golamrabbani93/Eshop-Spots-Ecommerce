@@ -1,14 +1,26 @@
 import {useQuery} from '@tanstack/react-query';
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import DashBoardLoader from '../../../Shared/DashBoardLoader/DashBoardLoader';
+import {AuthContext} from '../../../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const AllOrders = () => {
+	const {logOut} = useContext(AuthContext);
 	const {data: allOrders, isLoading} = useQuery({
 		queryKey: ['allOrders', 'booking'],
 		queryFn: async () => {
-			const response = await fetch('https://eshopspots-server.vercel.app/booking');
+			const response = await fetch('https://eshopspots-server.vercel.app/booking', {
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('token')}`,
+				},
+			});
 			const data = await response.json();
+			if (data.message === 'Token Expired') {
+				toast.error('Token Expired');
+				logOut();
+			}
 			return data.data;
 		},
 	});
