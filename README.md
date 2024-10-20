@@ -79,8 +79,8 @@ Check out the live website: [Eshop-Spots](https://eshopspots.web.app/)
 
 
 # Key Functionalities:
-Dashboard: Manage your orders.
-Cart and Wishlist: Add furniture products to cart or wishlist for later purchase.
-Profile Page: Manage personal information.
-Checkout: Proceed to the checkout page to complete your purchase.
-Admin Features: Admin users can manage products by adding, updating, or deleting them via the product management page.
+▶️ Dashboard: Manage your orders.
+▶️ Cart and Wishlist: Add furniture products to cart or wishlist for later purchase.
+▶️ Profile Page: Manage personal information.
+▶️ Checkout: Proceed to the checkout page to complete your purchase.
+▶️ Admin Features: Admin users can manage products by adding, updating, or deleting them via the product management page.
