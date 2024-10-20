@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+<div align="center">
+  <h1>Eshop-Spots: Furniture E-commerce Platform</h1>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# Eshop-Spots
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+**Eshop-Spots** is an advanced furniture e-commerce platform designed for users to browse, add to cart or wishlist, and purchase furniture products seamlessly. The website offers a smooth and intuitive user experience, integrating modern design and technology.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Eshop-Spots allows users to explore a wide range of furniture products and manage their purchases efficiently. The platform includes key features such as a user dashboard, cart and wishlist management, secure payment integration, and advanced designs for a delightful shopping experience.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- User-friendly interface for browsing and purchasing furniture.
+- Cart and Wishlist functionalities for managing products.
+- User dashboard with order history and profile management.
+- Secure payment integration via Stripe.
+- Admin features for product management (add, update, delete products).
+- Responsive and visually appealing design.
 
-### `npm run build`
+## Technology Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Frontend**: React, Redux, Tailwind CSS, Ant Design, React Router, React Hook Form, Sonner
+- **State Management**: Redux Toolkit, Redux Persist
+- **Payment Integration**: Stripe
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Forms & Validation**: React Hook Form, Zod
+- **Animations**: Lottie
+- **Time Management**: Moment.js
+- **Routing**: React Router
+- **Version Control**: Vite, ESLint, TypeScript
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation Guideline
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow these steps to set up the Eshop-Spots project locally.
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Node.js (v14 or higher)
+- npm or Yarn package manager
+- MongoDB (optional for backend setup)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Live Demo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Check out the live website: [Eshop-Spots](https://eshopspots.web.app/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Installation Steps
 
-## Learn More
+1. Clone the repository:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   git clone <repository-url>
+   cd eshop-spots
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3.Start the development server:
+```bash
+   git clone <repository-url>
+   cd eshop-spots
+```
+## Configuration
+1.Create a .env file in the root directory of the project.
+2.Add necessary configuration variables in the .env file. Example:
 
-### Code Splitting
+```bash
+  PORT=3000
+  DB_URL=your_db_connection_uri
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Key Functionalities:
+Dashboard: Manage your orders.
+Cart and Wishlist: Add furniture products to cart or wishlist for later purchase.
+Profile Page: Manage personal information.
+Checkout: Proceed to the checkout page to complete your purchase.
+Admin Features: Admin users can manage products by adding, updating, or deleting them via the product management page.
