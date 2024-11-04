@@ -26,6 +26,7 @@ import Dashboard from '../../Pages/DashBoard/Admin/Dashboard/Dashboard';
 import AllOrders from '../../Pages/DashBoard/Admin/AllOrders/AllOrders';
 import UserOrderDetails from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/UserOrderDetails';
 import ProductList from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/ProductList/ProductList';
+import Contact from '../../Pages/Contact/Contact';
 
 const router = createBrowserRouter([
 	{
@@ -73,8 +74,8 @@ const router = createBrowserRouter([
 				),
 			},
 			{
-				path: '/blog',
-				element: <Blog></Blog>,
+				path: '/contact-us',
+				element: <Contact />,
 			},
 			{
 				path: '/Signup',

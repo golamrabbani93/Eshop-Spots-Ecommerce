@@ -82,22 +82,22 @@ const Footer = () => {
 						<h2 className="font-extrabold uppercase text-white text-base pb-4">FOLLOW US</h2>
 						<div className="social list-none inline-flex gap-4 ">
 							<li className="">
-								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-white hover:text-black transition-all duration-500">
+								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-primary  transition-all duration-500">
 									<BiLogoFacebook className="w-5 h-5" />
 								</Link>
 							</li>
 							<li className=" ">
-								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-white hover:text-black transition-all duration-500">
+								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-primary  transition-all duration-500">
 									<BiLogoTwitter className="w-5 h-5" />
 								</Link>
 							</li>
 							<li className=" ">
-								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-white hover:text-black transition-all duration-500">
+								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-primary  transition-all duration-500">
 									<BiLogoInstagram className="w-5 h-5" />
 								</Link>
 							</li>
 							<li className=" ">
-								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-white hover:text-black transition-all duration-500">
+								<Link className="flex justify-center items-center w-10 h-10 rounded-full bg-[#2f3239] text-white hover:bg-primary  transition-all duration-500">
 									<BiLogoLinkedin className="w-5 h-5" />
 								</Link>
 							</li>
@@ -126,7 +126,7 @@ const Footer = () => {
 					<div className="copyright py-[20px]">
 						<h2 className="text-white uppercase text-sm">
 							© {new Date().getFullYear()} Eshop-spots. Made by{' '}
-							<Link to={`https://webrabbani.web.app/`} className="text-primary">
+							<Link to={`https://dev-rabbani.web.app/`} className="text-primary">
 								Golam rabbani
 							</Link>
 						</h2>

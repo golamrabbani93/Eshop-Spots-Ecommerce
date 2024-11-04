@@ -60,7 +60,7 @@ const Header = () => {
 				<NavLink to="/shop">Shop</NavLink>
 			</li>
 			<li className="hover:text-primary mx-[20px] font-bold transition-colors">
-				<NavLink to="/blog">Blog</NavLink>
+				<NavLink to="/contact-us">Contact Us</NavLink>
 			</li>
 		</>
 	);
@@ -244,7 +244,7 @@ const Header = () => {
 									</div>
 								) : (
 									<Link
-										className=" border border-primary px-4 py-2 rounded flex items-center hover:text-primary mx-[20px] font-bold transition-colors uppercase"
+										className="border border-primary px-4 py-2 rounded flex items-center hover:text-primary mx-[20px] font-bold transition-colors uppercase"
 										to="/login"
 									>
 										Login <MdLogin className="ml-1 w-6 h-6" />
