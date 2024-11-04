@@ -29,9 +29,9 @@ const NewArrivals = ({cartModal}) => {
 			{
 				breakpoint: 1301,
 				settings: {
-					slidesToShow: 3,
+					slidesToShow: 4,
 					slidesToScroll: 1,
-					initialSlide: 3,
+					initialSlide: 4,
 				},
 			},
 			{
@@ -64,10 +64,10 @@ const NewArrivals = ({cartModal}) => {
 	}
 
 	return (
-		<section className="container mx-auto mb-14 overflow-hidden">
+		<section className="container mx-auto mb-14 overflow-hidden mt-10">
 			<div className="mx-5 md:mx-16">
 				<div className="">
-					<h2 className="text-2xl font-bold uppercase">The New Arrivals</h2>
+					<h2 className="text-2xl font-bold uppercase text-primary">The New Arrivals</h2>
 				</div>
 
 				{NewArrivalsData.data?.length > 0 && (

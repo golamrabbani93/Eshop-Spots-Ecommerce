@@ -22,9 +22,9 @@ const Home = () => {
 	return (
 		<div className="mt-[70px]">
 			<Banner></Banner>
+			<NewArrivals cartModal={cartModal}></NewArrivals>
 			<Services></Services>
 			<AdsProduct></AdsProduct>
-			<NewArrivals cartModal={cartModal}></NewArrivals>
 			<BasicCollection></BasicCollection>
 			<BestSellers cartModal={cartModal}></BestSellers>
 			<Category></Category>

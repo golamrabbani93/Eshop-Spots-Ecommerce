@@ -12,7 +12,7 @@ const BasicCollection = () => {
 					className=" ml-4 md:ml-0 z-[1] content md:w-[425px] absolute top-1/2 translate-y-[-50%]
 				 md:right-16"
 				>
-					<h2 className="text-3xl md:text-5xl mb-3 text-[#24262B]">
+					<h2 className="text-3xl md:text-5xl mb-3 text-primary">
 						Modern Furniture Basic Collection
 					</h2>
 					<h4 className="md:text-base text-[#777777]">WE DESIGN YOUR HOME MORE BEAUTIFUL</h4>

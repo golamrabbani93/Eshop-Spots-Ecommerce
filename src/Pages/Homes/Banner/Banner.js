@@ -46,7 +46,7 @@ const Banner = () => {
 					return (
 						<div key={index} className={`banner-${index}`}>
 							<div className="banner__image relative ">
-								<img className="h-[100vh] w-full object-cover" src={banner.img} alt="" />
+								<img className="h-[70vh] w-full object-cover" src={banner.img} alt="" />
 							</div>
 							<div className="container mx-auto">
 								<div className="banner__info w-[250px] sm:w-[320px] md:w-[580px] absolute top-1/2 translate-y-[-50%] pl-10 lg:pl-20">

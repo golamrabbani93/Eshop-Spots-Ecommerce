@@ -5,8 +5,7 @@ const Services = () => {
 		{
 			img: 'https://i.ibb.co/KmqDgdB/service-promo-1.png',
 			title: 'FREE SHIPPING',
-			description:
-				'Get 10% cash back, free shipping, free returns, and more at 1000+ top retailers!',
+			description: 'Get 10% cash back, free shipping, free returns, and 1000+ top retailers!',
 		},
 		{
 			img: 'https://i.ibb.co/wYrRZtQ/service-promo-2.png',
@@ -25,8 +24,11 @@ const Services = () => {
 		},
 	];
 	return (
-		<section className="container m-auto">
-			<div className="mt-14 flex flex-wrap justify-center">
+		<section className="container m-auto mt-14">
+			<div className="mx-5 md:mx-16">
+				<h2 className="text-2xl font-bold uppercase text-primary">Why choose us</h2>
+			</div>
+			<div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-center gap-3 mx-5">
 				{services__info.map((service, index) => {
 					return (
 						<div key={index} className="card w-[310px] md:w-[340px]">

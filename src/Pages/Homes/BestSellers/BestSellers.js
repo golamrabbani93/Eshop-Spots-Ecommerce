@@ -29,9 +29,9 @@ const BestSellers = ({cartModal}) => {
 			{
 				breakpoint: 1301,
 				settings: {
-					slidesToShow: 3,
+					slidesToShow: 4,
 					slidesToScroll: 1,
-					initialSlide: 3,
+					initialSlide: 4,
 				},
 			},
 			{
@@ -66,7 +66,7 @@ const BestSellers = ({cartModal}) => {
 		<section className="container mx-auto my-24 overflow-hidden">
 			<div className="mx-5 md:mx-16">
 				<div className="">
-					<h2 className="text-2xl font-bold uppercase">The Best Seller</h2>
+					<h2 className="text-2xl font-bold uppercase text-primary">The Best Seller</h2>
 				</div>
 
 				{bestSeller.data?.length > 0 && (
