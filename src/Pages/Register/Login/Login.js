@@ -20,14 +20,45 @@ const Login = () => {
 			setLoader(false);
 		}
 	});
+
+	//Active Tablist Function
+	// State to track the active tab index
+	const [activeTab, setActiveTab] = useState(1);
+
+	//defaultValue
+	const [loginData, setLoginData] = useState({
+		email: 'golamrabbani9373@gmail.com',
+		password: '@Rabbani@123',
+	});
+
 	// !if location.state is not found then set from to '/' path
 	const from = location.state?.from || {pathname: '/'};
 	const {
 		register,
 		handleSubmit,
+
 		reset,
 		formState: {errors},
-	} = useForm();
+	} = useForm({
+		defaultValues: loginData,
+	});
+	// Function to handle tab click and update the active tab
+	const handleTabClick = (index) => {
+		const newLoginData =
+			index === 2
+				? {
+						email: 'admin@rabbani.com',
+						password: '@Rabbani@123',
+				  }
+				: {
+						email: 'golamrabbani9373@gmail.com',
+						password: '@Rabbani@123',
+				  };
+
+		setLoginData(newLoginData); // Update loginData state
+		reset(newLoginData); // Update form fields with new data
+		setActiveTab(index); // Update active tab state
+	};
 	const handleLogin = (data) => {
 		userSignIn(data.email, data.password)
 			.then((result) => {
@@ -95,6 +126,25 @@ const Login = () => {
 							</Link>
 						</label>
 					</div>
+					<div role="tablist" className="tabs tabs-boxed w-[155px]">
+						<button
+							type="button"
+							role="tab"
+							className={`tab ${activeTab === 1 ? 'tab-active' : ''}`}
+							onClick={() => handleTabClick(1)}
+						>
+							USER
+						</button>
+						<button
+							type="button"
+							role="tab"
+							className={`tab ${activeTab === 2 ? 'tab-active' : ''}`}
+							onClick={() => handleTabClick(2)}
+						>
+							ADMIN
+						</button>
+					</div>
+
 					<div className="form-control mt-6">
 						<button className="btn btn-outline btn-primary">
 							{loader ? <span className="loading loading-spinner text-neutral"></span> : 'Login'}
