@@ -2,7 +2,6 @@ import {createBrowserRouter} from 'react-router-dom';
 import MainLayouts from '../../layouts/MainLayouts';
 import Home from '../../Pages/Homes/Home/Home';
 import Shop from '../../Pages/Shop/Shop/Shop';
-import Blog from '../../Pages/Blog/Blog/Blog';
 import SignUp from '../../Pages/Register/SignUp/SignUp';
 import Login from '../../Pages/Register/Login/Login';
 import WishLists from '../../Pages/Shop/WishLists/WishLists';
@@ -27,6 +26,7 @@ import AllOrders from '../../Pages/DashBoard/Admin/AllOrders/AllOrders';
 import UserOrderDetails from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/UserOrderDetails';
 import ProductList from '../../Pages/DashBoard/Admin/AllOrders/UserOrderDetails/ProductList/ProductList';
 import Contact from '../../Pages/Contact/Contact';
+import About from '../../Pages/AboutUs/About/About';
 
 const router = createBrowserRouter([
 	{
@@ -72,6 +72,10 @@ const router = createBrowserRouter([
 						<Payment></Payment>
 					</PrivateRoutes>
 				),
+			},
+			{
+				path: '/about-us',
+				element: <About />,
 			},
 			{
 				path: '/contact-us',
